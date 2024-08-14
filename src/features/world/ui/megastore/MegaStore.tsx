@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { SUNNYSIDE } from "assets/sunnyside";
 import { Label } from "components/ui/Label";
 import { CloseButtonPanel } from "features/game/components/CloseablePanel";
-import { ITEM_IDS } from "features/game/types/bumpkin";
+import { BumpkinItem, ITEM_IDS } from "features/game/types/bumpkin";
 import { BUMPKIN_ITEM_BUFF_LABELS } from "features/game/types/bumpkinItemBuffs";
 import { ITEM_DETAILS } from "features/game/types/images";
 import { NPC_WEARABLES } from "lib/npcs";
@@ -12,7 +12,11 @@ import { COLLECTIBLE_BUFF_LABELS } from "features/game/types/collectibleItemBuff
 import { BuffLabel } from "features/game/types";
 import { ItemDetail } from "./components/ItemDetail";
 import { ItemsList } from "./components/ItemsList";
-import { WearablesItem, CollectiblesItem } from "features/game/types/game";
+import {
+  WearablesItem,
+  CollectiblesItem,
+  InventoryItemName,
+} from "features/game/types/game";
 import { MachineState } from "features/game/lib/gameMachine";
 import { Context } from "features/game/GameProvider";
 import { useSelector } from "@xstate/react";
@@ -62,13 +66,20 @@ export const getItemBuffLabel = (
 const _megastore = (state: MachineState) => state.context.state.megastore;
 
 export const MegaStore: React.FC<Props> = ({ onClose }) => {
+  const [tab, setTab] = useState(0);
   return (
     <CloseButtonPanel
       bumpkinParts={NPC_WEARABLES.stella}
-      tabs={[{ icon: shopIcon, name: "Mega Store" }]}
+      tabs={[
+        { icon: shopIcon, name: "Mega Store" },
+        { icon: "", name: "Mega Item" },
+      ]}
       onClose={onClose}
+      setCurrentTab={setTab}
+      currentTab={tab}
     >
-      <MegaStoreContent />
+      {tab === 0 && <MegaStoreContent />}
+      {tab === 1 && <MegaItemContent />}
     </CloseButtonPanel>
   );
 };
@@ -159,6 +170,64 @@ export const MegaStoreContent: React.FC<{ readonly?: boolean }> = ({
           readonly={readonly}
         />
       </ModalOverlay>
+    </div>
+  );
+};
+
+const MegaItemContent: React.FC = () => {
+  const { t } = useAppTranslation();
+  const { gameService } = useContext(Context);
+  const megastore = useSelector(gameService, _megastore);
+
+  const { megaItem } = megastore;
+  const megaItemName = megaItem.name;
+
+  let isMegaCollectible = megaItem?.type === "collectible";
+  if (ITEM_DETAILS[megaItemName as InventoryItemName] === undefined) {
+    isMegaCollectible = false;
+  }
+
+  const image = isMegaCollectible
+    ? ITEM_DETAILS[megaItemName as InventoryItemName].image
+    : getImageUrl(ITEM_IDS[megaItemName as BumpkinItem]);
+
+  const getTotalSecondsAvailable = () => {
+    const { from, to } = megastore.available;
+
+    return (to - from) / 1000;
+  };
+  const timeRemaining = getTimeLeft(
+    megastore.available.from,
+    getTotalSecondsAvailable(),
+  );
+  return (
+    <div className="w-full flex flex-col items-center mx-auto">
+      <p className="text-center text-sm mb-3"></p>
+
+      <div className="relative mb-2">
+        <img
+          src={SUNNYSIDE.ui.grey_background}
+          className="w-48 object-contain rounded-md"
+        />
+        <div className="absolute inset-0">
+          <img
+            src={image}
+            className="absolute w-1/2 z-20 object-cover mb-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          />
+        </div>
+      </div>
+      <Label
+        type="info"
+        className="font-secondary mb-2"
+        icon={SUNNYSIDE.icons.stopwatch}
+      >
+        {t("megaStore.timeRemaining", {
+          timeRemaining: secondsToString(timeRemaining, {
+            length: "medium",
+            removeTrailingZeros: true,
+          }),
+        })}
+      </Label>
     </div>
   );
 };

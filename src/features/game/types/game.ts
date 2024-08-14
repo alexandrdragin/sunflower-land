@@ -992,6 +992,7 @@ export type MegaStore = {
   };
   wearables: WearablesItem[];
   collectibles: CollectiblesItem[];
+  megaItem: WearablesItem | CollectiblesItem;
 };
 
 export type IslandType = "basic" | "spring" | "desert";
