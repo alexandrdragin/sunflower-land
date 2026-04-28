@@ -8766,7 +8766,6 @@
   "description.navigationTable": "为每一次螃蟹航行绘制路线图。将您的赔率加倍以获得一张地图棋子。",
   "description.royalCrabPot": "一款适合捕捉甲壳类动物皇室成员的花盆。放置没有蟹罐的陷阱",
   "description.crabHouse": "海边贝壳居民的甜蜜家园。将甲壳类动物产量提高 2",
-  "description.speedTrap": "在螃蟹看见它来临之前就关上了。捕蟹时间缩短 20%",
   "description.navigationTable.boost": "+100% 地图棋子赔率",
   "description.crabHouse.boost": "+2 甲壳类动物产量",
   "description.pistolShrimp.boost": "有 20% 的几率获得 +1 甲壳类动物产量",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "交易所",
   "playerEconomyEditor.dataTab.col.updatedAt": "已更新",
   "waterTrap.royalCrabPotActive": "皇家蟹罐强化已激活",
-  "description.royalCrabPot.boost": "没有水陷阱花盆的陷阱",
-  "description.speedTrap.boost": "-20% 捕蟹时间",
   "pickled.broccoli": "腌制西兰花",
   "description.pickled.broccoli": "小树，扑鼻而脆弱，保存在盐水中。用作发酵配方的原料。",
   "skillTier.skillPoints.available": "{{points}} 技能点数可用",
@@ -8862,5 +8859,8 @@
   "description.long.table": "长桌非常适合盛宴。",
   "description.royal.podium": "一个适合君主居住的豪华讲台。",
   "description.square.table": "一张方桌，整洁而对称。",
-  "description.stool": "一个可以坐的简单凳子。"
+  "description.stool": "一个可以坐的简单凳子。",
+  "description.speedTrap": "在螃蟹看见它来临之前就关上了。将 Trap Pot 时间缩短 20%",
+  "description.royalCrabPot.boost": "没有陷阱罐的陷阱",
+  "description.speedTrap.boost": "-20% 陷阱时间"
 }

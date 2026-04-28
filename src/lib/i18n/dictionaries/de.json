@@ -8766,7 +8766,6 @@
   "description.navigationTable": "Stellt den Kurs für jede schäbige Reise fest. Verdoppelt Ihre Chancen, ein Kartenstück zu bekommen.",
   "description.royalCrabPot": "Ein Topf, in dem man königliche Krebstiere fangen kann. Stellen Sie eine Falle ohne Krabbentöpfe auf",
   "description.crabHouse": "Ein süßes Zuhause für die Muschelbewohner am Meer. Erhöht den Ertrag von Krebstieren um 2",
-  "description.speedTrap": "Schnappt zu, bevor die Krabbe es überhaupt kommen sieht. Reduziert die Fangzeit von Krabben um 20%",
   "description.navigationTable.boost": "+100% Chance auf Kartenstücke",
   "description.crabHouse.boost": "+2 Ertrag an Krebstieren",
   "description.pistolShrimp.boost": "20% Chance, +1 Ertrag bei Krebstieren zu erhalten",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "Börsen",
   "playerEconomyEditor.dataTab.col.updatedAt": "aktualisiert",
   "waterTrap.royalCrabPotActive": "Royal Crab Pot Boost aktiv",
-  "description.royalCrabPot.boost": "Falle ohne Wasserfalle, Töpfe",
-  "description.speedTrap.boost": "-20% Zeit zum Fallen von Krabben",
   "pickled.broccoli": "Eingelegter Brokkoli",
   "description.pickled.broccoli": "Winzige Bäume, würzig und knackig, in Salzlake eingelegt. Wird als Zutat für Fermentationsrezepte verwendet.",
   "skillTier.skillPoints.available": "{{points}} Skillpunkte verfügbar",
@@ -8862,5 +8859,8 @@
   "description.long.table": "Ein langer Tisch, perfekt für Feste.",
   "description.royal.podium": "Ein königliches Podium, das für einen Monarchen würdig ist.",
   "description.square.table": "Ein quadratischer Tisch, sauber und symmetrisch.",
-  "description.stool": "Ein einfacher Hocker zum Sitzen."
+  "description.stool": "Ein einfacher Hocker zum Sitzen.",
+  "description.speedTrap": "Schnappt zu, bevor die Krabbe es überhaupt kommen sieht. Reduziert die Fallentopf-Zeit um 20%",
+  "description.royalCrabPot.boost": "Falle ohne Fallentöpfe",
+  "description.speedTrap.boost": "-20% Trap Pot Time"
 }

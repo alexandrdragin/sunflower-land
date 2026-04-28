@@ -8766,7 +8766,6 @@
   "description.navigationTable": "すべてのゴツゴツした航海のコースを図式化します。マップピースが手に入る確率が 2 倍になります。",
   "description.royalCrabPot": "甲殻類の王族を捕まえるのにふさわしい鉢。カニポットなしでトラップを設置してください。",
   "description.crabHouse": "海辺の貝殻の住人のためのホームスイートホーム。甲殻類の収量が 2% 増加する。",
-  "description.speedTrap": "カニが気づく前にパチンと閉まります。カニ捕獲時間を 20% 短縮する。",
   "description.navigationTable.boost": "+100% マップピースオッズ",
   "description.crabHouse.boost": "+2 甲殻類産出量",
   "description.pistolShrimp.boost": "20% の確率で甲殻類の産出量が+1になる",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "取引所",
   "playerEconomyEditor.dataTab.col.updatedAt": "更新済み",
   "waterTrap.royalCrabPotActive": "ロイヤルクラブポットブーストアクティブ",
-  "description.royalCrabPot.boost": "ウォータートラップポットなしのトラップ",
-  "description.speedTrap.boost": "-20% カニ捕獲時間",
   "pickled.broccoli": "ピクルスブロッコリー",
   "description.pickled.broccoli": "ピリッとしていてさわやかな小さな木々を塩水で保存しました。発酵レシピの材料として使用されます。",
   "skillTier.skillPoints.available": "{{points}} スキルポイント利用可能",
@@ -8862,5 +8859,8 @@
   "description.long.table": "ごちそうにぴったりのロングテーブル。",
   "description.royal.podium": "君主にふさわしい堂々とした表彰台。",
   "description.square.table": "すっきりとした左右対称の正方形のテーブル。",
-  "description.stool": "座るだけのシンプルなスツール。"
+  "description.stool": "座るだけのシンプルなスツール。",
+  "description.speedTrap": "カニが気づく前にパチンと閉まります。トラップポットの時間を 20% 短縮する。",
+  "description.royalCrabPot.boost": "トラップ (トラップポットなし)",
+  "description.speedTrap.boost": "-20% トラップポット時間"
 }

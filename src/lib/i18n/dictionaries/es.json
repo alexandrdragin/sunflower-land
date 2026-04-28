@@ -8766,7 +8766,6 @@
   "description.navigationTable": "Traza el rumbo de cada viaje accidentado. Duplica tus probabilidades de conseguir una parte del mapa.",
   "description.royalCrabPot": "Una olla apta para atrapar a la realeza de los crustáceos. Coloca la trampa sin ollas para cangrejos",
   "description.crabHouse": "Hogar, dulce hogar para los habitantes de conchas junto al mar. Aumenta en un 2% la producción de crustáceos",
-  "description.speedTrap": "Se cierra antes de que el cangrejo lo vea venir. Reduce el tiempo de captura de cangrejos en un 20%",
   "description.navigationTable.boost": "Probabilidades de +100% de Map Piece",
   "description.crabHouse.boost": "+2 Rendimiento de crustáceos",
   "description.pistolShrimp.boost": "20% de probabilidad de obtener +1 rendimiento de crustáceos",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "Intercambios",
   "playerEconomyEditor.dataTab.col.updatedAt": "Actualizada",
   "waterTrap.royalCrabPotActive": "Royal Crab Pot boost active",
-  "description.royalCrabPot.boost": "Trampa sin ollas trampa de agua",
-  "description.speedTrap.boost": "-20% de tiempo de trampa para cangrejos",
   "pickled.broccoli": "Brócoli en escabeche",
   "description.pickled.broccoli": "Árboles diminutos, picantes y crujientes, conservados en salmuera. Se utiliza como ingrediente para recetas de fermentación.",
   "skillTier.skillPoints.available": "{{points}} puntos de habilidad disponibles",
@@ -8862,5 +8859,8 @@
   "description.long.table": "Una mesa larga perfecta para banquetes.",
   "description.royal.podium": "Un podio majestuoso digno de un monarca.",
   "description.square.table": "Una mesa cuadrada, ordenada y simétrica.",
-  "description.stool": "Un taburete sencillo para sentarse."
+  "description.stool": "Un taburete sencillo para sentarse.",
+  "description.speedTrap": "Se cierra antes de que el cangrejo lo vea venir. Reduce un 20% el tiempo que dura el bote de trampas",
+  "description.royalCrabPot.boost": "Trampa sin trampas",
+  "description.speedTrap.boost": "-20% de tiempo en Trampa Pot"
 }

@@ -8766,7 +8766,6 @@
   "description.navigationTable": "Charts the course for every crabby voyage. Doubles your odds to get a map piece.",
   "description.royalCrabPot": "A pot fit for catching crustacean royalty. Place trap without crab pots",
   "description.crabHouse": "Home sweet home for the seaside shell dwellers. Increases crustacean yield by 2",
-  "description.speedTrap": "Snaps shut before the crab even sees it coming. Reduces Crab trap time by 20%",
   "description.navigationTable.boost": "+100% Map Piece Odds",
   "description.crabHouse.boost": "+2 Crustacean yield",
   "description.pistolShrimp.boost": "20% chance to get +1 crustacean yield",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "Exchanges",
   "playerEconomyEditor.dataTab.col.updatedAt": "Updated",
   "waterTrap.royalCrabPotActive": "Royal Crab Pot boost active",
-  "description.royalCrabPot.boost": "Trap without Water Trap Pots",
-  "description.speedTrap.boost": "-20% Crab trap time",
   "pickled.broccoli": "Pickled Broccoli",
   "description.pickled.broccoli": "Tiny trees, tangy and crisp, preserved in brine. Used as ingredient for fermentation recipes.",
   "skillTier.skillPoints.available": "{{points}} skill points available",
@@ -8862,5 +8859,8 @@
   "description.long.table": "A long table perfect for feasts.",
   "description.royal.podium": "A regal podium fit for a monarch.",
   "description.square.table": "A square table, neat and symmetrical.",
-  "description.stool": "A simple stool to sit on."
+  "description.stool": "A simple stool to sit on.",
+  "description.speedTrap": "Snaps shut before the crab even sees it coming. Reduces Trap Pot time by 20%",
+  "description.royalCrabPot.boost": "Trap without Trap Pots",
+  "description.speedTrap.boost": "-20% Trap Pot time"
 }

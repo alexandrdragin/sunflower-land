@@ -8766,7 +8766,6 @@
   "description.navigationTable": "Traccia la rotta per ogni viaggio squallido. Raddoppia le tue probabilità di ottenere un pezzo di mappa.",
   "description.royalCrabPot": "Una pentola adatta per catturare i reali crostacei. Posiziona la trappola senza pentole per granchi",
   "description.crabHouse": "Home sweet home per gli amanti delle conchiglie in riva al mare. Aumenta la resa dei crostacei del 2%",
-  "description.speedTrap": "Si chiude prima ancora che il granchio se ne accorga. Riduce il tempo di cattura dei granchi del 20%",
   "description.navigationTable.boost": "+100% di probabilità sui pezzi della mappa",
   "description.crabHouse.boost": "+2 resa dei crostacei",
   "description.pistolShrimp.boost": "20% di possibilità di ottenere +1 resa per crostacei",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "Scambi",
   "playerEconomyEditor.dataTab.col.updatedAt": "Aggiornato",
   "waterTrap.royalCrabPotActive": "Potenziamento Royal Crab Pot attivo",
-  "description.royalCrabPot.boost": "Trappola senza sifone",
-  "description.speedTrap.boost": "-20% Tempo di trappola per granchi",
   "pickled.broccoli": "Broccoli marinati",
   "description.pickled.broccoli": "Piccoli alberi, piccanti e croccanti, conservati in salamoia. Usato come ingrediente per ricette di fermentazione.",
   "skillTier.skillPoints.available": "{{points}} punti abilità disponibili",
@@ -8862,5 +8859,8 @@
   "description.long.table": "Un lungo tavolo perfetto per le feste.",
   "description.royal.podium": "Un podio regale degno di un monarca.",
   "description.square.table": "Un tavolo quadrato, pulito e simmetrico.",
-  "description.stool": "Un semplice sgabello su cui sedersi."
+  "description.stool": "Un semplice sgabello su cui sedersi.",
+  "description.speedTrap": "Si chiude prima ancora che il granchio se ne accorga. Riduce il tempo di Trap Pot del 20%",
+  "description.royalCrabPot.boost": "Trappola senza trappole",
+  "description.speedTrap.boost": "-20% tempo Trap Pot"
 }

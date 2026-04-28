@@ -8766,7 +8766,6 @@
   "description.navigationTable": "Traça o curso de cada viagem acidentada. Dobra suas chances de conseguir uma peça do mapa.",
   "description.royalCrabPot": "Um pote adequado para capturar a realeza dos crustáceos. Coloque a armadilha sem vasos de caranguejo",
   "description.crabHouse": "Lar doce para os moradores de conchas à beira-mar. Aumenta a produção de crustáceos em 2%",
-  "description.speedTrap": "Fecha-se antes mesmo que o caranguejo o veja chegando. Reduz o tempo de captura de caranguejos em 20%",
   "description.navigationTable.boost": "+100% de chances de peças de mapa",
   "description.crabHouse.boost": "+2 Rendimento de crustáceos",
   "description.pistolShrimp.boost": "20% de chance de obter +1 produção de crustáceos",
@@ -8849,8 +8848,6 @@
   "playerEconomyEditor.dataTab.col.exchangeCompletions": "Intercâmbios",
   "playerEconomyEditor.dataTab.col.updatedAt": "Atualizado",
   "waterTrap.royalCrabPotActive": "Royal Crab Pot boost active",
-  "description.royalCrabPot.boost": "Armadilha sem potes de armadilha de água",
-  "description.speedTrap.boost": "-20% de tempo de armadilha de caranguejo",
   "pickled.broccoli": "Brócolis em conserva",
   "description.pickled.broccoli": "Árvores minúsculas, picantes e crocantes, preservadas em salmoura. Usado como ingrediente para receitas de fermentação.",
   "skillTier.skillPoints.available": "{{points}} pontos de habilidade disponíveis",
@@ -8862,5 +8859,8 @@
   "description.long.table": "Uma mesa comprida perfeita para festas.",
   "description.royal.podium": "Um pódio real digno de um monarca.",
   "description.square.table": "Uma mesa quadrada, arrumada e simétrica.",
-  "description.stool": "Um banquinho simples para sentar."
+  "description.stool": "Um banquinho simples para sentar.",
+  "description.speedTrap": "Fecha-se antes mesmo que o caranguejo o veja chegando. Reduz o tempo do Trap Pot em 20%",
+  "description.royalCrabPot.boost": "Armadilha sem potes de armadilha",
+  "description.speedTrap.boost": "-20% de tempo do Trap Pot"
 }
