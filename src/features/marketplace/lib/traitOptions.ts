@@ -22,6 +22,7 @@ import {
   PET_LEVEL_FILTERS,
   toTraitValueId,
 } from "./marketplaceFilters";
+import { BUD_BOOST_FILTER_OPTIONS } from "./budBoostFilters";
 
 export interface TraitOptionDefinition {
   label: string;
@@ -73,6 +74,14 @@ export const BUD_TRAIT_GROUPS: TraitGroupDefinition<BudTrait>[] = [
     options: BUD_COLOURS.map((colour) => ({
       label: colour.name,
       value: toTraitValueId(colour.name),
+    })),
+  },
+  {
+    trait: "boost",
+    label: "Boost",
+    options: BUD_BOOST_FILTER_OPTIONS.map((boost) => ({
+      label: boost,
+      value: toTraitValueId(boost),
     })),
   },
 ];
