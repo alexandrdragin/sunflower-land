@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20 % Durée du piège à crabes",
   "pickled.broccoli": "Brocoli mariné",
   "description.pickled.broccoli": "Des arbres minuscules, acidulés et croquants, conservés dans de la saumure. Utilisé comme ingrédient pour les recettes de fermentation.",
-  "skillTier.skillPoints.available": "{{points}} points de compétence disponibles"
+  "skillTier.skillPoints.available": "{{points}} points de compétence disponibles",
+  "description.big.table": "Une table robuste offrant suffisamment d'espace pour les réunions.",
+  "description.crate": "Une simple caisse en bois. Utile pour le rangement ou comme siège.",
+  "description.empty.pot": "Un pot en argile qui attend d'être rempli de quelque chose.",
+  "description.high.table": "Une table haute pour se tenir debout.",
+  "description.large.podium": "Un podium impressionnant pour les annonces importantes.",
+  "description.long.table": "Une longue table idéale pour les fêtes.",
+  "description.royal.podium": "Un podium royal digne d'un monarque.",
+  "description.square.table": "Une table carrée, soignée et symétrique.",
+  "description.stool": "Un tabouret simple pour s'asseoir."
 }

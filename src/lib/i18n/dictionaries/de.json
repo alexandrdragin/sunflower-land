@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% Zeit zum Fallen von Krabben",
   "pickled.broccoli": "Eingelegter Brokkoli",
   "description.pickled.broccoli": "Winzige Bäume, würzig und knackig, in Salzlake eingelegt. Wird als Zutat für Fermentationsrezepte verwendet.",
-  "skillTier.skillPoints.available": "{{points}} Skillpunkte verfügbar"
+  "skillTier.skillPoints.available": "{{points}} Skillpunkte verfügbar",
+  "description.big.table": "Ein robuster Tisch mit viel Platz für Zusammenkünfte.",
+  "description.crate": "Eine einfache Holzkiste. Nützlich zur Aufbewahrung oder als Sitz.",
+  "description.empty.pot": "Ein Tontopf, der darauf wartet, mit etwas gefüllt zu werden.",
+  "description.high.table": "Ein hoher Tisch zum Herumstehen.",
+  "description.large.podium": "Ein beeindruckendes Podium für wichtige Ankündigungen.",
+  "description.long.table": "Ein langer Tisch, perfekt für Feste.",
+  "description.royal.podium": "Ein königliches Podium, das für einen Monarchen würdig ist.",
+  "description.square.table": "Ein quadratischer Tisch, sauber und symmetrisch.",
+  "description.stool": "Ein einfacher Hocker zum Sitzen."
 }

@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% Tempo di trappola per granchi",
   "pickled.broccoli": "Broccoli marinati",
   "description.pickled.broccoli": "Piccoli alberi, piccanti e croccanti, conservati in salamoia. Usato come ingrediente per ricette di fermentazione.",
-  "skillTier.skillPoints.available": "{{points}} punti abilità disponibili"
+  "skillTier.skillPoints.available": "{{points}} punti abilità disponibili",
+  "description.big.table": "Un tavolo robusto con molto spazio per le riunioni.",
+  "description.crate": "Una semplice cassa di legno. Utile per riporre oggetti o come seduta.",
+  "description.empty.pot": "Un vaso di terracotta che aspetta di essere riempito con qualcosa.",
+  "description.high.table": "Un tavolo alto per stare in piedi.",
+  "description.large.podium": "Un podio impressionante per annunci importanti.",
+  "description.long.table": "Un lungo tavolo perfetto per le feste.",
+  "description.royal.podium": "Un podio regale degno di un monarca.",
+  "description.square.table": "Un tavolo quadrato, pulito e simmetrico.",
+  "description.stool": "Un semplice sgabello su cui sedersi."
 }

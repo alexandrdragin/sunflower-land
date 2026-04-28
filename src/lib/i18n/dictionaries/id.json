@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% waktu perangkap kepiting",
   "pickled.broccoli": "Acar Brokoli",
   "description.pickled.broccoli": "Pohon-pohon kecil, tajam dan renyah, diawetkan dalam air garam. Digunakan sebagai bahan untuk resep fermentasi.",
-  "skillTier.skillPoints.available": "{{points}} poin keterampilan tersedia"
+  "skillTier.skillPoints.available": "{{points}} poin keterampilan tersedia",
+  "description.big.table": "Meja kokoh dengan banyak ruang untuk pertemuan.",
+  "description.crate": "Peti kayu sederhana. Berguna untuk penyimpanan atau sebagai tempat duduk.",
+  "description.empty.pot": "Sebuah pot tanah liat menunggu untuk diisi dengan sesuatu.",
+  "description.high.table": "Meja tinggi untuk berdiri di sekitar.",
+  "description.large.podium": "Podium yang mengesankan untuk pengumuman penting.",
+  "description.long.table": "Meja panjang yang sempurna untuk pesta.",
+  "description.royal.podium": "Podium agung cocok untuk seorang raja.",
+  "description.square.table": "Meja persegi, rapi dan simetris.",
+  "description.stool": "Bangku sederhana untuk duduk."
 }

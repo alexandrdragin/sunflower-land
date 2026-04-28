@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% カニ捕獲時間",
   "pickled.broccoli": "ピクルスブロッコリー",
   "description.pickled.broccoli": "ピリッとしていてさわやかな小さな木々を塩水で保存しました。発酵レシピの材料として使用されます。",
-  "skillTier.skillPoints.available": "{{points}} スキルポイント利用可能"
+  "skillTier.skillPoints.available": "{{points}} スキルポイント利用可能",
+  "description.big.table": "集まりに十分なスペースのある頑丈なテーブル。",
+  "description.crate": "シンプルな木箱。収納や座席として重宝します。",
+  "description.empty.pot": "何かが詰まるのを待っている土鍋。",
+  "description.high.table": "立つための背の高いテーブル。",
+  "description.large.podium": "重要な発表を行うための印象的な演壇です。",
+  "description.long.table": "ごちそうにぴったりのロングテーブル。",
+  "description.royal.podium": "君主にふさわしい堂々とした表彰台。",
+  "description.square.table": "すっきりとした左右対称の正方形のテーブル。",
+  "description.stool": "座るだけのシンプルなスツール。"
 }

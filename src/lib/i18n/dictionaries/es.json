@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% de tiempo de trampa para cangrejos",
   "pickled.broccoli": "Brócoli en escabeche",
   "description.pickled.broccoli": "Árboles diminutos, picantes y crujientes, conservados en salmuera. Se utiliza como ingrediente para recetas de fermentación.",
-  "skillTier.skillPoints.available": "{{points}} puntos de habilidad disponibles"
+  "skillTier.skillPoints.available": "{{points}} puntos de habilidad disponibles",
+  "description.big.table": "Una mesa robusta con mucho espacio para reuniones.",
+  "description.crate": "Una caja de madera sencilla. Útil para almacenamiento o como asiento.",
+  "description.empty.pot": "Una vasija de barro esperando ser llenada con algo.",
+  "description.high.table": "Una mesa alta para estar de pie.",
+  "description.large.podium": "Un impresionante podio para anuncios importantes.",
+  "description.long.table": "Una mesa larga perfecta para banquetes.",
+  "description.royal.podium": "Un podio majestuoso digno de un monarca.",
+  "description.square.table": "Una mesa cuadrada, ordenada y simétrica.",
+  "description.stool": "Un taburete sencillo para sentarse."
 }

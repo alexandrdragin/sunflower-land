@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% Yengeç tuzağı süresi",
   "pickled.broccoli": "Brokoli Turşusu",
   "description.pickled.broccoli": "Küçük ağaçlar, keskin ve gevrek, tuzlu suda korunmuş. Fermantasyon tarifleri için bileşen olarak kullanılır.",
-  "skillTier.skillPoints.available": "{{points}} beceri puanları mevcut"
+  "skillTier.skillPoints.available": "{{points}} beceri puanları mevcut",
+  "description.big.table": "Toplantılar için bolca alana sahip sağlam bir masa.",
+  "description.crate": "Basit bir tahta sandık. Depolama için veya koltuk olarak kullanışlıdır.",
+  "description.empty.pot": "Bir şeyle doldurulmayı bekleyen bir toprak kap.",
+  "description.high.table": "Etrafta durmak için uzun bir masa.",
+  "description.large.podium": "Önemli duyurular için etkileyici bir podyum.",
+  "description.long.table": "Ziyafetler için mükemmel uzun bir masa.",
+  "description.royal.podium": "Bir hükümdar için uygun muhteşem bir podyum.",
+  "description.square.table": "Düzgün ve simetrik kare bir masa.",
+  "description.stool": "Oturmak için basit bir tabure."
 }

@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% 捕蟹时间",
   "pickled.broccoli": "腌制西兰花",
   "description.pickled.broccoli": "小树，扑鼻而脆弱，保存在盐水中。用作发酵配方的原料。",
-  "skillTier.skillPoints.available": "{{points}} 技能点数可用"
+  "skillTier.skillPoints.available": "{{points}} 技能点数可用",
+  "description.big.table": "一张结实的桌子，有足够的聚会空间。",
+  "description.crate": "一个简单的木箱。可用于存放或用作座椅。",
+  "description.empty.pot": "一个等着装满东西的陶罐。",
+  "description.high.table": "一张高大的桌子，可以站立。",
+  "description.large.podium": "发布重要公告的令人印象深刻的讲台。",
+  "description.long.table": "长桌非常适合盛宴。",
+  "description.royal.podium": "一个适合君主居住的豪华讲台。",
+  "description.square.table": "一张方桌，整洁而对称。",
+  "description.stool": "一个可以坐的简单凳子。"
 }

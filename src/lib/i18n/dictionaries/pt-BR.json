@@ -8853,5 +8853,14 @@
   "description.speedTrap.boost": "-20% de tempo de armadilha de caranguejo",
   "pickled.broccoli": "Brócolis em conserva",
   "description.pickled.broccoli": "Árvores minúsculas, picantes e crocantes, preservadas em salmoura. Usado como ingrediente para receitas de fermentação.",
-  "skillTier.skillPoints.available": "{{points}} pontos de habilidade disponíveis"
+  "skillTier.skillPoints.available": "{{points}} pontos de habilidade disponíveis",
+  "description.big.table": "Uma mesa resistente com muito espaço para reuniões.",
+  "description.crate": "Uma caixa de madeira simples. Útil para armazenamento ou como assento.",
+  "description.empty.pot": "Uma panela de barro esperando para ser preenchida com alguma coisa.",
+  "description.high.table": "Uma mesa alta para ficar em pé.",
+  "description.large.podium": "Um pódio impressionante para anúncios importantes.",
+  "description.long.table": "Uma mesa comprida perfeita para festas.",
+  "description.royal.podium": "Um pódio real digno de um monarca.",
+  "description.square.table": "Uma mesa quadrada, arrumada e simétrica.",
+  "description.stool": "Um banquinho simples para sentar."
 }
