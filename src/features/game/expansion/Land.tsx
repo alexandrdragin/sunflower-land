@@ -225,6 +225,8 @@ const _budPositions = (state: MachineState) => {
         return {
           x: bud.coordinates!.x,
           y: bud.coordinates!.y,
+          oX: bud.coordinates!.oX,
+          oY: bud.coordinates!.oY,
         };
       }),
   };
@@ -243,6 +245,8 @@ const _petNFTPositions = (state: MachineState) => {
         return {
           x: nft.coordinates!.x,
           y: nft.coordinates!.y,
+          oX: nft.coordinates!.oX,
+          oY: nft.coordinates!.oY,
         };
       }),
   };
@@ -263,6 +267,8 @@ const _farmHandPositions = (state: MachineState) => {
       return {
         x: fh.coordinates.x,
         y: fh.coordinates.y,
+        oX: fh.coordinates.oX,
+        oY: fh.coordinates.oY,
       };
     }),
   };

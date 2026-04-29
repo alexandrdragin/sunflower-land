@@ -569,13 +569,18 @@ export const MoveableComponent: React.FC<
     hasFeatureAccess(state.context.state, "PIXEL_PERFECT_PLACEMENT"),
   );
   const isPixelPerfectAllowedFor =
-    name in COLLECTIBLES_DIMENSIONS ||
+    (name in COLLECTIBLES_DIMENSIONS &&
+      name !== "Dirt Path" &&
+      name !== "Fence" &&
+      name !== "Stone Fence" &&
+      name !== "Golden Fence" &&
+      name !== "Golden Stone Fence") ||
     name === "Bud" ||
     name === "Pet" ||
     name === "FarmHand" ||
     name === "Bumpkin";
   const hasPixelPerfectAction =
-    !isMobile && hasPixelPerfectFeature && isPixelPerfectAllowedFor;
+    hasPixelPerfectFeature && isPixelPerfectAllowedFor;
 
   const togglePixelPerfectMode = () => {
     setIsPixelPerfectMode((prev) => !prev);
