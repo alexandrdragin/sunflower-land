@@ -348,7 +348,11 @@ export const getSelectedCollectible =
         ? state.context.state.home.collectibles[name]
         : location === "petHouse" && isPetCollectible(name)
           ? state.context.state.petHouse.pets[name]
-          : state.context.state.collectibles[name]
+          : location === "interior"
+            ? state.context.state.interior.ground.collectibles[name]
+            : location === "level_one"
+              ? state.context.state.interior.level_one?.collectibles[name]
+              : state.context.state.collectibles[name]
     )?.find((collectible) => collectible.id === id);
   };
 
@@ -514,7 +518,7 @@ export const MoveableComponent: React.FC<
       return offsetOf(item?.coordinates);
     }
 
-    // Collectibles — farm / home / pet house.
+    // Collectibles — farm / home / pet house / interior / level_one.
     if (name in COLLECTIBLES_DIMENSIONS) {
       const cName = name as CollectibleName;
       const collectibles =
@@ -524,7 +528,11 @@ export const MoveableComponent: React.FC<
             ? (ctx.petHouse.pets as Record<string, PlacedItem[] | undefined>)[
                 cName
               ]
-            : ctx.collectibles[cName];
+            : location === "interior"
+              ? ctx.interior.ground.collectibles[cName]
+              : location === "level_one"
+                ? ctx.interior.level_one?.collectibles[cName]
+                : ctx.collectibles[cName];
       const item = collectibles?.find((c: PlacedItem) => c.id === id);
       return offsetOf(item?.coordinates);
     }
@@ -627,7 +635,11 @@ export const MoveableComponent: React.FC<
         ? state.context.state.home.collectibles[name]
         : location === "petHouse" && isPetCollectible(name)
           ? state.context.state.petHouse.pets[name]
-          : state.context.state.collectibles[name];
+          : location === "interior"
+            ? state.context.state.interior.ground.collectibles[name]
+            : location === "level_one"
+              ? state.context.state.interior.level_one?.collectibles[name]
+              : state.context.state.collectibles[name];
     return (
       collectibles?.find((collectible) => collectible.id === id)?.flipped ??
       false

@@ -187,13 +187,15 @@ export const LevelOne: React.FC = () => {
         return items
           .filter((c) => c.coordinates)
           .map((c, itemIndex) => {
-            const { x, y } = c.coordinates!;
+            const { x, y, oX, oY } = c.coordinates!;
             const { width, height } = COLLECTIBLES_DIMENSIONS[name];
             return (
               <MapPlacement
                 key={`level_one-collectible-${nameIndex}-${itemIndex}`}
                 x={x}
                 y={y}
+                oX={oX}
+                oY={oY}
                 height={height}
                 width={width}
                 z={NON_COLLIDING_OBJECTS.includes(name) ? 0 : 1}
@@ -220,9 +222,17 @@ export const LevelOne: React.FC = () => {
     ...Object.entries(buds)
       .filter(([, bud]) => !!bud.coordinates && bud.location === "level_one")
       .flatMap(([id, bud]) => {
-        const { x, y } = bud.coordinates!;
+        const { x, y, oX, oY } = bud.coordinates!;
         return (
-          <MapPlacement key={`bud-${id}`} x={x} y={y} height={1} width={1}>
+          <MapPlacement
+            key={`bud-${id}`}
+            x={x}
+            y={y}
+            oX={oX}
+            oY={oY}
+            height={1}
+            width={1}
+          >
             <Bud id={id} x={x} y={y} />
           </MapPlacement>
         );
@@ -233,9 +243,17 @@ export const LevelOne: React.FC = () => {
     ...Object.entries(petNFTs)
       .filter(([, p]) => !!p.coordinates && p.location === "level_one")
       .flatMap(([id, p]) => {
-        const { x, y } = p.coordinates!;
+        const { x, y, oX, oY } = p.coordinates!;
         return (
-          <MapPlacement key={`petNFT-${id}`} x={x} y={y} height={2} width={2}>
+          <MapPlacement
+            key={`petNFT-${id}`}
+            x={x}
+            y={y}
+            oX={oX}
+            oY={oY}
+            height={2}
+            width={2}
+          >
             <PetNFT id={id} x={x} y={y} />
           </MapPlacement>
         );
@@ -244,9 +262,17 @@ export const LevelOne: React.FC = () => {
 
   mapPlacements.push(
     ...Object.entries(levelOneFarmHands).map(([id, farmHand]) => {
-      const { x, y } = farmHand.coordinates!;
+      const { x, y, oX, oY } = farmHand.coordinates!;
       return (
-        <MapPlacement key={`farmHand-${id}`} x={x} y={y} height={1} width={1}>
+        <MapPlacement
+          key={`farmHand-${id}`}
+          x={x}
+          y={y}
+          oX={oX}
+          oY={oY}
+          height={1}
+          width={1}
+        >
           <FarmHand id={id} location="level_one" />
         </MapPlacement>
       );
@@ -254,9 +280,17 @@ export const LevelOne: React.FC = () => {
   );
 
   if (bumpkin?.coordinates && bumpkin.location === "level_one") {
-    const { x, y } = bumpkin.coordinates;
+    const { x, y, oX, oY } = bumpkin.coordinates;
     mapPlacements.push(
-      <MapPlacement key="bumpkin" x={x} y={y} height={1} width={1}>
+      <MapPlacement
+        key="bumpkin"
+        x={x}
+        y={y}
+        oX={oX}
+        oY={oY}
+        height={1}
+        width={1}
+      >
         <PlacedBumpkin location="level_one" />
       </MapPlacement>,
     );
