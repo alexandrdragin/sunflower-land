@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% Balık Pazarı işleme süresi",
   "description.bubbleAura.boost.two": "Balık İşlemeden +1 verim için %20 şans",
   "description.deepSeaSaltCaveBackground.boost": "Hasat başına +5 tuz",
-  "description.deepSeaSlug.boost": "+5 günlük balıkçılık makarası"
+  "description.deepSeaSlug.boost": "+5 günlük balıkçılık makarası",
+  "gameOptions.account": "Hesap",
+  "gameOptions.advanced": "Gelişmiş",
+  "gameOptions.about": "Hakkında",
+  "gameOptions.about.discord": "Discord'da bize katılın",
+  "gameOptions.about.github": "Sürüm notları",
+  "gameOptions.about.terms": "Hizmet Şartları",
+  "gameOptions.about.version": "İstemci sürümü",
+  "gameOptions.generalSettings.audio": "Ses"
 }

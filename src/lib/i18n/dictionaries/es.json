@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% de tiempo de procesamiento en el mercado de pescado",
   "description.bubbleAura.boost.two": "20% de probabilidad de obtener +1 de rendimiento con Fish Processing",
   "description.deepSeaSaltCaveBackground.boost": "+5 de sal por cosecha",
-  "description.deepSeaSlug.boost": "+5 carretes de pesca diarios"
+  "description.deepSeaSlug.boost": "+5 carretes de pesca diarios",
+  "gameOptions.account": "Cuenta",
+  "gameOptions.advanced": "Avanzado",
+  "gameOptions.about": "Acerca de",
+  "gameOptions.about.discord": "Únete a nosotros en Discord",
+  "gameOptions.about.github": "Notas de lanzamiento",
+  "gameOptions.about.terms": "Términos de servicio",
+  "gameOptions.about.version": "Versión de cliente",
+  "gameOptions.generalSettings.audio": "Audio"
 }

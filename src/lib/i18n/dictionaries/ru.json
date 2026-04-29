@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% Fish Market processing time",
   "description.bubbleAura.boost.two": "20% chance for +1 yield from Fish Processing",
   "description.deepSeaSaltCaveBackground.boost": "+5 Salt per harvest",
-  "description.deepSeaSlug.boost": "+5 daily fishing reels"
+  "description.deepSeaSlug.boost": "+5 daily fishing reels",
+  "gameOptions.account": "Account",
+  "gameOptions.advanced": "Advanced",
+  "gameOptions.about": "About",
+  "gameOptions.about.discord": "Join us on Discord",
+  "gameOptions.about.github": "Release notes",
+  "gameOptions.about.terms": "Terms of Service",
+  "gameOptions.about.version": "Client version",
+  "gameOptions.generalSettings.audio": "Audio"
 }

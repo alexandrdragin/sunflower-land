@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% 鱼市场处理时间",
   "description.bubbleAura.boost.two": "鱼类加工获得 +1 产量的几率为 20%",
   "description.deepSeaSaltCaveBackground.boost": "每次收获 +5 盐",
-  "description.deepSeaSlug.boost": "每日 +5 个钓鱼卷轴"
+  "description.deepSeaSlug.boost": "每日 +5 个钓鱼卷轴",
+  "gameOptions.account": "账户",
+  "gameOptions.advanced": "高级",
+  "gameOptions.about": "关于",
+  "gameOptions.about.discord": "在 Discord 上加入我们",
+  "gameOptions.about.github": "发行说明",
+  "gameOptions.about.terms": "服务条款",
+  "gameOptions.about.version": "客户机版本",
+  "gameOptions.generalSettings.audio": "音频"
 }

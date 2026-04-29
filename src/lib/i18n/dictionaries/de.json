@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% Bearbeitungszeit für den Fischmarkt",
   "description.bubbleAura.boost.two": "20% Chance auf +1 Ertrag durch Fischverarbeitung",
   "description.deepSeaSaltCaveBackground.boost": "+5 Salz pro Ernte",
-  "description.deepSeaSlug.boost": "+5 tägliche Angelrollen"
+  "description.deepSeaSlug.boost": "+5 tägliche Angelrollen",
+  "gameOptions.account": "Konto",
+  "gameOptions.advanced": "Fortgeschritten",
+  "gameOptions.about": "Über",
+  "gameOptions.about.discord": "Begleite uns auf Discord",
+  "gameOptions.about.github": "Hinweise zur Veröffentlichung",
+  "gameOptions.about.terms": "Nutzungsbedingungen",
+  "gameOptions.about.version": "Client-Version",
+  "gameOptions.generalSettings.audio": "Audio"
 }

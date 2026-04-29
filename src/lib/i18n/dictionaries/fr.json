@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20 % Temps de traitement du marché aux poissons",
   "description.bubbleAura.boost.two": "20 % de chances d'obtenir un rendement de +1 avec Fish Processing",
   "description.deepSeaSaltCaveBackground.boost": "+5 sel par récolte",
-  "description.deepSeaSlug.boost": "+5 moulinets de pêche quotidiens"
+  "description.deepSeaSlug.boost": "+5 moulinets de pêche quotidiens",
+  "gameOptions.account": "Compte",
+  "gameOptions.advanced": "Avancé",
+  "gameOptions.about": "À propos",
+  "gameOptions.about.discord": "Rejoignez-nous sur Discord",
+  "gameOptions.about.github": "Notes de publication",
+  "gameOptions.about.terms": "Conditions générales d'utilisation",
+  "gameOptions.about.version": "Version cliente",
+  "gameOptions.generalSettings.audio": "Audio"
 }

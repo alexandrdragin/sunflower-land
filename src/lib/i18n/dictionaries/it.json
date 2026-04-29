@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% Tempo di lavorazione del mercato del pesce",
   "description.bubbleAura.boost.two": "20% di probabilità di ottenere +1 rendimento dalla lavorazione del pesce",
   "description.deepSeaSaltCaveBackground.boost": "+5 sale per raccolto",
-  "description.deepSeaSlug.boost": "+5 mulinelli da pesca giornalieri"
+  "description.deepSeaSlug.boost": "+5 mulinelli da pesca giornalieri",
+  "gameOptions.account": "Account",
+  "gameOptions.advanced": "Avanzato",
+  "gameOptions.about": "Informazioni su",
+  "gameOptions.about.discord": "Unisciti a noi su Discord",
+  "gameOptions.about.github": "Note sulla versione",
+  "gameOptions.about.terms": "Termini di servizio",
+  "gameOptions.about.version": "Versione client",
+  "gameOptions.generalSettings.audio": "Audio"
 }

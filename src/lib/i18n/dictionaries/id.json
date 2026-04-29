@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% waktu pemrosesan Pasar Ikan",
   "description.bubbleAura.boost.two": "Peluang 20% untuk hasil +1 dari Pengolahan Ikan",
   "description.deepSeaSaltCaveBackground.boost": "+5 Garam per panen",
-  "description.deepSeaSlug.boost": "+5 gulungan memancing harian"
+  "description.deepSeaSlug.boost": "+5 gulungan memancing harian",
+  "gameOptions.account": "Akun",
+  "gameOptions.advanced": "Tingkat Lanjut",
+  "gameOptions.about": "Tentang",
+  "gameOptions.about.discord": "Bergabunglah dengan kami di Discord",
+  "gameOptions.about.github": "Catatan rilis",
+  "gameOptions.about.terms": "Ketentuan Layanan",
+  "gameOptions.about.version": "Versi klien",
+  "gameOptions.generalSettings.audio": "Audio"
 }

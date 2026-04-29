@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% de tempo de processamento do Fish Market",
   "description.bubbleAura.boost.two": "20% de chance de +1 rendimento com o processamento de pescado",
   "description.deepSeaSaltCaveBackground.boost": "+5 Sal por colheita",
-  "description.deepSeaSlug.boost": "+5 bobinas de pesca diárias"
+  "description.deepSeaSlug.boost": "+5 bobinas de pesca diárias",
+  "gameOptions.account": "Conta",
+  "gameOptions.advanced": "Avançado",
+  "gameOptions.about": "Sobre",
+  "gameOptions.about.discord": "Junte-se a nós no Discord",
+  "gameOptions.about.github": "Notas de lançamento",
+  "gameOptions.about.terms": "Termos de serviço",
+  "gameOptions.about.version": "Versão do cliente",
+  "gameOptions.generalSettings.audio": "Áudio"
 }

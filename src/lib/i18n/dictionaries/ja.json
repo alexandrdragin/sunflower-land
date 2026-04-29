@@ -8867,5 +8867,13 @@
   "description.bubbleAura.boost": "-20% フィッシュマーケットの処理時間",
   "description.bubbleAura.boost.two": "20% の確率で水産加工で収穫量が+1される",
   "description.deepSeaSaltCaveBackground.boost": "収穫1回につき +5 塩",
-  "description.deepSeaSlug.boost": "+5 デイリーフィッシングリール"
+  "description.deepSeaSlug.boost": "+5 デイリーフィッシングリール",
+  "gameOptions.account": "アカウント",
+  "gameOptions.advanced": "上級者向け",
+  "gameOptions.about": "について",
+  "gameOptions.about.discord": "Discordにぜひご参加ください",
+  "gameOptions.about.github": "リリースノート",
+  "gameOptions.about.terms": "サービス規約",
+  "gameOptions.about.version": "クライアントバージョン",
+  "gameOptions.generalSettings.audio": "オーディオ"
 }
