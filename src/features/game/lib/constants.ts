@@ -387,7 +387,6 @@ export const INITIAL_FARM: GameState = {
     Rug: new Decimal(1),
     Wardrobe: new Decimal(1),
     Shovel: new Decimal(1),
-    "Honey Cake": new Decimal(1),
   },
   previousInventory: {},
   wardrobe: {},
@@ -508,6 +507,11 @@ export const INITIAL_FARM: GameState = {
         },
       ],
     },
+  },
+  interior: {
+    ground: { collectibles: {} },
+    expansion: "level-one-6",
+    level_one: { collectibles: {} },
   },
   farmHands: { bumpkins: {} },
   greenhouse: {
@@ -764,6 +768,7 @@ export const TEST_FARM: GameState = {
 
   milestones: {},
   home: { collectibles: {} },
+  interior: { ground: { collectibles: {} } },
   island: { type: "basic" },
   farmHands: { bumpkins: {} },
   fishing: {
@@ -1119,6 +1124,7 @@ export const EMPTY: GameState = {
     },
   },
   home: { collectibles: {} },
+  interior: { ground: { collectibles: {} } },
   island: { type: "basic" },
   buildings: {},
   collectibles: {},
