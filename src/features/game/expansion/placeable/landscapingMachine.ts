@@ -294,7 +294,7 @@ export const landscapingMachine = createMachine<
             },
             BLUR: {
               actions: assign({
-                moving: (_, event) => undefined,
+                moving: (_) => undefined,
               }),
             },
             BUILD: {

@@ -1308,7 +1308,11 @@ export const MoveableComponent: React.FC<
               <div
                 className="relative mr-2 cursor-pointer"
                 style={{ width: `${PIXEL_SCALE * 18}px` }}
-                onClick={togglePixelPerfectMode}
+                onPointerDown={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  togglePixelPerfectMode();
+                }}
               >
                 <img className="w-full" src={SUNNYSIDE.icons.disc} />
                 <img
@@ -1439,8 +1443,9 @@ export const MoveableComponent: React.FC<
                     <img
                       src={SUNNYSIDE.icons.arrow_up}
                       className="absolute cursor-pointer z-30"
-                      onClick={(e) => {
+                      onPointerDown={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         movePixel(0, 1);
                       }}
                       style={{
@@ -1455,8 +1460,9 @@ export const MoveableComponent: React.FC<
                     <img
                       src={SUNNYSIDE.icons.arrow_down}
                       className="absolute cursor-pointer z-30"
-                      onClick={(e) => {
+                      onPointerDown={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         movePixel(0, -1);
                       }}
                       style={{
@@ -1471,8 +1477,9 @@ export const MoveableComponent: React.FC<
                     <img
                       src={SUNNYSIDE.icons.arrow_left}
                       className="absolute cursor-pointer z-30"
-                      onClick={(e) => {
+                      onPointerDown={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         movePixel(-1, 0);
                       }}
                       style={{
@@ -1487,8 +1494,9 @@ export const MoveableComponent: React.FC<
                     <img
                       src={SUNNYSIDE.icons.arrow_right}
                       className="absolute cursor-pointer z-30"
-                      onClick={(e) => {
+                      onPointerDown={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         movePixel(1, 0);
                       }}
                       style={{
