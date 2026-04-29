@@ -494,7 +494,26 @@ export const INITIAL_FARM: GameState = {
           },
           readyAt: Date.now(),
         },
+        {
+          id: "2",
+          createdAt: Date.now(),
+          coordinates: {
+            x: 0,
+            y: 3,
+          },
+          readyAt: Date.now(),
+        },
+        {
+          id: "3",
+          createdAt: Date.now(),
+          coordinates: {
+            x: 2,
+            y: 3,
+          },
+          readyAt: Date.now(),
+        },
       ],
+
       Rug: [
         {
           id: "2",
