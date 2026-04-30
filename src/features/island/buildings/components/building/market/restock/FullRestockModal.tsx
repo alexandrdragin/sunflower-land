@@ -17,7 +17,7 @@ import { TREASURE_TOOLS, WORKBENCH_TOOLS } from "features/game/types/tools";
 import { SEEDS } from "features/game/types/seeds";
 import { CROP_LIFECYCLE } from "features/island/plots/lib/plant";
 import { getObjectEntries } from "lib/object";
-import { hasFeatureAccess } from "lib/flags";
+import { useTimeBasedFeatureAccess } from "lib/utils/hooks/useTimeBasedFeatureAccess";
 
 interface RestockModalProps {
   onClose: () => void;
@@ -37,6 +37,10 @@ export const FullRestockModal: React.FC<RestockModalProps> = ({
 
   const { gameService, showAnimations } = useContext(Context);
   const state = useSelector(gameService, (state) => state.context.state);
+  const hasSaltChapterAccess = useTimeBasedFeatureAccess({
+    featureName: "SALT_CHAPTER",
+    game: state,
+  });
 
   const canRestock = state.inventory["Gem"]?.gte(20);
 
@@ -62,9 +66,7 @@ export const FullRestockModal: React.FC<RestockModalProps> = ({
 
   const restockTools = getObjectEntries(restockables)
     .filter((item) => item[0] in { ...WORKBENCH_TOOLS, ...TREASURE_TOOLS })
-    .filter(
-      ([item]) => item !== "Salt Rake" || hasFeatureAccess(state, "SALT_FARM"),
-    );
+    .filter(([item]) => item !== "Salt Rake" || hasSaltChapterAccess);
 
   const restockSeeds = getObjectEntries(restockables).filter(
     (item) => item[0] in SEEDS,

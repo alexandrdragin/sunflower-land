@@ -12,7 +12,7 @@ import {
 import { PET_SHRINES } from "features/game/types/pets";
 import { populateSaltFarm } from "features/game/types/salt";
 import { isPetCollectible } from "./placeCollectible";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 
 export enum REMOVE_COLLECTIBLE_ERRORS {
   INVALID_COLLECTIBLE = "This collectible does not exist",
@@ -121,7 +121,13 @@ export function removeCollectible({
       stateCopy.farmActivity,
     );
 
-    if (hasFeatureAccess(stateCopy, "SALT_FARM")) {
+    if (
+      hasTimeBasedFeatureAccess({
+        featureName: "SALT_CHAPTER",
+        game: stateCopy,
+        now: createdAt,
+      })
+    ) {
       populateSaltFarm({
         gameBefore: state,
         gameAfter: stateCopy,

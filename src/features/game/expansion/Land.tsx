@@ -56,7 +56,7 @@ import {
   getSaltNodesWithPositions,
 } from "features/game/types/salt";
 import { getPendingSaltNodeIdsForUpgrade } from "features/game/types/salt";
-import { hasFeatureAccess } from "lib/flags";
+import { useTimeBasedFeatureAccess } from "lib/utils/hooks/useTimeBasedFeatureAccess";
 
 export const LAND_WIDTH = 6;
 
@@ -75,9 +75,6 @@ const _treePositions = (state: MachineState) => ({
   trees: state.context.state.trees,
   positions: getSortedResourcePositions(state.context.state.trees),
 });
-
-const _hasSaltFarmAccess = (state: MachineState) =>
-  hasFeatureAccess(state.context.state, "SALT_FARM");
 
 const _stonePositions = (state: MachineState) => {
   return {
@@ -379,7 +376,11 @@ export const LandComponent: React.FC = () => {
     _saltNodePositions,
     compareSaltFarmSlice,
   );
-  const hasSaltFarmAccess = useSelector(gameService, _hasSaltFarmAccess);
+  const gameState = useSelector(gameService, (s) => s.context.state);
+  const hasSaltFarmAccess = useTimeBasedFeatureAccess({
+    featureName: "SALT_CHAPTER",
+    game: gameState,
+  });
   const { mushrooms } = useSelector(
     gameService,
     _mushroomPositions,

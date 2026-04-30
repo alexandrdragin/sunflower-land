@@ -12,7 +12,7 @@ import {
   SaltSyncOptions,
 } from "features/game/types/salt";
 import { produce } from "immer";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 import { prngChance } from "lib/prng";
 import { KNOWN_IDS } from "features/game/types";
 import { trackFarmActivity } from "features/game/types/farmActivity";
@@ -44,7 +44,13 @@ export function harvestSalt({
   createdAt = Date.now(),
   farmId,
 }: Options): GameState {
-  if (!hasFeatureAccess(state, "SALT_FARM")) {
+  if (
+    !hasTimeBasedFeatureAccess({
+      featureName: "SALT_CHAPTER",
+      game: state,
+      now: createdAt,
+    })
+  ) {
     throw new Error(HARVEST_SALT_ERRORS.SALT_FARM_NOT_ENABLED);
   }
 
