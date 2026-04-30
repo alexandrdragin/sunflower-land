@@ -8875,5 +8875,12 @@
   "gameOptions.about.github": "发行说明",
   "gameOptions.about.terms": "服务条款",
   "gameOptions.about.version": "客户机版本",
-  "gameOptions.generalSettings.audio": "音频"
+  "gameOptions.generalSettings.audio": "音频",
+  "instantCook.coinCostMessage": "这将花费你 {{coins}} 硬币",
+  "speedUp.payWithGems": "用宝石付款",
+  "speedUp.payWithCoins": "用硬币付款",
+  "speedUp.dailyCoinLimit": "{{used}}/{{limit}} 今天使用的硬币",
+  "speedUp.dailyCoinLimitReached": "已达到每日硬币限额",
+  "speedUp.requiresDinoEggTrophy": "需要恐龙蛋奖杯",
+  "dinoEggTrophy.boost.description": "使用硬币代替宝石加速（50 个硬币/宝石，每天最多 20,000 个硬币）。"
 }

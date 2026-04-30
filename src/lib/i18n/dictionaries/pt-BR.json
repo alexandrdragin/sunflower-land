@@ -8875,5 +8875,12 @@
   "gameOptions.about.github": "Notas de lançamento",
   "gameOptions.about.terms": "Termos de serviço",
   "gameOptions.about.version": "Versão do cliente",
-  "gameOptions.generalSettings.audio": "Áudio"
+  "gameOptions.generalSettings.audio": "Áudio",
+  "instantCook.coinCostMessage": "Isso custará a você {{coins}} Moedas",
+  "speedUp.payWithGems": "Pague com joias",
+  "speedUp.payWithCoins": "Pague com moedas",
+  "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Moedas usadas hoje",
+  "speedUp.dailyCoinLimitReached": "Limite diário de moedas atingido",
+  "speedUp.requiresDinoEggTrophy": "Requer o Troféu Dino Egg",
+  "dinoEggTrophy.boost.description": "Acelere com moedas em vez de gemas (50 moedas/gema, até 20.000 moedas/dia)."
 }
