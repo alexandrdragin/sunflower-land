@@ -462,15 +462,19 @@ export const MoveableComponent: React.FC<
   // and pixel-perfect arrows always render above sibling collectibles. Without
   // this, react-draggable's CSS transform creates a stacking context on each
   // item, and later-rendered items (higher DOM order) paint on top regardless
-  // of the inner z-50 on nodeRef.
+  // of the inner z-50 on nodeRef. Only mutate the DOM when selected; restore
+  // the exact original value on cleanup so depth-sorted z-indexes set by
+  // callers (e.g. furniture, rugs) are never cleared for non-selected items.
   useEffect(() => {
+    if (!isSelected) return;
     const mapPlacement = nodeRef.current?.closest<HTMLElement>(
       "[data-map-placement]",
     );
     if (!mapPlacement) return;
-    mapPlacement.style.zIndex = isSelected ? "10000" : "";
+    const originalZIndex = mapPlacement.style.zIndex;
+    mapPlacement.style.zIndex = "10000";
     return () => {
-      mapPlacement.style.zIndex = "";
+      mapPlacement.style.zIndex = originalZIndex;
     };
   }, [isSelected]);
 

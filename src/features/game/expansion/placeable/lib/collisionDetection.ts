@@ -406,6 +406,20 @@ export const NON_COLLIDING_OBJECTS: InventoryItemName[] = [
   "Stool",
 ];
 
+// Subset of NON_COLLIDING_OBJECTS that represent furniture (tables, stools, podiums).
+// These render above rugs (z=1) but below regular collectables (z=2).
+export const FURNITURE_OBJECTS: InventoryItemName[] = [
+  "Big Table",
+  "Crate",
+  "Empty Pot",
+  "High Table",
+  "Large Podium",
+  "Long Table",
+  "Royal Podium",
+  "Square Table",
+  "Stool",
+];
+
 function detectHomeCollision({
   state,
   position,

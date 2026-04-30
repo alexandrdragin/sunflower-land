@@ -17,7 +17,10 @@ import { Hud } from "features/island/hud/Hud";
 import { LandscapingHud } from "features/island/hud/LandscapingHud";
 import { Section, useScrollIntoView } from "lib/utils/hooks/useScrollIntoView";
 import { hasFeatureAccess } from "lib/flags";
-import { NON_COLLIDING_OBJECTS } from "features/game/expansion/placeable/lib/collisionDetection";
+import {
+  NON_COLLIDING_OBJECTS,
+  FURNITURE_OBJECTS,
+} from "features/game/expansion/placeable/lib/collisionDetection";
 import { INTERIOR_CANVAS } from "features/game/expansion/placeable/lib/interiorLayouts";
 import {
   HOME_EXPANSION_BACKGROUNDS,
@@ -199,7 +202,13 @@ export const LevelOne: React.FC = () => {
                 oY={oY}
                 height={height}
                 width={width}
-                z={NON_COLLIDING_OBJECTS.includes(name) ? 0 : 1}
+                z={
+                  FURNITURE_OBJECTS.includes(name)
+                    ? 1
+                    : NON_COLLIDING_OBJECTS.includes(name)
+                      ? 0
+                      : 2
+                }
               >
                 <Collectible
                   location="level_one"

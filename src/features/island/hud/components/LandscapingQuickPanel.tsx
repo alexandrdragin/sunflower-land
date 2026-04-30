@@ -84,6 +84,8 @@ const TWO_ROW_HEIGHT_PX = PIXEL_SCALE * (13.7 + 4 + 3 + 2) * 2;
 
 const DRAG_THRESHOLD_PX = 8;
 
+const MOBILE_ITEMS_PER_PAGE = 10;
+
 const ALL_DIMENSIONS: Record<string, { width: number; height: number }> = {
   ...BUILDINGS_DIMENSIONS,
   ...COLLECTIBLES_DIMENSIONS,
@@ -125,6 +127,8 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
   const isIdle = useSelector(child, (s) => s.matches({ editing: "idle" }));
 
   const [activeTab, setActiveTab] = useState<TabId>("decorations");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [pendingDragPlacement, setPendingDragPlacement] = useState<{
     gridX: number;
     gridY: number;
@@ -671,6 +675,14 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, chestMap, buds, petsNFTs, farmHands, now]);
 
+  const totalPages = Math.ceil(items.length / MOBILE_ITEMS_PER_PAGE);
+  const pagedItems = isMobile
+    ? items.slice(
+        currentPage * MOBILE_ITEMS_PER_PAGE,
+        (currentPage + 1) * MOBILE_ITEMS_PER_PAGE,
+      )
+    : items;
+
   return (
     <>
       {isIdle && (
@@ -679,83 +691,127 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
           data-prevent-drag-scroll
           style={{ zIndex: 49 }}
         >
-          <div className="flex items-center px-2 pb-1">
-            <img src={SUNNYSIDE.icons.drag} className="h-4 mr-1" />
-            <span className="text-white text-xs">{"Quick drag and drop"}</span>
-          </div>
-          <OuterPanel hasTabs className="relative !rounded-none">
-            {/* Tab bar */}
-            <div
-              className="absolute flex"
-              style={{
-                top: `${PIXEL_SCALE * 1}px`,
-                left: 0,
-                right: `${PIXEL_SCALE * 1}px`,
-              }}
-            >
-              <div className="flex overflow-x-auto scrollbar-hide">
-                {visibleTabs.map((tab, index) => (
-                  <Tab
-                    key={tab.id}
-                    isFirstTab={index === 0}
-                    className="relative mr-1"
-                    isActive={activeTab === tab.id}
-                    onClick={() => {
-                      tabSound.play();
-                      setActiveTab(tab.id);
-                    }}
-                  >
-                    <SquareIcon icon={tab.icon} width={7} />
-                    {!isMobile && (
-                      <span className="text-xs sm:text-sm ml-1 whitespace-nowrap">
-                        {tab.label}
-                      </span>
-                    )}
-                    {tab.hasItems && activeTab !== tab.id && (
-                      <img
-                        src={SUNNYSIDE.icons.expression_alerted}
-                        className="ml-1"
-                        style={{ width: `${PIXEL_SCALE * 3}px` }}
-                      />
-                    )}
-                  </Tab>
-                ))}
-              </div>
+          {/* Header row */}
+          <div className="flex items-center justify-between px-2 pb-1">
+            <div className="flex items-center">
+              <img src={SUNNYSIDE.icons.drag} className="h-4 mr-1" />
+              <span className="text-white text-xs">
+                {"Quick drag and drop"}
+              </span>
             </div>
+            <img
+              src={
+                isCollapsed
+                  ? SUNNYSIDE.icons.chevron_up
+                  : SUNNYSIDE.icons.chevron_down
+              }
+              className="h-4 cursor-pointer"
+              onClick={() => setIsCollapsed((c) => !c)}
+            />
+          </div>
 
-            {/* Two-row horizontal scroll of item boxes */}
-            <InnerPanel>
+          {!isCollapsed && (
+            <OuterPanel hasTabs className="relative !rounded-none">
+              {/* Tab bar */}
               <div
-                className="overflow-x-auto overflow-y-hidden"
-                style={{ height: `${TWO_ROW_HEIGHT_PX}px` }}
+                className="absolute flex"
+                style={{
+                  top: `${PIXEL_SCALE * 1}px`,
+                  left: 0,
+                  right: `${PIXEL_SCALE * 1}px`,
+                }}
               >
-                {items.length > 0 ? (
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateRows: "1fr 1fr",
-                      gridAutoFlow: "column",
-                      gridAutoColumns: "max-content",
-                      alignItems: "start",
-                      height: "100%",
-                      width: "max-content",
-                    }}
-                  >
-                    {items}
-                  </div>
-                ) : (
-                  <div className="h-full flex items-center justify-center px-4">
-                    <span className="text-xs">
-                      {
-                        visibleTabs.find((tab) => tab.id === activeTab)
-                          ?.emptyLabel
-                      }
-                    </span>
-                  </div>
-                )}
+                <div className="flex overflow-x-auto scrollbar-hide">
+                  {visibleTabs.map((tab, index) => (
+                    <Tab
+                      key={tab.id}
+                      isFirstTab={index === 0}
+                      className="relative mr-1"
+                      isActive={activeTab === tab.id}
+                      onClick={() => {
+                        tabSound.play();
+                        setActiveTab(tab.id);
+                        setCurrentPage(0);
+                      }}
+                    >
+                      <SquareIcon icon={tab.icon} width={7} />
+                      {!isMobile && (
+                        <span className="text-xs sm:text-sm ml-1 whitespace-nowrap">
+                          {tab.label}
+                        </span>
+                      )}
+                    </Tab>
+                  ))}
+                </div>
               </div>
-            </InnerPanel>
-          </OuterPanel>
+
+              {/* Item grid */}
+              <InnerPanel>
+                <div
+                  className={classNames("flex items-center", {
+                    "overflow-x-auto overflow-y-hidden": !isMobile,
+                  })}
+                  style={{ height: `${TWO_ROW_HEIGHT_PX}px` }}
+                >
+                  {isMobile && totalPages > 1 && (
+                    <img
+                      src={SUNNYSIDE.icons.arrow_left}
+                      className={classNames("h-4 flex-shrink-0 mr-1", {
+                        "opacity-30 pointer-events-none": currentPage === 0,
+                        "cursor-pointer": currentPage > 0,
+                      })}
+                      onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
+                    />
+                  )}
+
+                  <div
+                    className={
+                      isMobile ? "flex-1 overflow-hidden h-full" : "h-full"
+                    }
+                  >
+                    {pagedItems.length > 0 ? (
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateRows: "1fr 1fr",
+                          gridAutoFlow: "column",
+                          gridAutoColumns: "max-content",
+                          alignItems: "start",
+                          height: "100%",
+                          width: isMobile ? undefined : "max-content",
+                        }}
+                      >
+                        {pagedItems}
+                      </div>
+                    ) : (
+                      <div className="h-full flex items-center justify-center px-4">
+                        <span className="text-xs">
+                          {
+                            visibleTabs.find((tab) => tab.id === activeTab)
+                              ?.emptyLabel
+                          }
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {isMobile && totalPages > 1 && (
+                    <img
+                      src={SUNNYSIDE.icons.arrow_right}
+                      className={classNames("h-4 flex-shrink-0 ml-1", {
+                        "opacity-30 pointer-events-none":
+                          currentPage >= totalPages - 1,
+                        "cursor-pointer": currentPage < totalPages - 1,
+                      })}
+                      onClick={() =>
+                        setCurrentPage((p) => Math.min(totalPages - 1, p + 1))
+                      }
+                    />
+                  )}
+                </div>
+              </InnerPanel>
+            </OuterPanel>
+          )}
         </div>
       )}
 
