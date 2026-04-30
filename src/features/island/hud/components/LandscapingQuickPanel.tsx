@@ -63,6 +63,7 @@ import { useAppTranslation } from "lib/i18n/useAppTranslations";
 import { NFTName } from "features/game/events/landExpansion/placeNFT";
 import { NPCPlaceable } from "features/island/bumpkin/components/NPC";
 import { PIXEL_SCALE, GRID_WIDTH_PX } from "features/game/lib/constants";
+import { Section } from "lib/utils/hooks/useScrollIntoView";
 import { useNow } from "lib/utils/hooks/useNow";
 import { OuterPanel, InnerPanel } from "components/ui/Panel";
 import { Tab } from "components/ui/Tab";
@@ -135,12 +136,18 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
   const wasDragRef = useRef(false);
 
   const computeGridPos = useCallback((clientX: number, clientY: number) => {
-    // Placeable renders at `fixed left-1/2 top-1/2` + position offset,
-    // so coordinates must be measured from viewport centre — the same
-    // reference react-draggable's onDrag uses in normal landscaping.
+    // Use the actual land center (GenesisBlock element) as the coordinate origin,
+    // not the viewport center. When the player scrolls, the land shifts away from
+    // the viewport center, so window.innerWidth/2 would give wrong grid coords.
+    const land = document
+      .getElementById(Section.GenesisBlock)
+      ?.getBoundingClientRect();
+    const landCenterX = (land?.left ?? 0) + (land?.width ?? 0) / 2;
+    const landCenterY = (land?.top ?? 0) + (land?.height ?? 0) / 2;
+
     return {
-      gridX: Math.round((clientX - window.innerWidth / 2) / GRID_WIDTH_PX),
-      gridY: Math.round(-(clientY - window.innerHeight / 2) / GRID_WIDTH_PX),
+      gridX: Math.round((clientX - landCenterX) / GRID_WIDTH_PX),
+      gridY: Math.round(-(clientY - landCenterY) / GRID_WIDTH_PX),
     };
   }, []);
 
