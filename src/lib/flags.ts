@@ -148,10 +148,10 @@ const FEATURE_FLAGS = {
    * /level_one upgrade route, and the `interior.upgrade` event. Beta-pass /
    * testnet only until the feature ships to all players.
    */
-  HOME_EXPANSIONS: adminFeatureFlag,
+  HOME_EXPANSIONS: betaFeatureFlag,
 
   /** Quick drag-and-drop landscaping panel shown at the bottom of the screen. */
-  QUICK_LANDSCAPING_PANEL: adminFeatureFlag,
+  QUICK_LANDSCAPING_PANEL: betaFeatureFlag,
 
   /** Player economies: token dashboard, portal player-economy API, marketplace minigames row. */
   PLAYER_ECONOMIES: (game) => !!game.settings.economiesEnabled,
