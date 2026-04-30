@@ -8875,5 +8875,12 @@
   "gameOptions.about.github": "リリースノート",
   "gameOptions.about.terms": "サービス規約",
   "gameOptions.about.version": "クライアントバージョン",
-  "gameOptions.generalSettings.audio": "オーディオ"
+  "gameOptions.generalSettings.audio": "オーディオ",
+  "instantCook.coinCostMessage": "これには {{coins}} コインがかかります",
+  "speedUp.payWithGems": "ジェムで支払う",
+  "speedUp.payWithCoins": "コインで支払う",
+  "speedUp.dailyCoinLimit": "{{used}}/{{limit}} 今日使用したコイン",
+  "speedUp.dailyCoinLimitReached": "デイリーコインの上限に達しました",
+  "speedUp.requiresDinoEggTrophy": "ディノエッグトロフィーが必要です",
+  "dinoEggTrophy.boost.description": "ジェムの代わりにコインでスピードアップ（50コイン/ジェム、最大20,000コイン/日）。"
 }

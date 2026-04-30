@@ -8875,5 +8875,12 @@
   "gameOptions.about.github": "Sürüm notları",
   "gameOptions.about.terms": "Hizmet Şartları",
   "gameOptions.about.version": "İstemci sürümü",
-  "gameOptions.generalSettings.audio": "Ses"
+  "gameOptions.generalSettings.audio": "Ses",
+  "instantCook.coinCostMessage": "Bu size {{coins}} Jetonlara mal olacak",
+  "speedUp.payWithGems": "Mücevherlerle Öde",
+  "speedUp.payWithCoins": "Madeni Paralarla Ödeme",
+  "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Bugün kullanılan madeni paralar",
+  "speedUp.dailyCoinLimitReached": "Günlük Coin limitine ulaşıldı",
+  "speedUp.requiresDinoEggTrophy": "Dino Yumurta Kupası gerektirir",
+  "dinoEggTrophy.boost.description": "Mücevher yerine Madeni Paralarla hızlanın (50 Para/Mücevher, 20.000 Para/Günde)."
 }

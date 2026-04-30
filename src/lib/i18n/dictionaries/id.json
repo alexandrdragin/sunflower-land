@@ -8875,5 +8875,12 @@
   "gameOptions.about.github": "Catatan rilis",
   "gameOptions.about.terms": "Ketentuan Layanan",
   "gameOptions.about.version": "Versi klien",
-  "gameOptions.generalSettings.audio": "Audio"
+  "gameOptions.generalSettings.audio": "Audio",
+  "instantCook.coinCostMessage": "Ini akan dikenakan biaya {{coins}} Koin",
+  "speedUp.payWithGems": "Bayar dengan Permata",
+  "speedUp.payWithCoins": "Bayar dengan Koin",
+  "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Koin yang digunakan hari ini",
+  "speedUp.dailyCoinLimitReached": "Batas Koin Harian tercapai",
+  "speedUp.requiresDinoEggTrophy": "Membutuhkan Trofi Telur Dino",
+  "dinoEggTrophy.boost.description": "Percepat dengan Koin alih-alih Permata (50 Koin/Permata, hingga 20.000 Koin/Hari)."
 }
