@@ -633,7 +633,10 @@ export const MoveableComponent: React.FC<
             : name === "FarmHand" || name === "Bumpkin"
               ? {}
               : { name }),
-        coordinates: { x: coordinatesX, y: coordinatesY, oX: 0, oY: 0 },
+        coordinates:
+          name in RESOURCE_MOVE_EVENTS
+            ? { x: coordinatesX, y: coordinatesY }
+            : { x: coordinatesX, y: coordinatesY, oX: 0, oY: 0 },
         ...(name === "Bumpkin" ? {} : { id }),
         location: name in RESOURCE_MOVE_EVENTS ? undefined : location,
       });
@@ -724,12 +727,10 @@ export const MoveableComponent: React.FC<
             : name === "FarmHand" || name === "Bumpkin"
               ? {}
               : { name }),
-        coordinates: {
-          x: coordinatesX,
-          y: coordinatesY,
-          oX: newOX,
-          oY: newOY,
-        },
+        coordinates:
+          name in RESOURCE_MOVE_EVENTS
+            ? { x: coordinatesX, y: coordinatesY }
+            : { x: coordinatesX, y: coordinatesY, oX: newOX, oY: newOY },
         ...(name === "Bumpkin" ? {} : { id }),
         location: name in RESOURCE_MOVE_EVENTS ? undefined : location,
       });
@@ -844,12 +845,17 @@ export const MoveableComponent: React.FC<
                 : name === "FarmHand" || name === "Bumpkin"
                   ? {}
                   : { name }),
-            coordinates: {
-              x,
-              y,
-              oX: savedOffsetRef.current.savedOX + pixelDeltaRef.current.x,
-              oY: savedOffsetRef.current.savedOY + pixelDeltaRef.current.y,
-            },
+            coordinates:
+              name in RESOURCE_MOVE_EVENTS
+                ? { x, y }
+                : {
+                    x,
+                    y,
+                    oX:
+                      savedOffsetRef.current.savedOX + pixelDeltaRef.current.x,
+                    oY:
+                      savedOffsetRef.current.savedOY + pixelDeltaRef.current.y,
+                  },
             // Don't pass id for Bumpkin
             ...(name === "Bumpkin" ? {} : { id }),
             // Resources do not require location to be passed
