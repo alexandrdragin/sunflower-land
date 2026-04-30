@@ -72,6 +72,20 @@ import { FarmHandDetails } from "components/ui/layouts/FarmHandDetails";
 import { getBudImage } from "lib/buds/types";
 import { FLOWERS } from "features/game/types/flowers";
 
+const DECORATIVE_FLOWER_NAMES: CollectibleName[] = [
+  "Dawn Flower",
+  "Rainbow Flower",
+  "Definitely not a Flower",
+  "Desert Rose",
+  "Chicory",
+  "Chamomile",
+  "Lunalist",
+  "Venus Bumpkin Trap",
+  "Black Hole Flower",
+  "Anemone Flower",
+  "Salt Crystal Flower",
+];
+
 export const ITEM_ICONS: (
   season: TemperateSeasonName,
   biome: LandBiomeName,
@@ -452,9 +466,22 @@ export const Chest: React.FC<Props> = ({
     (name) => name in WEATHER_SHOP_ITEM_COSTS,
   );
 
+  const flowers = collectibleNames
+    .filter((name) => name in FLOWERS || DECORATIVE_FLOWER_NAMES.includes(name))
+    .sort((a, b) => {
+      const decorativeA = DECORATIVE_FLOWER_NAMES.indexOf(a);
+      const decorativeB = DECORATIVE_FLOWER_NAMES.indexOf(b);
+      const isDecorativeA = decorativeA !== -1;
+      const isDecorativeB = decorativeB !== -1;
+
+      if (isDecorativeA && isDecorativeB) return decorativeA - decorativeB;
+      if (isDecorativeA) return -1;
+      if (isDecorativeB) return 1;
+
+      return a.localeCompare(b);
+    });
   const dolls = collectibleNames.filter((name) => name in DOLLS);
   const pets = collectibleNames.filter((name) => name in PET_TYPES);
-  const flowers = collectibleNames.filter((name) => name in FLOWERS);
 
   // Use Sets for O(1) lookups instead of O(n) .includes()
   const resourcesSet = new Set(resources);
@@ -485,7 +512,8 @@ export const Chest: React.FC<Props> = ({
         !buildingsSet.has(name) &&
         !monumentsSet.has(name) &&
         !villageProjectsSet.has(name) &&
-        !bedsSet.has(name),
+        !bedsSet.has(name) &&
+        !flowersSet.has(name),
     );
 
   const boostsSet = new Set(boosts);
@@ -568,7 +596,7 @@ export const Chest: React.FC<Props> = ({
     {
       items: flowers,
       label: "flowers",
-      icon: SUNNYSIDE.icons.seedling,
+      icon: ITEM_DETAILS["Prism Petal"].image,
     },
   ];
 
