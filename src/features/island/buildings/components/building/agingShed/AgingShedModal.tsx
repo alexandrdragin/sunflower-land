@@ -14,7 +14,7 @@ import { FermentationRackPanel } from "./fermentationRack/FermentationRackPanel"
 import { AgingRackPanel } from "./agingRack/AgingRackPanel";
 import { SpiceRackPanel } from "./spiceRack/SpiceRackPanel";
 import { OuterPanel } from "components/ui/Panel";
-import { hasFeatureAccess } from "lib/flags";
+import { useTimeBasedFeatureAccess } from "lib/utils/hooks/useTimeBasedFeatureAccess";
 import { ITEM_DETAILS } from "features/game/types/images";
 import { useNow } from "lib/utils/hooks/useNow";
 
@@ -34,9 +34,11 @@ export const AgingShedModal: React.FC<Props> = ({ isOpen, onClose }) => {
     gameService,
     (state) => state.context.state.agingShed.level,
   );
-  const hasAgingShedAccess = useSelector(gameService, (state) =>
-    hasFeatureAccess(state.context.state, "AGING_SHED"),
-  );
+  const gameState = useSelector(gameService, (state) => state.context.state);
+  const hasAgingShedAccess = useTimeBasedFeatureAccess({
+    featureName: "SALT_CHAPTER",
+    game: gameState,
+  });
   const agingShedRacks = useSelector(
     gameService,
     (state) => state.context.state.agingShed.racks,

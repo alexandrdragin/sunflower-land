@@ -3,7 +3,7 @@ import { Equipped } from "features/game/types/bumpkin";
 import { GameState } from "features/game/types/game";
 import { populateSaltFarm } from "features/game/types/salt";
 import { produce } from "immer";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 
 export type EquipFarmHandAction = {
   type: "farmHand.equipped";
@@ -37,7 +37,13 @@ export function equipFarmhand({
 
     bumpkin.equipped = action.equipment;
 
-    if (hasFeatureAccess(game, "SALT_FARM")) {
+    if (
+      hasTimeBasedFeatureAccess({
+        featureName: "SALT_CHAPTER",
+        game,
+        now: createdAt,
+      })
+    ) {
       populateSaltFarm({ gameBefore: state, gameAfter: game, now: createdAt });
     }
 

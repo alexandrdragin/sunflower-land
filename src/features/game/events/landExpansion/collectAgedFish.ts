@@ -13,7 +13,7 @@ import type {
 } from "features/game/types/fishing";
 import { GameState } from "features/game/types/game";
 import { trackFarmActivity } from "features/game/types/farmActivity";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 import { hasPlacedAgingShed } from "./hasPlacedAgingShed";
 import { prngChance } from "lib/prng";
 
@@ -33,7 +33,13 @@ export function collectAgedFish({
   createdAt = Date.now(),
   farmId,
 }: Options): GameState {
-  if (!hasFeatureAccess(state, "AGING_SHED")) {
+  if (
+    !hasTimeBasedFeatureAccess({
+      featureName: "SALT_CHAPTER",
+      game: state,
+      now: createdAt,
+    })
+  ) {
     throw new Error("Aging Shed not enabled");
   }
 

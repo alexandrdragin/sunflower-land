@@ -14,7 +14,7 @@ import { GameState } from "features/game/types/game";
 import { getAgingInputMultiplier } from "features/game/types/agingFormulas";
 import { hasPlacedAgingShed } from "./hasPlacedAgingShed";
 import { grantFermentationRecipeOutputs } from "./grantFermentationRecipeOutputs";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 
 export type StartFermentationAction = {
   type: "fermentation.started";
@@ -36,7 +36,13 @@ export function startFermentation({
   createdAt = Date.now(),
   farmId,
 }: Options): GameState {
-  if (!hasFeatureAccess(state, "AGING_SHED")) {
+  if (
+    !hasTimeBasedFeatureAccess({
+      featureName: "SALT_CHAPTER",
+      game: state,
+      now: createdAt,
+    })
+  ) {
     throw new Error("Aging Shed not enabled");
   }
 

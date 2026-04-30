@@ -9,7 +9,7 @@ import {
 import { Bumpkin, GameState } from "features/game/types/game";
 import { populateSaltFarm } from "features/game/types/salt";
 import { produce } from "immer";
-import { hasFeatureAccess } from "lib/flags";
+import { hasTimeBasedFeatureAccess } from "lib/flags";
 
 export type ChoseSkillAction = {
   type: "skill.chosen";
@@ -172,7 +172,14 @@ export function choseSkill({ state, action, createdAt = Date.now() }: Options) {
       throw new Error("This skill is disabled");
     }
 
-    if (tree === "Aging" && !hasFeatureAccess(stateCopy, "SALT_SKILLS")) {
+    if (
+      tree === "Aging" &&
+      !hasTimeBasedFeatureAccess({
+        featureName: "SALT_CHAPTER",
+        game: stateCopy,
+        now: createdAt,
+      })
+    ) {
       throw new Error("This skill is not available yet");
     }
 
@@ -185,7 +192,13 @@ export function choseSkill({ state, action, createdAt = Date.now() }: Options) {
       [action.skill]: 1,
     };
 
-    if (hasFeatureAccess(stateCopy, "SALT_FARM")) {
+    if (
+      hasTimeBasedFeatureAccess({
+        featureName: "SALT_CHAPTER",
+        game: stateCopy,
+        now: createdAt,
+      })
+    ) {
       populateSaltFarm({
         gameBefore: state,
         gameAfter: stateCopy,

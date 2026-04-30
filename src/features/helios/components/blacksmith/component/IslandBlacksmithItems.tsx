@@ -4,7 +4,7 @@ import { useSelector } from "@xstate/react";
 import { Box } from "components/ui/Box";
 
 import { Context } from "features/game/GameProvider";
-import { hasFeatureAccess } from "lib/flags";
+import { useTimeBasedFeatureAccess } from "lib/utils/hooks/useTimeBasedFeatureAccess";
 import { getKeys } from "lib/object";
 import { ITEM_DETAILS } from "features/game/types/images";
 
@@ -127,6 +127,10 @@ export const IslandBlacksmithItems: React.FC = () => {
   >("Basic Scarecrow");
   const { gameService, shortcutItem } = useContext(Context);
   const state = useSelector(gameService, _state);
+  const hasSaltChapterAccess = useTimeBasedFeatureAccess({
+    featureName: "SALT_CHAPTER",
+    game: state,
+  });
   const now = useNow();
   const ticket = getChapterTicket(now);
   const inventory = useSelector(gameService, _inventory);
@@ -220,9 +224,7 @@ export const IslandBlacksmithItems: React.FC = () => {
     "Macaw",
     "Squirrel",
     "Butterfly",
-    ...(hasFeatureAccess(state, "SALT_SCULPTURE")
-      ? (["Salt Sculpture"] as const)
-      : []),
+    ...(hasSaltChapterAccess ? (["Salt Sculpture"] as const) : []),
   ];
 
   return (
