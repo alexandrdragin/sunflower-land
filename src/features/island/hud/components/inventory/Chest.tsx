@@ -70,6 +70,7 @@ import { PlaceableLocation } from "features/game/types/collectibles";
 import { NPCPlaceable } from "features/island/bumpkin/components/NPC";
 import { FarmHandDetails } from "components/ui/layouts/FarmHandDetails";
 import { getBudImage } from "lib/buds/types";
+import { FLOWERS } from "features/game/types/flowers";
 
 export const ITEM_ICONS: (
   season: TemperateSeasonName,
@@ -453,6 +454,7 @@ export const Chest: React.FC<Props> = ({
 
   const dolls = collectibleNames.filter((name) => name in DOLLS);
   const pets = collectibleNames.filter((name) => name in PET_TYPES);
+  const flowers = collectibleNames.filter((name) => name in FLOWERS);
 
   // Use Sets for O(1) lookups instead of O(n) .includes()
   const resourcesSet = new Set(resources);
@@ -464,6 +466,7 @@ export const Chest: React.FC<Props> = ({
   const weatherItemsSet = new Set(weatherItems);
   const dollsSet = new Set(dolls);
   const petsSet = new Set(pets);
+  const flowersSet = new Set(flowers);
 
   const boosts = collectibleNames
     .filter(
@@ -498,6 +501,7 @@ export const Chest: React.FC<Props> = ({
       !monumentsSet.has(name) &&
       !dollsSet.has(name) &&
       !petsSet.has(name) &&
+      !flowersSet.has(name) &&
       !villageProjectsSet.has(name),
   );
 
@@ -560,6 +564,11 @@ export const Chest: React.FC<Props> = ({
       items: decorations,
       label: "decorations",
       icon: ITEM_DETAILS["Basic Bear"].image,
+    },
+    {
+      items: flowers,
+      label: "flowers",
+      icon: SUNNYSIDE.icons.seedling,
     },
   ];
 
