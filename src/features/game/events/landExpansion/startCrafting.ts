@@ -1,5 +1,10 @@
 import Decimal from "decimal.js-light";
-import { Recipe, RecipeIngredient, Recipes } from "features/game/lib/crafting";
+import {
+  Recipe,
+  RecipeIngredient,
+  Recipes,
+  RECIPES,
+} from "features/game/lib/crafting";
 import {
   BoostName,
   CraftingQueueItem,
@@ -113,8 +118,11 @@ export function startCrafting({
       throw new Error("Invalid queue item id");
     }
 
-    // Find matching recipe
-    const recipe = findMatchingRecipe(ingredients, copy.craftingBox.recipes);
+    // Find matching recipe. Discovered recipes carry the ingredient layout in
+    // game state; RECIPES is a fallback for any static recipes with ingredients.
+    const recipe =
+      findMatchingRecipe(ingredients, copy.craftingBox.recipes) ??
+      findMatchingRecipe(ingredients, RECIPES);
     const isBaseInstantRecipe = recipe?.time === 0;
     const availableSlots = hasVipAccess({ game: copy, now: createdAt }) ? 4 : 1;
 

@@ -1,10 +1,11 @@
 /* eslint-disable no-var */
 import Decimal from "decimal.js-light";
-import { GameState } from "features/game/types/game";
+import { GameState, InventoryItemName } from "features/game/types/game";
 import { startCrafting, StartCraftingAction } from "./startCrafting";
 import { INITIAL_FARM } from "features/game/lib/constants";
 import { KNOWN_IDS } from "features/game/types";
 import { prngChance } from "lib/prng";
+import { RecipeCollectibleName, RECIPES } from "features/game/lib/crafting";
 
 describe("startCrafting", () => {
   const farmId = 1;
@@ -106,6 +107,65 @@ describe("startCrafting", () => {
     expect(newState.farmActivity["Timber Crafting Started"]).toBe(1);
     expect(newState.farmActivity["Timber Crafted"]).toBe(1);
   });
+
+  const instantRecipeFixtures: [RecipeCollectibleName, InventoryItemName][] = [
+    ["Bee Box", "Honey"],
+    ["Crimsteel", "Crimstone"],
+    ["Cushion", "Feather"],
+    ["Hardened Leather", "Leather"],
+    ["Kelp Fibre", "Seaweed"],
+    ["Merino Cushion", "Merino Wool"],
+    ["Ocean's Treasure", "Pearl"],
+    ["Royal Bedding", "Cushion"],
+    ["Royal Ornament", "Gold"],
+    ["Synthetic Fabric", "Wool"],
+    ["Timber", "Wood"],
+  ];
+
+  it("keeps fixtures aligned with all zero-time recipes", () => {
+    const zeroTimeRecipes = Object.values(RECIPES)
+      .filter((recipe) => recipe.time === 0)
+      .map((recipe) => recipe.name)
+      .sort();
+
+    expect(instantRecipeFixtures.map(([name]) => name).sort()).toEqual(
+      zeroTimeRecipes,
+    );
+  });
+
+  it.each(instantRecipeFixtures)(
+    "crafts %s immediately",
+    (recipeName, ingredientName) => {
+      const ingredients = Array.from({ length: 9 }, () => ({
+        collectible: ingredientName,
+      }));
+
+      gameState.inventory[ingredientName] = new Decimal(9);
+      gameState.craftingBox.recipes = {
+        [recipeName]: {
+          ...RECIPES[recipeName],
+          ingredients,
+        },
+      };
+
+      const state = startCrafting({
+        farmId,
+        state: gameState,
+        action: {
+          type: "crafting.started",
+          queueItemId: "test-id",
+          ingredients,
+        },
+      });
+
+      expect(state.craftingBox.status).toBe("idle");
+      expect(state.craftingBox.queue).toHaveLength(0);
+      expect(state.inventory[ingredientName]).toStrictEqual(new Decimal(0));
+      expect(state.inventory[recipeName]).toStrictEqual(new Decimal(1));
+      expect(state.farmActivity[`${recipeName} Crafting Started`]).toBe(1);
+      expect(state.farmActivity[`${recipeName} Crafted`]).toBe(1);
+    },
+  );
 
   it("throws an error if the player doesn't have a Crafting Box", () => {
     gameState.buildings["Crafting Box"] = [];
