@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useInterval } from "lib/utils/hooks/useInterval";
 import { Balances } from "components/Balances";
 import { useActor, useSelector } from "@xstate/react";
 import { Context } from "features/game/GameProvider";
@@ -82,6 +83,12 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
 }) => {
   const { t } = useAppTranslation();
   const { gameService } = useContext(Context);
+
+  // Flush pending actions every minute so the API never receives actions
+  // older than its acceptance window.
+  useInterval(() => {
+    gameService.send("SAVE");
+  }, 1000 * 60);
 
   const [showRemoveConfirmation, setShowRemoveConfirmation] = useState(false);
   const [showRemoveAllConfirmation, setShowRemoveAllConfirmation] =

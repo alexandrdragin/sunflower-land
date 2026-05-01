@@ -125,6 +125,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
     .landscaping as MachineInterpreter;
 
   const isIdle = useSelector(child, (s) => s.matches({ editing: "idle" }));
+  const movingItem = useSelector(child, (s) => s.context.moving);
 
   const [activeTab, setActiveTab] = useState<TabId>("decorations");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -685,7 +686,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
 
   return (
     <>
-      {isIdle && (
+      {isIdle && !(isMobile && movingItem) && (
         <div
           className="absolute bottom-0 left-0 right-0"
           data-prevent-drag-scroll
