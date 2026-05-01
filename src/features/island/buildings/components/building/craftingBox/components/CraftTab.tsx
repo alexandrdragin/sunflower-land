@@ -211,6 +211,7 @@ export const CraftTab: React.FC<Props> = ({
     () => findMatchingRecipe(selectedItems, recipesToMatch) ?? null,
     [selectedItems, recipesToMatch],
   );
+  const isBaseInstantRecipe = currentRecipe?.time === 0;
 
   const hasIngredient = (ingredient: RecipeIngredient) =>
     (ingredient.collectible &&
@@ -229,7 +230,11 @@ export const CraftTab: React.FC<Props> = ({
     ingredient: RecipeIngredient,
     sourceIndex?: number,
   ) => {
-    if (isViewingMode || isPending || (isCrafting && !canAddToQueue)) {
+    if (
+      isViewingMode ||
+      isPending ||
+      (isCrafting && !canAddToQueue && preparingSlotIndex === 0)
+    ) {
       e.preventDefault();
       return;
     }
@@ -292,7 +297,8 @@ export const CraftTab: React.FC<Props> = ({
   };
 
   const handleBoxSelect = (index: number) => {
-    if (isPending || (isCrafting && !canAddToQueue)) return;
+    if (isPending || (isCrafting && !canAddToQueue && preparingSlotIndex === 0))
+      return;
 
     const newSelectedItems = [...selectedItems];
 
@@ -333,6 +339,15 @@ export const CraftTab: React.FC<Props> = ({
     });
     if (!currentRecipe) gameService.send("SAVE");
 
+    if (wasAddingToQueue && isBaseInstantRecipe) {
+      setSelectedItemId(cooking?.id ?? null);
+      setPreparingSlotIndex(0);
+      onQueueSelectionChange?.({ itemId: cooking?.id });
+      setSelectedItems(padRecipeIngredients(null));
+      setSelectedIngredient(null);
+      return;
+    }
+
     if (wasAddingToQueue && currentRecipe) {
       const recipeStartAt =
         queue.length > 0
@@ -367,6 +382,11 @@ export const CraftTab: React.FC<Props> = ({
   };
 
   const handleAddToQueue = () => {
+    if (isBaseInstantRecipe) {
+      handleCraft();
+      return;
+    }
+
     if (!isVIP) {
       setShowCraftingQueueVipModal(true);
       return;
@@ -418,8 +438,9 @@ export const CraftTab: React.FC<Props> = ({
 
     if (isEmpty) {
       if (!canAddToQueue) {
-        if (!isVIP) setShowCraftingQueueVipModal(true);
-        return;
+        if (isVIP || !isCrafting) {
+          return;
+        }
       }
       setSelectedItemId(null);
       setPreparingSlotIndex(slotIndex);
@@ -510,7 +531,7 @@ export const CraftTab: React.FC<Props> = ({
 
   const isDisabled =
     isPending ||
-    (isCrafting && !canAddToQueue) ||
+    (isCrafting && !canAddToQueue && !isBaseInstantRecipe) ||
     isCraftingBoxEmpty ||
     isViewingInProgressRecipe ||
     isViewingQueuedRecipe;
@@ -541,7 +562,9 @@ export const CraftTab: React.FC<Props> = ({
           canEditGrid={canEditGrid}
           isPending={isPending}
           disabled={
-            isViewingMode || isPending || (isCrafting && !canAddToQueue)
+            isViewingMode ||
+            isPending ||
+            (isCrafting && !canAddToQueue && !isPreparingQueueSlot)
           }
         />
 
@@ -588,7 +611,7 @@ export const CraftTab: React.FC<Props> = ({
             wardrobe={wardrobe}
             gems={gems}
             onInstantCraft={handleInstantCraft}
-            isQueueFull={isQueueFull}
+            isQueueFull={isQueueFull && !isBaseInstantRecipe}
             isPreparingQueueSlot={
               isPreparingQueueSlot && !isViewingInProgressItem
             }
@@ -613,7 +636,11 @@ export const CraftTab: React.FC<Props> = ({
         onDragStart={handleDragStart}
         canEditGrid={canEditGrid}
         isPending={isPending}
-        disabled={isViewingMode || isPending || (isCrafting && !canAddToQueue)}
+        disabled={
+          isViewingMode ||
+          isPending ||
+          (isCrafting && !canAddToQueue && !isPreparingQueueSlot)
+        }
         discoveredRecipes={state.craftingBox.recipes}
       />
 

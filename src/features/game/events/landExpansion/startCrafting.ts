@@ -16,6 +16,7 @@ import { isTemporaryCollectibleActive } from "features/game/lib/collectibleBuilt
 import { KNOWN_IDS } from "features/game/types";
 import { ITEM_IDS, BumpkinItem } from "features/game/types/bumpkin";
 import { prngChance } from "lib/prng";
+import { grantCraftedItem } from "./collectCrafting";
 
 export type StartCraftingAction = {
   type: "crafting.started";
@@ -112,14 +113,15 @@ export function startCrafting({
       throw new Error("Invalid queue item id");
     }
 
+    // Find matching recipe
+    const recipe = findMatchingRecipe(ingredients, copy.craftingBox.recipes);
+    const isBaseInstantRecipe = recipe?.time === 0;
     const availableSlots = hasVipAccess({ game: copy, now: createdAt }) ? 4 : 1;
 
-    if (effectiveQueue.length >= availableSlots) {
+    if (effectiveQueue.length >= availableSlots && !isBaseInstantRecipe) {
       throw new Error("No available slots");
     }
 
-    // Find matching recipe
-    const recipe = findMatchingRecipe(ingredients, copy.craftingBox.recipes);
     if (!recipe) {
       if (effectiveQueue.length === 0) {
         copy.craftingBox.status = "pending";
@@ -164,6 +166,34 @@ export function startCrafting({
       }
     });
 
+    copy.farmActivity = trackFarmActivity(
+      `${recipe.name} Crafting Started`,
+      copy.farmActivity ?? {},
+    );
+
+    if (isBaseInstantRecipe) {
+      grantCraftedItem(
+        {
+          id: action.queueItemId,
+          readyAt: createdAt,
+          startedAt: createdAt,
+          ...recipe,
+        },
+        copy,
+      );
+
+      copy.craftingBox = {
+        status: effectiveQueue.length > 0 ? "crafting" : "idle",
+        queue: effectiveQueue,
+        recipes: {
+          ...copy.craftingBox.recipes,
+          [recipe.name]: { ...recipe },
+        },
+      };
+
+      return copy;
+    }
+
     const recipeStartAt =
       effectiveQueue.length > 0
         ? effectiveQueue[effectiveQueue.length - 1].readyAt
@@ -198,11 +228,6 @@ export function startCrafting({
     if (effectiveQueue.length > 0) {
       copy.farmActivity = trackFarmActivity("Recipe Queued", copy.farmActivity);
     }
-
-    copy.farmActivity = trackFarmActivity(
-      `${recipe.name} Crafting Started`,
-      copy.farmActivity ?? {},
-    );
 
     copy.craftingBox = {
       status: "crafting",
