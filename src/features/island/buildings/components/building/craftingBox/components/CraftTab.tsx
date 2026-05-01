@@ -438,7 +438,7 @@ export const CraftTab: React.FC<Props> = ({
 
     if (isEmpty) {
       if (!canAddToQueue) {
-        if (isVIP || !isCrafting) {
+        if (!isVIP && !isCrafting) {
           return;
         }
       }
