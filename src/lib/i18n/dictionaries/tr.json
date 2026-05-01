@@ -8882,5 +8882,9 @@
   "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Bugün kullanılan madeni paralar",
   "speedUp.dailyCoinLimitReached": "Günlük Coin limitine ulaşıldı",
   "speedUp.requiresDinoEggTrophy": "Dino Yumurta Kupası gerektirir",
-  "dinoEggTrophy.boost.description": "Mücevher yerine Madeni Paralarla hızlanın (50 Para/Mücevher, 20.000 Para/Günde)."
+  "dinoEggTrophy.boost.description": "Mücevher yerine Madeni Paralarla hızlanın (50 Para/Mücevher, 20.000 Para/Günde).",
+  "description.saltLamp": "Tek bir tuz kristalinden oyulmuş - parıltısı en tuzlu yumruları yatıştırır.",
+  "description.saltCrystalBed": "Parıldayan tuz kristallerine sarılmış uyku. Tatlı, tuzlu rüyalar garantilidir.",
+  "description.worldMapRug": "Her tuzlu denizin yıpranmış bir haritası, bir halıya dokunmuş. X zemini işaretler.",
+  "description.rippedSaltBag": "Biri bunu çok sert çekti. Tuz hala gözyaşından dökülüyor."
 }

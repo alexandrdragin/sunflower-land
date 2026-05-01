@@ -8882,5 +8882,9 @@
   "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Pièces utilisées aujourd'hui",
   "speedUp.dailyCoinLimitReached": "Limite quotidienne de pièces atteinte",
   "speedUp.requiresDinoEggTrophy": "Nécessite le trophée Dino Egg",
-  "dinoEggTrophy.boost.description": "Accélérez avec des pièces au lieu de pierres précieuses (50 pièces/gemme, jusqu'à 20 000 pièces/jour)."
+  "dinoEggTrophy.boost.description": "Accélérez avec des pièces au lieu de pierres précieuses (50 pièces/gemme, jusqu'à 20 000 pièces/jour).",
+  "description.saltLamp": "Sculpté dans un seul cristal de sel, son éclat apaise les bosses les plus salées.",
+  "description.saltCrystalBed": "Dormez bercé par des cristaux de sel scintillants. Rêves doux et saumurés garantis.",
+  "description.worldMapRug": "Une carte patinée de toutes les mers salées, tissée dans un tapis. X marque le sol.",
+  "description.rippedSaltBag": "Quelqu'un l'a traîné trop fort. Le sel coule encore de la larme."
 }
