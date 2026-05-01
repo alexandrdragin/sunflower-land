@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Tallado en un único cristal de sal, su brillo alivia a las calabazas más saladas.",
   "description.saltCrystalBed": "Duerme acunado en relucientes cristales de sal. Sueños dulces y salados garantizados.",
   "description.worldMapRug": "Un mapa desgastado de todos los mares salados, tejido en una alfombra. La X marca el suelo.",
-  "description.rippedSaltBag": "Alguien lo ha hecho con demasiada fuerza. Aún sale sal de la lágrima."
+  "description.rippedSaltBag": "Alguien lo ha hecho con demasiada fuerza. Aún sale sal de la lágrima.",
+  "fishing.shrimpOnesie.singleReel": "+1 pez aleatorio en el siguiente carrete",
+  "fishing.shrimpOnesie.bulkReel": "+1 pez aleatorio en los carretes de {{reels}} de este reparto",
+  "fishing.shrimpOnesie.bonus": "Mono de camarones + {{amount}}",
+  "description.shrimpOnesie.boost": "+1 pez aleatorio cada 15 carrete",
+  "description.clamShellHat": "Una concha de almeja pulida posada sobre tu cabeza.",
+  "description.shrimpOnesie": "Acogedor, salado y un poco pellizcado."
 }

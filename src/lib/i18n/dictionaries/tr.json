@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Tek bir tuz kristalinden oyulmuş - parıltısı en tuzlu yumruları yatıştırır.",
   "description.saltCrystalBed": "Parıldayan tuz kristallerine sarılmış uyku. Tatlı, tuzlu rüyalar garantilidir.",
   "description.worldMapRug": "Her tuzlu denizin yıpranmış bir haritası, bir halıya dokunmuş. X zemini işaretler.",
-  "description.rippedSaltBag": "Biri bunu çok sert çekti. Tuz hala gözyaşından dökülüyor."
+  "description.rippedSaltBag": "Biri bunu çok sert çekti. Tuz hala gözyaşından dökülüyor.",
+  "fishing.shrimpOnesie.singleReel": "Sonraki makarada +1 rastgele balık",
+  "fishing.shrimpOnesie.bulkReel": "Bu oyuncu kadrosunda {{reels}} makaralarında +1 rastgele balık",
+  "fishing.shrimpOnesie.bonus": "Karides Onesie + {{amount}}",
+  "description.shrimpOnesie.boost": "Her 15. makarada +1 rastgele balık",
+  "description.clamShellHat": "Başınızın üstüne cilalı bir deniz tarağı kabuğu.",
+  "description.shrimpOnesie": "Rahat, tuzlu ve biraz kıvırcık."
 }

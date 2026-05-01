@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Sculpté dans un seul cristal de sel, son éclat apaise les bosses les plus salées.",
   "description.saltCrystalBed": "Dormez bercé par des cristaux de sel scintillants. Rêves doux et saumurés garantis.",
   "description.worldMapRug": "Une carte patinée de toutes les mers salées, tissée dans un tapis. X marque le sol.",
-  "description.rippedSaltBag": "Quelqu'un l'a traîné trop fort. Le sel coule encore de la larme."
+  "description.rippedSaltBag": "Quelqu'un l'a traîné trop fort. Le sel coule encore de la larme.",
+  "fishing.shrimpOnesie.singleReel": "+1 poisson aléatoire sur le prochain moulinet",
+  "fishing.shrimpOnesie.bulkReel": "+1 poisson aléatoire sur les rouleaux {{reels}} dans ce casting",
+  "fishing.shrimpOnesie.bonus": "Onesie aux crevettes + {{amount}}",
+  "description.shrimpOnesie.boost": "+1 poisson aléatoire tous les 15 moulinets",
+  "description.clamShellHat": "Une coquille de palourde polie perchée au sommet de votre tête.",
+  "description.shrimpOnesie": "Douillet, salé et un peu épicé."
 }

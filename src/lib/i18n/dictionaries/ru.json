@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Carved from a single salt crystal — its glow soothes the saltiest of bumpkins.",
   "description.saltCrystalBed": "Sleep cradled in shimmering salt crystals. Sweet, briny dreams guaranteed.",
   "description.worldMapRug": "A weathered map of every salty sea, woven into a rug. X marks the floor.",
-  "description.rippedSaltBag": "Someone hauled this too hard. Salt still pours from the tear."
+  "description.rippedSaltBag": "Someone hauled this too hard. Salt still pours from the tear.",
+  "fishing.shrimpOnesie.singleReel": "+1 random fish on next reel",
+  "fishing.shrimpOnesie.bulkReel": "+1 random fish on {{reels}} reels in this cast",
+  "fishing.shrimpOnesie.bonus": "Shrimp Onesie +{{amount}}",
+  "description.shrimpOnesie.boost": "+1 random fish every 15th reel",
+  "description.clamShellHat": "A polished clam shell perched atop your head.",
+  "description.shrimpOnesie": "Snug, salty, and a little bit pinchy."
 }

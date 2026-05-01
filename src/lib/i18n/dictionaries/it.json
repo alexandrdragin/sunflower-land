@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Scolpito in un unico cristallo di sale, il suo splendore lenisce anche le zucche più salate.",
   "description.saltCrystalBed": "Dormi cullato da scintillanti cristalli di sale. Sogni dolci e salati garantiti.",
   "description.worldMapRug": "Una mappa alterata di ogni mare salato, intessuta in un tappeto. Una X segna il pavimento.",
-  "description.rippedSaltBag": "Qualcuno l'ha presa troppo forte. Il sale fuoriesce ancora dalla lacrima."
+  "description.rippedSaltBag": "Qualcuno l'ha presa troppo forte. Il sale fuoriesce ancora dalla lacrima.",
+  "fishing.shrimpOnesie.singleReel": "+1 pesce a caso sul rullo successivo",
+  "fishing.shrimpOnesie.bulkReel": "+1 pesce a caso sui rulli {{reels}} in questo cast",
+  "fishing.shrimpOnesie.bonus": "Tutina con gamberetti + {{amount}}",
+  "description.shrimpOnesie.boost": "+1 pesce a caso ogni 15 rulli",
+  "description.clamShellHat": "Una conchiglia lucida appollaiata sulla tua testa.",
+  "description.shrimpOnesie": "Avvolgente, salato e un po' pizzico."
 }

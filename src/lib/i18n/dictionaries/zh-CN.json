@@ -8886,5 +8886,11 @@
   "description.saltLamp": "由单一盐晶体雕刻而成，它的光泽可以舒缓最咸的笨蛋。",
   "description.saltCrystalBed": "在闪闪发光的盐晶中睡觉。保证做个甜蜜的美好梦想。",
   "description.worldMapRug": "一张编织成地毯的每一个咸海的风化地图。X 标记地板。",
-  "description.rippedSaltBag": "有人把这个拖得太厉害了。盐仍然从眼泪中涌出。"
+  "description.rippedSaltBag": "有人把这个拖得太厉害了。盐仍然从眼泪中涌出。",
+  "fishing.shrimpOnesie.singleReel": "下一个卷轴上有 +1 条随机鱼",
+  "fishing.shrimpOnesie.bulkReel": "在此施法中 {{reels}} 个卷轴上随机获得 +1 条鱼",
+  "fishing.shrimpOnesie.bonus": "虾仁连体衣 + {{amount}}",
+  "description.shrimpOnesie.boost": "每第 15 个卷轴 +1 条随机鱼",
+  "description.clamShellHat": "抛光的蛤壳栖息在你的头顶。",
+  "description.shrimpOnesie": "很舒服，很咸，还有一点点点。"
 }

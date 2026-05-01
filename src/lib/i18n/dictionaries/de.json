@@ -8886,5 +8886,11 @@
   "description.saltLamp": "Aus einem einzigen Salzkristall geschnitzt, beruhigt sein Glanz auch die salzigsten Kürbisse.",
   "description.saltCrystalBed": "Schlafen Sie umgeben von schimmernden Salzkristallen. Süße, salzige Träume sind garantiert.",
   "description.worldMapRug": "Eine verwitterte Landkarte aller salzigen Meere, eingewebt in einen Teppich. Ein X markiert den Boden.",
-  "description.rippedSaltBag": "Jemand hat das zu schwer gezogen. Aus der Träne fließt immer noch Salz."
+  "description.rippedSaltBag": "Jemand hat das zu schwer gezogen. Aus der Träne fließt immer noch Salz.",
+  "fishing.shrimpOnesie.singleReel": "+1 zufälliger Fisch auf der nächsten Walze",
+  "fishing.shrimpOnesie.bulkReel": "+1 zufälliger Fisch auf {{reels}} -Walzen in dieser Besetzung",
+  "fishing.shrimpOnesie.bonus": "Einteiler mit Garnelen + {{amount}}",
+  "description.shrimpOnesie.boost": "+1 zufälliger Fisch auf jeder 15. Walze",
+  "description.clamShellHat": "Eine polierte Muschelschale thront auf deinem Kopf.",
+  "description.shrimpOnesie": "Kuschelig, salzig und ein bisschen knifflig."
 }
