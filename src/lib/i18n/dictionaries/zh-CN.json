@@ -8882,5 +8882,9 @@
   "speedUp.dailyCoinLimit": "{{used}}/{{limit}} 今天使用的硬币",
   "speedUp.dailyCoinLimitReached": "已达到每日硬币限额",
   "speedUp.requiresDinoEggTrophy": "需要恐龙蛋奖杯",
-  "dinoEggTrophy.boost.description": "使用硬币代替宝石加速（50 个硬币/宝石，每天最多 20,000 个硬币）。"
+  "dinoEggTrophy.boost.description": "使用硬币代替宝石加速（50 个硬币/宝石，每天最多 20,000 个硬币）。",
+  "description.saltLamp": "由单一盐晶体雕刻而成，它的光泽可以舒缓最咸的笨蛋。",
+  "description.saltCrystalBed": "在闪闪发光的盐晶中睡觉。保证做个甜蜜的美好梦想。",
+  "description.worldMapRug": "一张编织成地毯的每一个咸海的风化地图。X 标记地板。",
+  "description.rippedSaltBag": "有人把这个拖得太厉害了。盐仍然从眼泪中涌出。"
 }

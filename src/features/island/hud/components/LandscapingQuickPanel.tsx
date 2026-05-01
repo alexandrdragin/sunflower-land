@@ -37,7 +37,7 @@ import { MONUMENTS, REWARD_ITEMS } from "features/game/types/monuments";
 import { DOLLS } from "features/game/lib/crafting";
 import { PET_TYPES, isPetNFTRevealed } from "features/game/types/pets";
 import { WEATHER_SHOP_ITEM_COSTS } from "features/game/types/calendar";
-import { Box } from "components/ui/Box";
+import { Box, BoxProps } from "components/ui/Box";
 import { ITEM_DETAILS } from "features/game/types/images";
 import { SUNNYSIDE } from "assets/sunnyside";
 import lightning from "assets/icons/lightning.png";
@@ -513,16 +513,14 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
     const wrapBox = (
       key: string,
       item: LandscapingPlaceableType,
-      boxNode: React.ReactNode,
-    ) => (
-      <div
-        key={key}
-        style={{ touchAction: "none" }}
-        onPointerDown={(e) => handleDragStart(e, item)}
-      >
-        {boxNode}
-      </div>
-    );
+      boxNode: React.ReactElement<BoxProps>,
+    ) =>
+      React.cloneElement(boxNode, {
+        key,
+        style: { touchAction: "none" },
+        onPointerDown: (e: React.PointerEvent<HTMLDivElement>) =>
+          handleDragStart(e, item),
+      });
 
     switch (activeTab) {
       case "nfts":

@@ -8882,5 +8882,9 @@
   "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Monedas usadas hoy",
   "speedUp.dailyCoinLimitReached": "Se ha alcanzado el límite diario de monedas",
   "speedUp.requiresDinoEggTrophy": "Requiere el trofeo Dino Egg",
-  "dinoEggTrophy.boost.description": "Acelera con monedas en lugar de gemas (50 monedas/gema, hasta 20 000 monedas/día)."
+  "dinoEggTrophy.boost.description": "Acelera con monedas en lugar de gemas (50 monedas/gema, hasta 20 000 monedas/día).",
+  "description.saltLamp": "Tallado en un único cristal de sal, su brillo alivia a las calabazas más saladas.",
+  "description.saltCrystalBed": "Duerme acunado en relucientes cristales de sal. Sueños dulces y salados garantizados.",
+  "description.worldMapRug": "Un mapa desgastado de todos los mares salados, tejido en una alfombra. La X marca el suelo.",
+  "description.rippedSaltBag": "Alguien lo ha hecho con demasiada fuerza. Aún sale sal de la lágrima."
 }

@@ -8882,5 +8882,9 @@
   "speedUp.dailyCoinLimit": "{{used}}/{{limit}} Koin yang digunakan hari ini",
   "speedUp.dailyCoinLimitReached": "Batas Koin Harian tercapai",
   "speedUp.requiresDinoEggTrophy": "Membutuhkan Trofi Telur Dino",
-  "dinoEggTrophy.boost.description": "Percepat dengan Koin alih-alih Permata (50 Koin/Permata, hingga 20.000 Koin/Hari)."
+  "dinoEggTrophy.boost.description": "Percepat dengan Koin alih-alih Permata (50 Koin/Permata, hingga 20.000 Koin/Hari).",
+  "description.saltLamp": "Diukir dari kristal garam tunggal — cahayanya menenangkan benjolan yang paling asin.",
+  "description.saltCrystalBed": "Tidur digendong dalam kristal garam yang berkilauan. Mimpi manis dan asin dijamin.",
+  "description.worldMapRug": "Peta lapuk dari setiap laut asin, dijalin menjadi permadani. X menandai lantai.",
+  "description.rippedSaltBag": "Seseorang mengangkut ini terlalu keras. Garam masih mengalir dari air mata."
 }
