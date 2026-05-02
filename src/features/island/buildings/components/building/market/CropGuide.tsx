@@ -400,7 +400,7 @@ const GrowthTimeCell: React.FC<{
         setShowBoostsKey(showBoostsKey === boostKey ? null : boostKey);
       }}
     >
-      <div className="flex flex-col">
+      <div className="flex items-center gap-2">
         <div className="flex items-center">
           <img src={SUNNYSIDE.icons.lightning} className="w-3 mr-1" />
           <p className="text-xxs">
@@ -425,7 +425,7 @@ const GrowthTimeCell: React.FC<{
         onClick={() =>
           setShowBoostsKey(showBoostsKey === boostKey ? null : boostKey)
         }
-        className="right-0 left-auto"
+        className="left-1/2 -translate-x-1/2"
         anchorRef={anchorRef}
       />
     </div>
