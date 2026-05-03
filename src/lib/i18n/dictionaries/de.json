@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "Einteiler mit Garnelen + {{amount}}",
   "description.shrimpOnesie.boost": "+1 zufälliger Fisch auf jeder 15. Walze",
   "description.clamShellHat": "Eine polierte Muschelschale thront auf deinem Kopf.",
-  "description.shrimpOnesie": "Kuschelig, salzig und ein bisschen knifflig."
+  "description.shrimpOnesie": "Kuschelig, salzig und ein bisschen knifflig.",
+  "vip.benefit.bonusSaltYield": "+2 Salz pro Rake während des Kapitels „Das Erwachen des Salzes“"
 }

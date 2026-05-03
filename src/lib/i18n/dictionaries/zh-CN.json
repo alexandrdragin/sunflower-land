@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "虾仁连体衣 + {{amount}}",
   "description.shrimpOnesie.boost": "每第 15 个卷轴 +1 条随机鱼",
   "description.clamShellHat": "抛光的蛤壳栖息在你的头顶。",
-  "description.shrimpOnesie": "很舒服，很咸，还有一点点点。"
+  "description.shrimpOnesie": "很舒服，很咸，还有一点点点。",
+  "vip.benefit.bonusSaltYield": "在 Salt Awakening 章节中，每把佣金 +2"
 }

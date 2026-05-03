@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "Macacão de camarão + {{amount}}",
   "description.shrimpOnesie.boost": "+1 peixe aleatório a cada 15ª bobina",
   "description.clamShellHat": "Uma concha de molusco polida empoleirada sobre sua cabeça.",
-  "description.shrimpOnesie": "Confortável, salgado e um pouco picante."
+  "description.shrimpOnesie": "Confortável, salgado e um pouco picante.",
+  "vip.benefit.bonusSaltYield": "+2 sal por ancinho durante o capítulo Salt Awakening"
 }

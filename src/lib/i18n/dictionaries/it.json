@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "Tutina con gamberetti + {{amount}}",
   "description.shrimpOnesie.boost": "+1 pesce a caso ogni 15 rulli",
   "description.clamShellHat": "Una conchiglia lucida appollaiata sulla tua testa.",
-  "description.shrimpOnesie": "Avvolgente, salato e un po' pizzico."
+  "description.shrimpOnesie": "Avvolgente, salato e un po' pizzico.",
+  "vip.benefit.bonusSaltYield": "+2 sale per rake durante il capitolo Salt Awakening"
 }

@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "Onesie Udang + {{amount}}",
   "description.shrimpOnesie.boost": "+1 ikan acak setiap gulungan ke-15",
   "description.clamShellHat": "Cangkang kerang yang dipoles bertengger di atas kepala Anda.",
-  "description.shrimpOnesie": "Nyaman, asin, dan sedikit keriting."
+  "description.shrimpOnesie": "Nyaman, asin, dan sedikit keriting.",
+  "vip.benefit.bonusSaltYield": "+2 Garam per Rake selama Bab Kebangkitan Garam"
 }

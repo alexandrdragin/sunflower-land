@@ -8892,5 +8892,6 @@
   "fishing.shrimpOnesie.bonus": "Karides Onesie + {{amount}}",
   "description.shrimpOnesie.boost": "Her 15. makarada +1 rastgele balık",
   "description.clamShellHat": "Başınızın üstüne cilalı bir deniz tarağı kabuğu.",
-  "description.shrimpOnesie": "Rahat, tuzlu ve biraz kıvırcık."
+  "description.shrimpOnesie": "Rahat, tuzlu ve biraz kıvırcık.",
+  "vip.benefit.bonusSaltYield": "Tuz Uyanışı Bölümü sırasında Tırmık başına +2 Tuz"
 }
