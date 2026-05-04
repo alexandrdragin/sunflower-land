@@ -53,6 +53,7 @@ export const AgingShedModal: React.FC<Props> = ({ isOpen, onClose }) => {
     (slot) => slot.readyAt <= now,
   );
   const hasReadySpiceRack = spice.some((slot) => slot.readyAt <= now);
+  const isMaxedLevel = agingShedLevel >= 6;
 
   const tabs: PanelTabs<AgingShedTabs>[] = [
     {
@@ -106,7 +107,7 @@ export const AgingShedModal: React.FC<Props> = ({ isOpen, onClose }) => {
         tabs={showUpgradeTab ? upgradeTab : tabs}
         currentTab={showUpgradeTab ? "upgrade" : currentTab}
         setCurrentTab={showUpgradeTab ? undefined : setCurrentTab}
-        container={showUpgradeTab ? undefined : OuterPanel}
+        container={isMaxedLevel && showUpgradeTab ? undefined : OuterPanel}
       >
         <AgedShedPanel
           agingShedLevel={agingShedLevel}

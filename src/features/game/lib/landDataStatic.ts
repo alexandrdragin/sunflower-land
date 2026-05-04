@@ -30,6 +30,22 @@ export const STATIC_OFFLINE_FARM: GameState = {
     "Large Podium": new Decimal("1"),
     "Super Totem": new Decimal(1),
     "Beach Umbrella": new Decimal(1),
+    "Aging Shed": new Decimal(1),
+  },
+  buildings: {
+    ...INITIAL_FARM.buildings,
+    "Aging Shed": [
+      {
+        id: "aging-shed-1",
+        coordinates: { x: -5, y: -3 },
+        createdAt: 0,
+        readyAt: 0,
+      },
+    ],
+  },
+  agingShed: {
+    ...INITIAL_FARM.agingShed,
+    level: 5,
   },
   farmActivity: {
     "welcome Bonus Claimed": 1, // Skip welcome screen
