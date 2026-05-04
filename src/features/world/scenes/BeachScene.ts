@@ -29,7 +29,7 @@ import { isWearableActive } from "features/game/lib/wearables";
 import { EventObject } from "xstate/lib/types";
 
 const convertToSnakeCase = (str: string) => {
-  return str.replace(" ", "_").toLowerCase();
+  return str.replaceAll(" ", "_").toLowerCase();
 };
 
 const BUMPKINS: NPCBumpkin[] = [
