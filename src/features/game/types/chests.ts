@@ -47,7 +47,7 @@ function getChapterMegastoreChestRewards(
 }
 
 export const BASIC_CHAPTER_REWARDS_WEIGHT = 5 * CHEST_MULTIPLIER;
-export const BASIC_REWARDS = (now: number): RewardBoxReward[] => [
+export const BASIC_REWARDS: RewardBoxReward[] = [
   { coins: 1600, weighting: 100 * CHEST_MULTIPLIER },
   { coins: 3200, weighting: 50 * CHEST_MULTIPLIER },
   { coins: 8000, weighting: 20 * CHEST_MULTIPLIER },
@@ -74,10 +74,9 @@ export const BASIC_REWARDS = (now: number): RewardBoxReward[] => [
   { items: { "Fancy Fries": 3 }, weighting: 100 * CHEST_MULTIPLIER },
   { items: { Rug: 1 }, weighting: 25 * CHEST_MULTIPLIER },
   { items: { "Prize Ticket": 1 }, weighting: 5 * CHEST_MULTIPLIER },
-  ...getChapterMegastoreChestRewards(now, 5 * CHEST_MULTIPLIER),
 ];
 
-export const RARE_REWARDS = (now: number): RewardBoxReward[] => [
+export const RARE_REWARDS: RewardBoxReward[] = [
   { coins: 1600, weighting: 100 * CHEST_MULTIPLIER },
   { coins: 3200, weighting: 50 * CHEST_MULTIPLIER },
   { coins: 8000, weighting: 50 * CHEST_MULTIPLIER },
@@ -105,7 +104,6 @@ export const RARE_REWARDS = (now: number): RewardBoxReward[] => [
   { items: { "Grape Juice": 3 }, weighting: 40 * CHEST_MULTIPLIER },
   { items: { Sunstone: 1 }, weighting: 15 * CHEST_MULTIPLIER },
   { items: { "Prize Ticket": 1 }, weighting: 20 * CHEST_MULTIPLIER },
-  ...getChapterMegastoreChestRewards(now, 25 * CHEST_MULTIPLIER),
 ];
 
 export const LUXURY_REWARDS = (now: number): RewardBoxReward[] => [
@@ -128,7 +126,7 @@ export const LUXURY_REWARDS = (now: number): RewardBoxReward[] => [
   { items: { "Grape Juice": 10 }, weighting: 25 * CHEST_MULTIPLIER },
   { items: { Sunstone: 3 }, weighting: 25 * CHEST_MULTIPLIER },
   { items: { "Prize Ticket": 1 }, weighting: 50 * CHEST_MULTIPLIER },
-  ...getChapterMegastoreChestRewards(now, 50 * CHEST_MULTIPLIER),
+  ...getChapterMegastoreChestRewards(now, 7 * CHEST_MULTIPLIER),
 ];
 
 export const BUD_BOX_REWARDS: RewardBoxReward[] = [
