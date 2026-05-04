@@ -12,8 +12,8 @@ export type ChapterTask = "delivery" | "chore" | "bounty" | "coinDelivery";
 
 const CHAPTER_TASK_POINTS: Record<ChapterTask, number> = {
   delivery: 5,
-  bounty: 3,
-  chore: 1,
+  bounty: 5,
+  chore: 3,
   coinDelivery: 1,
 };
 
@@ -649,7 +649,7 @@ const SALT_AWAKENING_CHAPTER_TRACKS: ChapterTrack = {
     {
       points: 2000,
       free: { items: { "Bronze Flower Box": 1 } },
-      premium: { items: { "Fat Crab": 1 } },
+      premium: { wearables: { "Clam Shell Hat": 1 } },
     },
     // Level 21
     { points: 2135, free: { coins: 500 }, premium: { coins: 2000 } },
@@ -675,7 +675,7 @@ const SALT_AWAKENING_CHAPTER_TRACKS: ChapterTrack = {
     {
       points: 3633,
       free: { coins: 1000 },
-      premium: { items: { "Silver Tool Box": 1 } },
+      premium: { wearables: { "Shrimp Onesie": 1 } },
     },
     // Level 26
     {

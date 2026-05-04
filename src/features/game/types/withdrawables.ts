@@ -1580,10 +1580,6 @@ export const INVENTORY_RELEASES: InventoryReleases = {
     tradeAt: CHAPTERS["Crabs and Traps"].endDate,
     withdrawAt: new Date("2026-06-04T00:00:00Z"),
   },
-  "Pearl Bed": {
-    tradeAt: CHAPTERS["Crabs and Traps"].endDate,
-    withdrawAt: new Date("2026-06-04T00:00:00Z"),
-  },
   "Crimstone Clam": {
     tradeAt: CHAPTERS["Crabs and Traps"].endDate,
     withdrawAt: new Date("2026-06-04T00:00:00Z"),

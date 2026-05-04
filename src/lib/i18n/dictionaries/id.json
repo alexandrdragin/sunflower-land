@@ -8886,5 +8886,12 @@
   "description.saltLamp": "Diukir dari kristal garam tunggal — cahayanya menenangkan benjolan yang paling asin.",
   "description.saltCrystalBed": "Tidur digendong dalam kristal garam yang berkilauan. Mimpi manis dan asin dijamin.",
   "description.worldMapRug": "Peta lapuk dari setiap laut asin, dijalin menjadi permadani. X menandai lantai.",
-  "description.rippedSaltBag": "Seseorang mengangkut ini terlalu keras. Garam masih mengalir dari air mata."
+  "description.rippedSaltBag": "Seseorang mengangkut ini terlalu keras. Garam masih mengalir dari air mata.",
+  "fishing.shrimpOnesie.singleReel": "+1 ikan acak pada gulungan berikutnya",
+  "fishing.shrimpOnesie.bulkReel": "+1 ikan acak pada gulungan {{reels}} dalam pemeran ini",
+  "fishing.shrimpOnesie.bonus": "Onesie Udang + {{amount}}",
+  "description.shrimpOnesie.boost": "+1 ikan acak setiap gulungan ke-15",
+  "description.clamShellHat": "Cangkang kerang yang dipoles bertengger di atas kepala Anda.",
+  "description.shrimpOnesie": "Nyaman, asin, dan sedikit keriting.",
+  "vip.benefit.bonusSaltYield": "+2 Garam per Rake selama Bab Kebangkitan Garam"
 }
