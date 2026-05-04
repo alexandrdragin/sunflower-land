@@ -274,12 +274,16 @@ export const DeliveryOrders: React.FC<Props> = ({
     ) {
       if (areBumpkinsOnHoliday(previewOrder.createdAt)) {
         return 0;
-      } else {
-        return getChapterTaskPoints({
-          task: "coinDelivery",
-          points: 10,
-        });
       }
+      if (
+        getCurrentChapter(previewOrder.createdAt) !== getCurrentChapter(now)
+      ) {
+        return 0;
+      }
+      return getChapterTaskPoints({
+        task: "coinDelivery",
+        points: 10,
+      });
     }
     return getChapterTaskPoints({
       task: "delivery",
