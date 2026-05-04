@@ -889,7 +889,6 @@ export const MoveableComponent: React.FC<
     function handleClickOutside(event: MouseEvent) {
       if (
         isSelected &&
-        (event as any).target.id === "genesisBlock" &&
         nodeRef.current &&
         !(nodeRef.current as any).contains(event.target)
       ) {
@@ -1316,7 +1315,7 @@ export const MoveableComponent: React.FC<
             className="absolute z-20 flex"
             style={{
               right: `${PIXEL_SCALE * -(hasRemovalAction ? 34 : 12)}px`,
-              top: `${PIXEL_SCALE * -12}px`,
+              bottom: `calc(100% + ${PIXEL_SCALE * 2}px)`,
             }}
           >
             <div

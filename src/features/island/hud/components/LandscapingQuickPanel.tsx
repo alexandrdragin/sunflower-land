@@ -80,6 +80,10 @@ type TabId =
   | "projects"
   | "decorations";
 
+// Persists scroll position across panel unmount/remount (item select → place → idle)
+let _savedScrollLeft = 0;
+let _savedPage = 0;
+
 const TWO_ROW_HEIGHT_PX = PIXEL_SCALE * (13.7 + 4 + 3 + 2) * 2;
 
 const DRAG_THRESHOLD_PX = 8;
@@ -129,7 +133,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
 
   const [activeTab, setActiveTab] = useState<TabId>("decorations");
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(_savedPage);
   const [pendingDragPlacement, setPendingDragPlacement] = useState<{
     gridX: number;
     gridY: number;
@@ -139,6 +143,17 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
   // ── Quick drag-and-drop state ──────────────────────────────────────────
   const dragRef = useRef<DragOrigin | null>(null);
   const wasDragRef = useRef(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Restore horizontal scroll position after item placement remounts the panel
+  useEffect(() => {
+    if (_savedScrollLeft > 0 && scrollContainerRef.current) {
+      const el = scrollContainerRef.current;
+      requestAnimationFrame(() => {
+        el.scrollLeft = _savedScrollLeft;
+      });
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const computeGridPos = useCallback((clientX: number, clientY: number) => {
     // Use the actual land center (GenesisBlock element) as the coordinate origin,
@@ -214,6 +229,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
 
         drag.activated = true;
         wasDragRef.current = true;
+        _savedScrollLeft = scrollContainerRef.current?.scrollLeft ?? 0;
         sendSelect(drag.item, location, freshChild);
         freshChild.send("DRAG");
         onQuickDragChange(true);
@@ -494,6 +510,8 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
       wasDragRef.current = false;
       return;
     }
+    _savedScrollLeft = scrollContainerRef.current?.scrollLeft ?? 0;
+    _savedPage = currentPage;
     doPlace(item);
   };
 
@@ -731,6 +749,8 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
                         tabSound.play();
                         setActiveTab(tab.id);
                         setCurrentPage(0);
+                        _savedScrollLeft = 0;
+                        _savedPage = 0;
                       }}
                     >
                       <SquareIcon icon={tab.icon} width={7} />
@@ -747,6 +767,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
               {/* Item grid */}
               <InnerPanel>
                 <div
+                  ref={scrollContainerRef}
                   className={classNames("flex items-center", {
                     "overflow-x-auto overflow-y-hidden": !isMobile,
                   })}
@@ -755,7 +776,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
                   {isMobile && totalPages > 1 && (
                     <img
                       src={SUNNYSIDE.icons.arrow_left}
-                      className={classNames("h-4 flex-shrink-0 mr-1", {
+                      className={classNames("h-6 flex-shrink-0 mr-1", {
                         "opacity-30 pointer-events-none": currentPage === 0,
                         "cursor-pointer": currentPage > 0,
                       })}
@@ -797,7 +818,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
                   {isMobile && totalPages > 1 && (
                     <img
                       src={SUNNYSIDE.icons.arrow_right}
-                      className={classNames("h-4 flex-shrink-0 ml-1", {
+                      className={classNames("h-6 flex-shrink-0 ml-1", {
                         "opacity-30 pointer-events-none":
                           currentPage >= totalPages - 1,
                         "cursor-pointer": currentPage < totalPages - 1,
