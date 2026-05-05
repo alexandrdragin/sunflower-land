@@ -8893,5 +8893,7 @@
   "description.shrimpOnesie.boost": "+1 random fish every 15th reel",
   "description.clamShellHat": "A polished clam shell perched atop your head.",
   "description.shrimpOnesie": "Snug, salty, and a little bit pinchy.",
-  "vip.benefit.bonusSaltYield": "+2 Salt per Rake during Salt Awakening Chapter"
+  "vip.benefit.bonusSaltYield": "+2 Salt per Rake during Salt Awakening Chapter",
+  "statements.blacklist.discord": "Talk to us on Discord, open a ticket.",
+  "statements.blacklist.noDiscord": "Don't have Discord? Contact us here."
 }

@@ -8893,5 +8893,7 @@
   "description.shrimpOnesie.boost": "+1 peixe aleatório a cada 15ª bobina",
   "description.clamShellHat": "Uma concha de molusco polida empoleirada sobre sua cabeça.",
   "description.shrimpOnesie": "Confortável, salgado e um pouco picante.",
-  "vip.benefit.bonusSaltYield": "+2 sal por ancinho durante o capítulo Salt Awakening"
+  "vip.benefit.bonusSaltYield": "+2 sal por ancinho durante o capítulo Salt Awakening",
+  "statements.blacklist.discord": "Fale conosco no Discord, abra um ticket.",
+  "statements.blacklist.noDiscord": "Não tem Discord? Entre em contato conosco aqui."
 }

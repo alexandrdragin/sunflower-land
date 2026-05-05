@@ -8893,5 +8893,7 @@
   "description.shrimpOnesie.boost": "Her 15. makarada +1 rastgele balık",
   "description.clamShellHat": "Başınızın üstüne cilalı bir deniz tarağı kabuğu.",
   "description.shrimpOnesie": "Rahat, tuzlu ve biraz kıvırcık.",
-  "vip.benefit.bonusSaltYield": "Tuz Uyanışı Bölümü sırasında Tırmık başına +2 Tuz"
+  "vip.benefit.bonusSaltYield": "Tuz Uyanışı Bölümü sırasında Tırmık başına +2 Tuz",
+  "statements.blacklist.discord": "Discord'da bizimle konuş, bir bilet aç.",
+  "statements.blacklist.noDiscord": "Discord'un yok mu? Bize buradan ulaşın."
 }

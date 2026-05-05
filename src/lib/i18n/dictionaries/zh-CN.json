@@ -8893,5 +8893,7 @@
   "description.shrimpOnesie.boost": "每第 15 个卷轴 +1 条随机鱼",
   "description.clamShellHat": "抛光的蛤壳栖息在你的头顶。",
   "description.shrimpOnesie": "很舒服，很咸，还有一点点点。",
-  "vip.benefit.bonusSaltYield": "在 Salt Awakening 章节中，每把佣金 +2"
+  "vip.benefit.bonusSaltYield": "在 Salt Awakening 章节中，每把佣金 +2",
+  "statements.blacklist.discord": "在 Discord 上和我们交谈，开票。",
+  "statements.blacklist.noDiscord": "没有 Discord？在这里联系我们。"
 }

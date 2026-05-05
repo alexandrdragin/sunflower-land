@@ -8893,5 +8893,7 @@
   "description.shrimpOnesie.boost": "15番目のリールごとに+1ランダムフィッシュ",
   "description.clamShellHat": "頭上には磨き上げられたアサリの殻がのっています。",
   "description.shrimpOnesie": "心地よく、塩辛く、少しピンチがあります。",
-  "vip.benefit.bonusSaltYield": "「塩の覚醒」チャプター中、レーキ1つにつき +2 塩"
+  "vip.benefit.bonusSaltYield": "「塩の覚醒」チャプター中、レーキ1つにつき +2 塩",
+  "statements.blacklist.discord": "Discordで私たちと話して、チケットを開いてください。",
+  "statements.blacklist.noDiscord": "Discordを持っていないのですか？こちらからお問い合わせください。"
 }
