@@ -4016,6 +4016,8 @@
   "statements.beta.two": "Stay tuned for updates. We will be going live soon!",
   "statements.better.luck": "Better luck next time!",
   "statements.blacklist.one": "The anti-bot and multi-account detection system has picked up strange behaviour. Actions have been restricted.",
+  "statements.blacklist.discord": "Talk to us on Discord, open a ticket.",
+  "statements.blacklist.noDiscord": "Don't have Discord? Contact us here.",
   "statements.clickBottle": "Click on a bottle to add to your guess",
   "statements.clock.one": "Uh oh, it looks like your clock is not in sync with the game. Set date and time to automatic to avoid disruptions",
   "statements.conversation.one": "I've got something for you!",
