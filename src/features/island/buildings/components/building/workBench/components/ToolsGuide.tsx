@@ -294,10 +294,14 @@ const NodeRow: React.FC<NodeRowProps> = ({
     game: state,
   });
 
+  const resourceName =
+  ITEM_DETAILS[node.resourceName]?.translatedName ?? node.resourceName;
+
+
   const cooldown: CooldownDisplay = {
     nodeLabel: node.resourceLabelKey
       ? translate(node.resourceLabelKey)
-      : node.resourceName,
+      : resourceName,
     baseSeconds: baseTimeMs / 1000,
     recoverySeconds: recoveryTimeMs / 1000,
     boostsUsed,
@@ -307,8 +311,6 @@ const NodeRow: React.FC<NodeRowProps> = ({
     ? ITEM_DETAILS[node.nodeName]?.image
     : node.nodeImage;
   const toolIcon = ITEM_DETAILS[node.toolName]?.image;
-  const resourceName =
-    ITEM_DETAILS[node.resourceName]?.translatedName ?? node.resourceName;
 
   return (
     <div
