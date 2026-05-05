@@ -13,15 +13,22 @@ import { secondsToString } from "lib/utils/time";
 import { translate } from "lib/i18n/translate";
 import { getOilRecoveryTimeForDisplay } from "features/game/events/landExpansion/drillOilReserve";
 import { BoostsDisplay } from "components/ui/layouts/BoostsDisplay";
+import { PIXEL_SCALE } from "features/game/lib/constants";
 import { getTreeRecoveryTimeForDisplay } from "features/game/events/landExpansion/chop";
 import { getStoneRecoveryTimeForDisplay } from "features/game/events/landExpansion/stoneMine";
 import { getIronRecoveryTimeForDisplay } from "features/game/events/landExpansion/ironMine";
 import { getGoldRecoveryTimeForDisplay } from "features/game/events/landExpansion/mineGold";
 import { getCrimstoneRecoveryTimeForDisplay } from "features/game/events/landExpansion/mineCrimstone";
 import { getSunstoneRecoveryTimeForDisplay } from "features/game/events/landExpansion/mineSunstone";
+import { getSaltChargeGenerationTimeForDisplay } from "features/game/events/landExpansion/harvestSalt";
 import { useSelector } from "@xstate/react";
 import classNames from "classnames";
 import { CommodityName, ResourceName } from "features/game/types/resources";
+import saltNodeStage3 from "assets/buildings/salt/salt_node_stage_3.webp";
+import { hasFeatureAccess } from "lib/flags";
+
+const ICON_SIZE = 13.7;
+const NODE_TOOL_ICON_CONTAINER_SIZE = PIXEL_SCALE * (ICON_SIZE + 2);
 
 type ResourceLabelKey =
   | "resource.treeRecoveryTime"
@@ -41,7 +48,9 @@ type CooldownDisplay = {
 };
 
 type LandNodeWithRecovery = {
-  nodeName: ResourceName;
+  nodeName?: ResourceName;
+  nodeImage?: string;
+  nodeIconWidth?: number;
   resourceName: CommodityName;
   toolName: WorkbenchToolName;
   getRecovery: (opts: { game: GameState }) => {
@@ -49,7 +58,8 @@ type LandNodeWithRecovery = {
     recoveryTimeMs: number;
     boostsUsed: { name: BoostName; value: string }[];
   };
-  resourceLabelKey: ResourceLabelKey;
+  resourceLabelKey?: ResourceLabelKey;
+  isVisible?: (game: GameState) => boolean;
 };
 const LAND_NODES_WITH_RECOVERY: LandNodeWithRecovery[] = [
   {
@@ -101,6 +111,14 @@ const LAND_NODES_WITH_RECOVERY: LandNodeWithRecovery[] = [
     getRecovery: ({ game }) => getOilRecoveryTimeForDisplay({ game }),
     resourceLabelKey: "resource.oilRecoveryTime",
   },
+  {
+    nodeImage: saltNodeStage3,
+    nodeIconWidth: ICON_SIZE - 2,
+    toolName: "Salt Rake",
+    resourceName: "Salt",
+    getRecovery: ({ game }) => getSaltChargeGenerationTimeForDisplay({ game }),
+    isVisible: (game) => hasFeatureAccess(game, "SALT_FARM"),
+  },
 ];
 
 export const ToolsGuide: React.FC = () => {
@@ -131,9 +149,11 @@ export const ToolsGuide: React.FC = () => {
             {t("landTools")}
           </Label>
         </div>
-        {LAND_NODES_WITH_RECOVERY.map((node, index) => (
+        {LAND_NODES_WITH_RECOVERY.filter(
+          (node) => !node.isVisible || node.isVisible(state),
+        ).map((node, index) => (
           <NodeRow
-            key={node.nodeName}
+            key={`${node.toolName}-${node.resourceName}`}
             node={node}
             state={state}
             alternateBg={index % 2 === 0}
@@ -148,18 +168,23 @@ export const ToolsGuide: React.FC = () => {
 
 const CELL_CLASS = "py-0 align-middle";
 
-const ICON_SIZE = 13.7;
-
 const NodeToolIcon: React.FC<{
   nodeIcon?: string;
   toolIcon?: string;
-}> = ({ nodeIcon, toolIcon }) => {
+  nodeIconWidth?: number;
+}> = ({ nodeIcon, toolIcon, nodeIconWidth = ICON_SIZE }) => {
   if (!nodeIcon && !toolIcon) {
     return null;
   }
   return (
-    <div className="relative flex-shrink-0 p-1">
-      {nodeIcon && <SquareIcon icon={nodeIcon} width={ICON_SIZE} />}
+    <div
+      className="relative flex flex-shrink-0 items-center justify-center"
+      style={{
+        width: NODE_TOOL_ICON_CONTAINER_SIZE,
+        height: NODE_TOOL_ICON_CONTAINER_SIZE,
+      }}
+    >
+      {nodeIcon && <SquareIcon icon={nodeIcon} width={nodeIconWidth} />}
       {toolIcon && (
         <img
           src={toolIcon}
@@ -270,13 +295,17 @@ const NodeRow: React.FC<NodeRowProps> = ({
   });
 
   const cooldown: CooldownDisplay = {
-    nodeLabel: translate(node.resourceLabelKey),
+    nodeLabel: node.resourceLabelKey
+      ? translate(node.resourceLabelKey)
+      : node.resourceName,
     baseSeconds: baseTimeMs / 1000,
     recoverySeconds: recoveryTimeMs / 1000,
     boostsUsed,
   };
 
-  const nodeIcon = ITEM_DETAILS[node.nodeName]?.image;
+  const nodeIcon = node.nodeName
+    ? ITEM_DETAILS[node.nodeName]?.image
+    : node.nodeImage;
   const toolIcon = ITEM_DETAILS[node.toolName]?.image;
   const resourceName =
     ITEM_DETAILS[node.resourceName]?.translatedName ?? node.resourceName;
@@ -288,7 +317,11 @@ const NodeRow: React.FC<NodeRowProps> = ({
       })}
     >
       <div className={classNames(CELL_CLASS, "flex items-center")}>
-        <NodeToolIcon nodeIcon={nodeIcon} toolIcon={toolIcon} />
+        <NodeToolIcon
+          nodeIcon={nodeIcon}
+          nodeIconWidth={node.nodeIconWidth}
+          toolIcon={toolIcon}
+        />
       </div>
       <div
         className={classNames(CELL_CLASS, "flex-1 min-w-0 flex items-center")}
