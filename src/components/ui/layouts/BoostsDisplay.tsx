@@ -33,9 +33,18 @@ export const BoostsDisplay: React.FC<{
   state: GameState;
   onClick: () => void;
   className?: string;
+  portalAlign?: "left" | "center" | "right";
   /** When provided, renders in a portal to avoid clipping by scroll containers. Positions above trigger when it would clip below. */
   anchorRef?: React.RefObject<HTMLElement | null>;
-}> = ({ boosts, show, state, onClick, className, anchorRef }) => {
+}> = ({
+  boosts,
+  show,
+  state,
+  onClick,
+  className,
+  portalAlign = "right",
+  anchorRef,
+}) => {
   const { t } = useAppTranslation();
   const [portalStyle, setPortalStyle] = useState<React.CSSProperties>({});
 
@@ -45,26 +54,40 @@ export const BoostsDisplay: React.FC<{
     const spaceBelow = window.innerHeight - rect.bottom;
     const positionAbove = spaceBelow < BOOSTS_PANEL_ESTIMATED_HEIGHT;
 
+    const horizontalStyle =
+      portalAlign === "center"
+        ? {
+            left: rect.left + rect.width / 2,
+            right: "auto",
+          }
+        : portalAlign === "left"
+          ? {
+              left: rect.left,
+              right: "auto",
+            }
+          : {
+              right: window.innerWidth - rect.right,
+              left: "auto",
+            };
+
     if (positionAbove) {
       setPortalStyle({
         position: "fixed",
         bottom: window.innerHeight - rect.top,
-        right: window.innerWidth - rect.right,
-        left: "auto",
         top: "auto",
         zIndex: 50,
+        ...horizontalStyle,
       });
     } else {
       setPortalStyle({
         position: "fixed",
         top: rect.bottom + 4,
-        right: window.innerWidth - rect.right,
-        left: "auto",
         bottom: "auto",
         zIndex: 50,
+        ...horizontalStyle,
       });
     }
-  }, [show, anchorRef]);
+  }, [show, anchorRef, portalAlign]);
   const isBumpkinSkill = (
     boost: BoostName,
   ): boost is BumpkinRevampSkillName => {

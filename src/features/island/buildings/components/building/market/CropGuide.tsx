@@ -425,7 +425,8 @@ const GrowthTimeCell: React.FC<{
         onClick={() =>
           setShowBoostsKey(showBoostsKey === boostKey ? null : boostKey)
         }
-        className="left-1/2 -translate-x-1/2"
+        className="-translate-x-1/2"
+        portalAlign="center"
         anchorRef={anchorRef}
       />
     </div>
