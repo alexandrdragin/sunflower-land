@@ -8781,7 +8781,6 @@
   "description.saltAwakeningBanner": "Rassemblez le drapeau : le Réveil du sel a commencé.",
   "description.saltDinoEgg": "Un œuf fossilisé a craqué dans les marais salants. Qui a posé ça ?",
   "description.flamingoChicken.boost": "-2,5 % de temps de sommeil des poulets",
-  "description.spaSheep.boost": "+5 points d'expérience pour les animaux grâce à Animal Affection",
   "description.spaCow.boost": "+0,1 Lait",
   "description.deepSeaSlug.boost.2": "+1 ver provenant du compostage",
   "referral.share": "Partagez sur :",
@@ -8895,5 +8894,6 @@
   "description.shrimpOnesie": "Douillet, salé et un peu épicé.",
   "vip.benefit.bonusSaltYield": "+2 points de sel par râteau pendant le chapitre Salt Awakening",
   "statements.blacklist.discord": "Discutez avec nous sur Discord, ouvrez un ticket.",
-  "statements.blacklist.noDiscord": "Vous n'avez pas Discord ? Contactez-nous ici."
+  "statements.blacklist.noDiscord": "Vous n'avez pas Discord ? Contactez-nous ici.",
+  "description.spaSheep.boost": "+5 points d'expérience pour les moutons grâce aux outils Animal Affection"
 }
