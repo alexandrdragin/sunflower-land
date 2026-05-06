@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Tidak ada pot rumah kaca untuk dipupuk",
   "description.saltDoll": "Dibumbui dengan sedikit garam dan banyak pesona.",
   "description.jacuzziBear": "Berendam di air asin, menjalani kehidupan yang baik.",
-  "chapterCrafting": "Bab Eksklusif"
+  "chapterCrafting": "Bab Eksklusif",
+  "obsidianShrine.section.harvest": "Panen",
+  "obsidianShrine.section.plant": "Tumbuhan",
+  "obsidianShrine.section.fertilise": "Memupuk",
+  "obsidianShrine.crops.ready": "{{count}} siap",
+  "obsidianShrine.plots.empty": "{{count}} kosong"
 }

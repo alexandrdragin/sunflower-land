@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Nessun vaso da serra da concimare",
   "description.saltDoll": "Condito con un pizzico di sale e molto fascino.",
   "description.jacuzziBear": "Immergersi nelle acque salate, vivere una bella vita.",
-  "chapterCrafting": "Capitolo Esclusivi"
+  "chapterCrafting": "Capitolo Esclusivi",
+  "obsidianShrine.section.harvest": "Vendemmia",
+  "obsidianShrine.section.plant": "Impianto",
+  "obsidianShrine.section.fertilise": "Fertilizzare",
+  "obsidianShrine.crops.ready": "{{count}} pronto",
+  "obsidianShrine.plots.empty": "{{count}} vuoto"
 }

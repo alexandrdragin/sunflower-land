@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Gübrelenecek sera saksısı yok",
   "description.saltDoll": "Bir tutama tuz ve çok fazla çekicilik ile tatlandırılmış.",
   "description.jacuzziBear": "Tuzlu sularda ıslatmak, iyi bir hayat yaşamak.",
-  "chapterCrafting": "Bölüm Ayrıcalıkları"
+  "chapterCrafting": "Bölüm Ayrıcalıkları",
+  "obsidianShrine.section.harvest": "Hasat",
+  "obsidianShrine.section.plant": "Bitki",
+  "obsidianShrine.section.fertilise": "Gübrelemek",
+  "obsidianShrine.crops.ready": "{{count}} hazır",
+  "obsidianShrine.plots.empty": "{{count}} boş"
 }

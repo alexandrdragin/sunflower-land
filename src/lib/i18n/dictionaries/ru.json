@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Нет тепличных грядок для удобрения.",
   "description.saltDoll": "Приправлен щепоткой соли и большим количеством обаяния.",
   "description.jacuzziBear": "Нежится в солёных водах и наслаждается жизнью.",
-  "chapterCrafting": "Эксклюзивы главы"
+  "chapterCrafting": "Эксклюзивы главы",
+  "obsidianShrine.section.harvest": "Harvest",
+  "obsidianShrine.section.plant": "Plant",
+  "obsidianShrine.section.fertilise": "Fertilise",
+  "obsidianShrine.crops.ready": "{{count}} ready",
+  "obsidianShrine.plots.empty": "{{count}} empty"
 }

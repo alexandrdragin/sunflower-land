@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "No hay macetas de invernadero para fertilizar",
   "description.saltDoll": "Condimentado con una pizca de sal y mucho encanto.",
   "description.jacuzziBear": "Sumergirse en aguas saladas, vivir la buena vida.",
-  "chapterCrafting": "Exclusivas del capítulo"
+  "chapterCrafting": "Exclusivas del capítulo",
+  "obsidianShrine.section.harvest": "Cosecha",
+  "obsidianShrine.section.plant": "Planta",
+  "obsidianShrine.section.fertilise": "Fertilizar",
+  "obsidianShrine.crops.ready": "{{count}} listo",
+  "obsidianShrine.plots.empty": "{{count}} vacío"
 }

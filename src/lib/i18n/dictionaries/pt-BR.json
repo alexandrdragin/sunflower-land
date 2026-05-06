@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Sem vasos de estufa para fertilizar",
   "description.saltDoll": "Temperado com uma pitada de sal e muito charme.",
   "description.jacuzziBear": "Mergulhando em águas salgadas, vivendo uma vida boa.",
-  "chapterCrafting": "Exclusivos do capítulo"
+  "chapterCrafting": "Exclusivos do capítulo",
+  "obsidianShrine.section.harvest": "Colheita",
+  "obsidianShrine.section.plant": "Planta",
+  "obsidianShrine.section.fertilise": "Fertilizar",
+  "obsidianShrine.crops.ready": "{{count}} pronto",
+  "obsidianShrine.plots.empty": "{{count}} vazio"
 }

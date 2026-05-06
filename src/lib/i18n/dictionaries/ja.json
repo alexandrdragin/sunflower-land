@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "施肥する温室の鉢はありません",
   "description.saltDoll": "ひとつまみの塩とたっぷりの魅力で味付けしました。",
   "description.jacuzziBear": "塩水に浸かって、良い生活を送ってください。",
-  "chapterCrafting": "チャプター限定"
+  "chapterCrafting": "チャプター限定",
+  "obsidianShrine.section.harvest": "収穫",
+  "obsidianShrine.section.plant": "プラント",
+  "obsidianShrine.section.fertilise": "受精させる",
+  "obsidianShrine.crops.ready": "{{count}} 準備完了",
+  "obsidianShrine.plots.empty": "{{count}} 空です"
 }

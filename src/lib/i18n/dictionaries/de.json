@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "Keine Gewächshaustöpfe zum Düngen",
   "description.saltDoll": "Gewürzt mit einer Prise Salz und viel Charme.",
   "description.jacuzziBear": "In salzigem Wasser baden, ein gutes Leben führen.",
-  "chapterCrafting": "Kapitel Exklusiv"
+  "chapterCrafting": "Kapitel Exklusiv",
+  "obsidianShrine.section.harvest": "Ernte",
+  "obsidianShrine.section.plant": "Pflanze",
+  "obsidianShrine.section.fertilise": "Düngen",
+  "obsidianShrine.crops.ready": "{{count}} bereit",
+  "obsidianShrine.plots.empty": "{{count}} leer"
 }

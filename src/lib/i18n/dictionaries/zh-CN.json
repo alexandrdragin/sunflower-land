@@ -8899,5 +8899,10 @@
   "obsidianShrine.noEligiblePots": "没有温室花盆可以施肥",
   "description.saltDoll": "用少许盐调味，充满魅力。",
   "description.jacuzziBear": "浸泡在咸水中，过上美好的生活。",
-  "chapterCrafting": "章节独家"
+  "chapterCrafting": "章节独家",
+  "obsidianShrine.section.harvest": "收获",
+  "obsidianShrine.section.plant": "植物",
+  "obsidianShrine.section.fertilise": "受精",
+  "obsidianShrine.crops.ready": "{{count}} 准备好了",
+  "obsidianShrine.plots.empty": "{{count}} 为空"
 }
