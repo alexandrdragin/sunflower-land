@@ -65,6 +65,10 @@ export type TimeBasedFeatureWindow = { start: Date; end: Date | null };
 
 export const TIME_BASED_FEATURE_FLAG_WINDOWS = {
   TICKETS_FROM_COIN_NPC: { start: new Date("2026-02-24T00:00:00Z"), end: null },
+  TICKETS_FROM_FLOWER_NPC: {
+    start: new Date("2026-05-11T00:00:00Z"),
+    end: null,
+  },
   APRIL_FOOLS_EVENT_FLAG: {
     start: new Date("2026-04-01T00:00:00Z"),
     end: new Date("2026-04-08T00:00:00Z"),
@@ -83,6 +87,7 @@ export const TIME_BASED_FEATURE_FLAGS: Record<
   TimeBasedFeatureFlag
 > = {
   TICKETS_FROM_COIN_NPC: timePeriodFeatureFlag,
+  TICKETS_FROM_FLOWER_NPC: timePeriodFeatureFlag,
   APRIL_FOOLS_EVENT_FLAG: betaTimePeriodFeatureFlag,
 };
 
@@ -117,6 +122,7 @@ const FEATURE_FLAGS = {
   JEST_TEST: betaFeatureFlag,
 
   // Permanent Feature Flags
+  ADMIN_DASHBOARDS: usernameFeatureFlag,
   AIRDROP_PLAYER: adminFeatureFlag,
   HOARDING_CHECK: betaFeatureFlag,
   STREAMER_HAT: (game) =>
@@ -136,19 +142,13 @@ const FEATURE_FLAGS = {
     !!((game.wardrobe.Halo ?? 0) > 0) && !!game.inventory["Beta Pass"]?.gt(0),
 
   CHAACS_TEMPLE_BETA: betaFeatureFlag,
-  SALT_FARM: betaFeatureFlag,
 
-  OBSIDIAN_SHRINE_BULK_FERTILISE: betaFeatureFlag,
-
-  AGING_SHED: betaFeatureFlag,
-
-  SALT_SKILLS: betaFeatureFlag,
-  SALT_SCULPTURE: betaFeatureFlag,
-
-  /** Pixel-perfect placement: nudge selected items by sub-tile pixels via on-screen
-   * arrows + WASD/arrow keys. Stored coordinates can become decimals; collision
-   * detection rounds at read time so grid behaviour is preserved. */
-  PIXEL_PERFECT_PLACEMENT: betaFeatureFlag,
+  /**
+   * Gates the new home-interior placement system: the /interior route, the
+   * /level_one upgrade route, and the `interior.upgrade` event. Beta-pass /
+   * testnet only until the feature ships to all players.
+   */
+  HOME_EXPANSIONS: betaFeatureFlag,
 
   /** Player economies: token dashboard, portal player-economy API, marketplace minigames row. */
   PLAYER_ECONOMIES: (game) => !!game.settings.economiesEnabled,

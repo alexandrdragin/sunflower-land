@@ -21,6 +21,11 @@ import { MachineState } from "features/game/lib/gameMachine";
 import { useSound } from "lib/utils/hooks/useSound";
 import { TransactionCountdown } from "./Transaction";
 import { MarketplaceButton } from "./components/MarketplaceButton";
+import { PowerSkillsButton } from "./components/PowerSkillsButton";
+import {
+  BumpkinRevampSkillName,
+  getPowerSkills,
+} from "features/game/types/bumpkinSkills";
 import { LandscapeButton } from "./components/LandscapeButton";
 import { StreamCountdown } from "./components/streamCountdown/StreamCountdown";
 import { HudBumpkin } from "./components/bumpkinProfile/HudBumpkin";
@@ -70,6 +75,11 @@ const HudComponent: React.FC<{
   const isFullUser = farmAddress !== undefined;
   const isTutorial = gameState.context.state.island.type === "basic";
 
+  const { skills } = gameState.context.state.bumpkin;
+  const hasPowerSkills = getPowerSkills().some(
+    (skill) => !!skills[skill.name as BumpkinRevampSkillName],
+  );
+
   const showDesktopFeed = showFeed && !isMobile;
   const hideDesktopFeed = !showFeed && !isMobile;
 
@@ -98,8 +108,9 @@ const HudComponent: React.FC<{
         )}
       >
         <WorldFeedButton showFeed={showFeed} setShowFeed={setShowFeed} />
+        {hasPowerSkills && <PowerSkillsButton />}
         <MarketplaceButton />
-        <TravelButton />
+        <TravelButton location={location} />
       </div>
       <div className="absolute bottom-0 pb-2 pl-3 left-16 flex flex-col space-y-2.5">
         <RaffleWidget />
@@ -128,7 +139,7 @@ const HudComponent: React.FC<{
           selectedItem={selectedItem}
           onPlace={(selected) => {
             gameService.send("LANDSCAPE", {
-              action: placeEvent(selected),
+              action: placeEvent(selected, location),
               placeable: { name: selected },
               multiple: true,
             });

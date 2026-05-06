@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useInterval } from "lib/utils/hooks/useInterval";
 import { Balances } from "components/Balances";
 import { useActor, useSelector } from "@xstate/react";
 import { Context } from "features/game/GameProvider";
@@ -81,11 +82,18 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
   const { t } = useAppTranslation();
   const { gameService } = useContext(Context);
 
+  // Flush pending actions every minute so the API never receives actions
+  // older than its acceptance window.
+  useInterval(() => {
+    gameService.send("SAVE");
+  }, 1000 * 60);
+
   const [showRemoveConfirmation, setShowRemoveConfirmation] = useState(false);
   const [showRemoveAllConfirmation, setShowRemoveAllConfirmation] =
     useState(false);
   const [showDecorations, setShowDecorations] = useState(false);
   const [showCraftBuild, setShowCraftBuild] = useState(false);
+  const [quickDragging, setQuickDragging] = useState(false);
   const button = useSound("button");
 
   const child = gameService.getSnapshot().children
@@ -132,6 +140,7 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
     selectedItem?.name,
     now,
     selectedCollectible,
+    location,
   );
 
   const showRemove = isMobile && selectedItem && removeAction;
@@ -188,7 +197,11 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
         ? state.context.state.home.collectibles[name]
         : location === "petHouse" && isPetCollectible(name)
           ? state.context.state.petHouse.pets[name]
-          : state.context.state.collectibles[name];
+          : location === "interior"
+            ? state.context.state.interior.ground.collectibles[name]
+            : location === "level_one"
+              ? state.context.state.interior.level_one?.collectibles[name]
+              : state.context.state.collectibles[name];
     return (
       collectibles?.find((collectible) => collectible.id === selectedItem.id)
         ?.flipped ?? false
@@ -235,7 +248,7 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
                 location={location}
                 onPlaceChestItem={(selected) => {
                   child.send("SELECT", {
-                    action: placeEvent(selected),
+                    action: placeEvent(selected, location),
                     placeable: { name: selected },
                     multiple: true,
                   });
@@ -260,7 +273,10 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
                     : undefined
                 }
               />
-              {(location === "farm" || location === "home") && (
+              {(location === "farm" ||
+                location === "home" ||
+                location === "interior" ||
+                location === "level_one") && (
                 <>
                   <RoundButton
                     className="mb-3.5"
@@ -502,7 +518,7 @@ const LandscapingHudComponent: React.FC<{ location: PlaceableLocation }> = ({
         </div>
       )}
 
-      <PlaceableController location={location} />
+      {!quickDragging && <PlaceableController location={location} />}
     </HudContainer>
   );
 };

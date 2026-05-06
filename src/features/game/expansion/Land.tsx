@@ -58,7 +58,6 @@ import {
   getSaltNodesWithPositions,
 } from "features/game/types/salt";
 import { getPendingSaltNodeIdsForUpgrade } from "features/game/types/salt";
-import { hasFeatureAccess } from "lib/flags";
 
 export const LAND_WIDTH = 6;
 
@@ -77,9 +76,6 @@ const _treePositions = (state: MachineState) => ({
   trees: state.context.state.trees,
   positions: getSortedResourcePositions(state.context.state.trees),
 });
-
-const _hasSaltFarmAccess = (state: MachineState) =>
-  hasFeatureAccess(state.context.state, "SALT_FARM");
 
 const _stonePositions = (state: MachineState) => {
   return {
@@ -156,11 +152,9 @@ const _saltNodePositions = (state: MachineState) => {
     basicLand,
     saltNodeIds,
     positions: getObjectEntries(saltNodes)
-      .filter(([, node]) => !!node.coordinates)
-      .map(([id, node]) => ({
+      .map(([id]) => ({
         id,
-        x: node.coordinates.x,
-        y: node.coordinates.y,
+        ...getSaltNodeCoordinates(basicLand, id),
       }))
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)),
   };
@@ -381,7 +375,6 @@ export const LandComponent: React.FC = () => {
     _saltNodePositions,
     compareSaltFarmSlice,
   );
-  const hasSaltFarmAccess = useSelector(gameService, _hasSaltFarmAccess);
   const { mushrooms } = useSelector(
     gameService,
     _mushroomPositions,
@@ -1078,21 +1071,21 @@ export const LandComponent: React.FC = () => {
   }, [waterTraps]);
 
   const saltNodeElements = useMemo(() => {
-    return getObjectEntries(getSaltNodesWithPositions(saltNodes))
-      .filter(([, node]) => !!node.coordinates)
-      .map(([id, node]) => {
-        return (
-          <MapPlacement
-            key={`salt-node-${id}`}
-            {...node.coordinates}
-            height={1}
-            width={1}
-          >
-            <SaltNode id={id} visiting={visiting} position={node.position} />
-          </MapPlacement>
-        );
-      });
-  }, [saltNodes, visiting]);
+    return getObjectEntries(
+      getSaltNodesWithPositions(saltNodes, basicLand),
+    ).map(([id, node]) => {
+      return (
+        <MapPlacement
+          key={`salt-node-${id}`}
+          {...node.coordinates}
+          height={1}
+          width={1}
+        >
+          <SaltNode id={id} visiting={visiting} position={node.position} />
+        </MapPlacement>
+      );
+    });
+  }, [saltNodes, basicLand, visiting]);
 
   const pendingSaltNodeIds = useMemo(
     () =>
@@ -1271,8 +1264,8 @@ export const LandComponent: React.FC = () => {
         {/* Water trap spots - rendered after Fisherman to ensure they appear on top */}
         {!landscaping && waterTrapElements}
         {!landscaping && !visiting && hasSaltFarmAccess && saltGuideElement}
-        {!landscaping && hasSaltFarmAccess && saltPlaceholderElements}
-        {!landscaping && hasSaltFarmAccess && saltNodeElements}
+        {!landscaping && saltPlaceholderElements}
+        {!landscaping && saltNodeElements}
 
         {/* Background darkens in landscaping */}
         <div
