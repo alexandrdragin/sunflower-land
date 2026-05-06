@@ -8896,5 +8896,8 @@
   "description.spaSheep.boost": "+5 Sheep XP from Animal Affection tools",
   "description.obsidianShrine.buff": "Bulk harvest, plant and fertilise your crops, fruit and greenhouse",
   "obsidianShrine.fertiliseAll": "Apply fertiliser to all eligible plots, patches and greenhouse pots",
-  "obsidianShrine.noEligiblePots": "No greenhouse pots to fertilise"
+  "obsidianShrine.noEligiblePots": "No greenhouse pots to fertilise",
+  "description.saltDoll": "Seasoned with a pinch of salt and a lot of charm.",
+  "description.jacuzziBear": "Soaking in salty waters, living the good life.",
+  "chapterCrafting": "Chapter Exclusives"
 }
