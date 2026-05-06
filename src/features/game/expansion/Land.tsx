@@ -50,8 +50,10 @@ import { WaterTrapSpot } from "features/island/fisherman/WaterTrapSpot";
 import { FarmHand } from "features/island/farmhand/FarmHand";
 import { PlacedBumpkin } from "features/island/bumpkin/components/PlacedBumpkin";
 import { SaltNode } from "./components/salt/SaltNode";
+import { SaltGuideNode } from "./components/salt/SaltGuideNode";
 import { SaltNodePlaceholder } from "./components/salt/SaltNodePlaceholder";
 import {
+  getSaltGuideCoordinates,
   getSaltNodeCoordinates,
   getSaltNodesWithPositions,
 } from "features/game/types/salt";
@@ -1092,12 +1094,17 @@ export const LandComponent: React.FC = () => {
       });
   }, [saltNodes, visiting]);
 
+  const pendingSaltNodeIds = useMemo(
+    () =>
+      getPendingSaltNodeIdsForUpgrade({
+        level: saltFarmLevel,
+        nodes: saltNodes,
+      }),
+    [saltFarmLevel, saltNodes],
+  );
+
   const saltPlaceholderElements = useMemo(() => {
-    const pendingIds = getPendingSaltNodeIdsForUpgrade({
-      level: saltFarmLevel,
-      nodes: saltNodes,
-    });
-    return pendingIds.map((id) => {
+    return pendingSaltNodeIds.map((id) => {
       const coordinates = getSaltNodeCoordinates(basicLand, id);
       return (
         <MapPlacement
@@ -1110,7 +1117,20 @@ export const LandComponent: React.FC = () => {
         </MapPlacement>
       );
     });
-  }, [basicLand, saltFarmLevel, saltNodes, visiting]);
+  }, [basicLand, pendingSaltNodeIds, visiting]);
+
+  const saltGuideElement = useMemo(() => {
+    const coordinates = getSaltGuideCoordinates(basicLand, [
+      ...Object.keys(saltNodes),
+      ...pendingSaltNodeIds,
+    ]);
+
+    return (
+      <MapPlacement key="salt-guide-node" {...coordinates} height={1} width={1}>
+        <SaltGuideNode />
+      </MapPlacement>
+    );
+  }, [basicLand, pendingSaltNodeIds, saltNodes]);
 
   // Memoize island elements with enhanced performance tracking
   const islandElements = useMemo(() => {
@@ -1250,6 +1270,7 @@ export const LandComponent: React.FC = () => {
 
         {/* Water trap spots - rendered after Fisherman to ensure they appear on top */}
         {!landscaping && waterTrapElements}
+        {!landscaping && !visiting && hasSaltFarmAccess && saltGuideElement}
         {!landscaping && hasSaltFarmAccess && saltPlaceholderElements}
         {!landscaping && hasSaltFarmAccess && saltNodeElements}
 
