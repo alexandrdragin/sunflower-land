@@ -59,6 +59,17 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
   const selectedSpiceItem = spices.includes(selectedSpice)
     ? selectedSpice
     : spices[0];
+  const activeTab = hasSpices ? tab : "feederMachine";
+  const setActiveTab: React.Dispatch<React.SetStateAction<Tab>> = (nextTab) => {
+    setTab((currentTab) => {
+      const resolvedTab =
+        typeof nextTab === "function" ? nextTab(currentTab) : nextTab;
+
+      return resolvedTab === "spices" && !hasSpices
+        ? "feederMachine"
+        : resolvedTab;
+    });
+  };
 
   const groupedItems = getKeys(ANIMAL_FOODS).reduce(
     (acc, item) => {
@@ -107,8 +118,8 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
       <CloseButtonPanel
         onClose={onClose}
         container={OuterPanel}
-        currentTab={tab}
-        setCurrentTab={setTab}
+        currentTab={activeTab}
+        setCurrentTab={setActiveTab}
         tabs={[
           {
             id: "feederMachine",
@@ -128,7 +139,7 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
       >
         <SplitScreenView
           panel={
-            tab === "spices" ? (
+            activeTab === "spices" ? (
               selectedSpiceItem && (
                 <InventoryItemDetails
                   game={state}
@@ -164,7 +175,7 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
           }
           content={
             <div className="flex flex-col">
-              {tab === "spices" ? (
+              {activeTab === "spices" ? (
                 <div className="flex flex-col">
                   <Label
                     type="default"
