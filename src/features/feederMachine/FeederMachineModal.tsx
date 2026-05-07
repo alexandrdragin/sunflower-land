@@ -6,7 +6,7 @@ import { CloseButtonPanel } from "features/game/components/CloseablePanel";
 import { Context } from "features/game/GameProvider";
 import { AnimalFoodName, AnimalMedicineName } from "features/game/types/game";
 import { useAppTranslation } from "lib/i18n/useAppTranslations";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getKeys } from "lib/object";
 import { Box } from "components/ui/Box";
 import { ITEM_DETAILS } from "features/game/types/images";
@@ -58,17 +58,54 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
   const hasSpices = spices.length > 0;
   const selectedSpiceItem = spices.includes(selectedSpice)
     ? selectedSpice
-    : spices[0];
+    : undefined;
+  const nextAvailableSpice = selectedSpiceItem ?? spices[0];
   const activeTab = hasSpices ? tab : "feederMachine";
-  const setActiveTab: React.Dispatch<React.SetStateAction<Tab>> = (nextTab) => {
-    setTab((currentTab) => {
-      const resolvedTab =
-        typeof nextTab === "function" ? nextTab(currentTab) : nextTab;
 
-      return resolvedTab === "spices" && !hasSpices
-        ? "feederMachine"
-        : resolvedTab;
+  useEffect(() => {
+    if (tab !== "spices") {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => {
+      if (!hasSpices) {
+        setTab("feederMachine");
+        shortcutItem(selectedName);
+        return;
+      }
+
+      if (nextAvailableSpice && nextAvailableSpice !== selectedSpice) {
+        setSelectedSpice(nextAvailableSpice);
+        shortcutItem(nextAvailableSpice);
+      }
     });
+
+    return () => window.clearTimeout(timeout);
+  }, [
+    hasSpices,
+    nextAvailableSpice,
+    selectedName,
+    selectedSpice,
+    shortcutItem,
+    tab,
+  ]);
+
+  const setActiveTab: React.Dispatch<React.SetStateAction<Tab>> = (nextTab) => {
+    const resolvedTab =
+      typeof nextTab === "function" ? nextTab(activeTab) : nextTab;
+
+    if (resolvedTab === "spices" && !hasSpices) {
+      shortcutItem(selectedName);
+      setTab("feederMachine");
+      return;
+    }
+
+    if (resolvedTab === "spices" && nextAvailableSpice) {
+      setSelectedSpice(nextAvailableSpice);
+      shortcutItem(nextAvailableSpice);
+    }
+
+    setTab(resolvedTab);
   };
 
   const groupedItems = getKeys(ANIMAL_FOODS).reduce(
@@ -140,11 +177,13 @@ export const FeederMachineModal: React.FC<Props> = ({ show, onClose }) => {
         <SplitScreenView
           panel={
             activeTab === "spices" ? (
-              selectedSpiceItem && (
+              selectedSpiceItem ? (
                 <InventoryItemDetails
                   game={state}
                   details={{ item: selectedSpiceItem as InventoryItemName }}
                 />
+              ) : (
+                <></>
               )
             ) : (
               <CraftingRequirements
