@@ -8909,5 +8909,6 @@
   "statements.blacklist.reason": "Motivo",
   "statements.blacklist.tos.multiAccounting": "La contabilidad múltiple es una violación de nuestros Términos de servicio. Operar varias cuentas socava la imparcialidad del juego y afecta negativamente a todos los jugadores. Esta restricción se ha aplicado para mantener un entorno justo para la comunidad.",
   "statements.blacklist.tos.funnelling": "La canalización constituye una violación de nuestros Términos de servicio. Transferir recursos entre cuentas para obtener una ventaja injusta socava la integridad del juego y afecta negativamente a todos los jugadores. Esta restricción se ha aplicado para mantener un entorno justo para la comunidad.",
-  "statements.blacklist.contactUs": "Póngase en contacto con nosotros"
+  "statements.blacklist.contactUs": "Póngase en contacto con nosotros",
+  "world.digging": "Excavando"
 }

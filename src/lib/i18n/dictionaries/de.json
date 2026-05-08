@@ -8909,5 +8909,6 @@
   "statements.blacklist.reason": "Grund",
   "statements.blacklist.tos.multiAccounting": "Multi-Accounting ist ein Verstoß gegen unsere Nutzungsbedingungen. Der Betrieb mehrerer Konten untergräbt die Fairness des Spiels und wirkt sich negativ auf alle Spieler aus. Diese Einschränkung wurde angewendet, um ein faires Umfeld für die Community zu gewährleisten.",
   "statements.blacklist.tos.funnelling": "Funnelling ist ein Verstoß gegen unsere Nutzungsbedingungen. Die Übertragung von Ressourcen zwischen Konten, um sich einen unfairen Vorteil zu verschaffen, untergräbt die Integrität des Spiels und wirkt sich negativ auf alle Spieler aus. Diese Einschränkung wurde angewendet, um ein faires Umfeld für die Community zu gewährleisten.",
-  "statements.blacklist.contactUs": "Kontaktiere uns"
+  "statements.blacklist.contactUs": "Kontaktiere uns",
+  "world.digging": "Graben"
 }
