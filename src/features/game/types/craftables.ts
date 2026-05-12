@@ -1308,6 +1308,10 @@ export const COLLECTIBLES_DIMENSIONS: Record<CollectibleName, Dimensions> = {
   // Salt Awakening
   "Crystal Altar": { width: 3, height: 2 },
   "Dino Egg Trophy": { width: 2, height: 1 },
+  "Salt Lamp": { width: 1, height: 1 },
+  "Salt Crystal Bed": { width: 1, height: 1 },
+  "World Map Rug": { width: 3, height: 2 },
+  "Ripped Salt Bag": { width: 1, height: 1 },
 
   // Spring Blossom SFTs
   "Flower Cart": { width: 2, height: 2 },
@@ -1497,7 +1501,7 @@ export const COLLECTIBLES_DIMENSIONS: Record<CollectibleName, Dimensions> = {
   "Deep Sea Pig": { width: 2, height: 2 },
   "Deep Sea Slug": { width: 2, height: 2 },
   "Crystal Shrimp": { width: 2, height: 2 },
-  "Salt Awakening Banner": { width: 1, height: 1 },
+  "Salt Awakening Banner": { width: 1, height: 2 },
 
   "Fox Shrine": { width: 1, height: 1 },
   "Boar Shrine": { width: 1, height: 1 },

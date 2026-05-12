@@ -59,7 +59,6 @@ import { getPetImage } from "../pets/lib/petShared";
 import { useNow } from "lib/utils/hooks/useNow";
 import { isPetCollectible } from "features/game/events/landExpansion/placeCollectible";
 import { getBudImage } from "lib/buds/types";
-import { hasFeatureAccess } from "lib/flags";
 
 export const RESOURCE_MOVE_EVENTS: Record<
   ResourceName,
@@ -462,15 +461,19 @@ export const MoveableComponent: React.FC<
   // and pixel-perfect arrows always render above sibling collectibles. Without
   // this, react-draggable's CSS transform creates a stacking context on each
   // item, and later-rendered items (higher DOM order) paint on top regardless
-  // of the inner z-50 on nodeRef.
+  // of the inner z-50 on nodeRef. Only mutate the DOM when selected; restore
+  // the exact original value on cleanup so depth-sorted z-indexes set by
+  // callers (e.g. furniture, rugs) are never cleared for non-selected items.
   useEffect(() => {
+    if (!isSelected) return;
     const mapPlacement = nodeRef.current?.closest<HTMLElement>(
       "[data-map-placement]",
     );
     if (!mapPlacement) return;
-    mapPlacement.style.zIndex = isSelected ? "10000" : "";
+    const originalZIndex = mapPlacement.style.zIndex;
+    mapPlacement.style.zIndex = "10000";
     return () => {
-      mapPlacement.style.zIndex = "";
+      mapPlacement.style.zIndex = originalZIndex;
     };
   }, [isSelected]);
 
@@ -589,17 +592,6 @@ export const MoveableComponent: React.FC<
     }
   };
 
-  // Pixel-perfect mode is gated behind the PIXEL_PERFECT_PLACEMENT beta flag.
-  // We enable it on placeable "characters" (collectibles, buds, pet NFTs,
-  // farm hands, the player's bumpkin) AND on buildings, since the saved oX/oY
-  // round-trip the same way for both — they're stored on the entity's
-  // `coordinates` and the renderer already feeds them into MapPlacement.
-  // Natural resources (trees, crops, rocks, etc.) keep their existing
-  // tile-snap-only behaviour. Mobile uses LandscapingHud for selection
-  // controls so we only render the disc on non-mobile, matching flip/remove.
-  const hasPixelPerfectFeature = useSelector(gameService, (state) =>
-    hasFeatureAccess(state.context.state, "PIXEL_PERFECT_PLACEMENT"),
-  );
   const isPixelPerfectAllowedFor =
     (name in COLLECTIBLES_DIMENSIONS &&
       name !== "Dirt Path" &&
@@ -612,8 +604,7 @@ export const MoveableComponent: React.FC<
     name === "Pet" ||
     name === "FarmHand" ||
     name === "Bumpkin";
-  const hasPixelPerfectAction =
-    hasPixelPerfectFeature && isPixelPerfectAllowedFor;
+  const hasPixelPerfectAction = isPixelPerfectAllowedFor;
 
   const togglePixelPerfectMode = () => {
     setIsPixelPerfectMode((prev) => !prev);
@@ -885,7 +876,6 @@ export const MoveableComponent: React.FC<
     function handleClickOutside(event: MouseEvent) {
       if (
         isSelected &&
-        (event as any).target.id === "genesisBlock" &&
         nodeRef.current &&
         !(nodeRef.current as any).contains(event.target)
       ) {
@@ -1312,7 +1302,7 @@ export const MoveableComponent: React.FC<
             className="absolute z-20 flex"
             style={{
               right: `${PIXEL_SCALE * -(hasRemovalAction ? 34 : 12)}px`,
-              top: `${PIXEL_SCALE * -12}px`,
+              bottom: `calc(100% + ${PIXEL_SCALE * 2}px)`,
             }}
           >
             <div
