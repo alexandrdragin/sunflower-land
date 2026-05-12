@@ -161,8 +161,8 @@ export const ToolsGuide: React.FC = () => {
             setShowBoostsKey={setShowBoostsKey}
           />
         ))}
-        <div className="w-full py-0.5">
-          <Label type="default" className="mb-0.5">
+        <div className="w-full pt-2 pb-0">
+          <Label type="default">
             {t("waterTools")}
           </Label>
         </div>
