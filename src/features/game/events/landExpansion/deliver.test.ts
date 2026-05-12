@@ -10,7 +10,10 @@ import {
   getCurrentChapter,
 } from "features/game/types/chapters";
 import { TEST_BUMPKIN } from "features/game/lib/bumpkinData";
-import { getBumpkinHoliday, HOLIDAYS } from "lib/utils/getSeasonWeek";
+import {
+  getBumpkinHoliday,
+  getCurrentChapterHolidayPeriod,
+} from "lib/utils/getSeasonWeek";
 import { GameState } from "features/game/types/game";
 import { getChapterTaskPoints } from "features/game/types/tracks";
 import { CONFIG } from "lib/config";
@@ -55,18 +58,11 @@ describe("deliver", () => {
 
     if (getBumpkinHoliday({ now }).holiday === nowDate) {
       jest.useFakeTimers();
-      // Find the latest holiday
-      const latestHoliday = HOLIDAYS.reduce((latest, holiday) => {
-        const holidayDate = new Date(holiday);
-        return holidayDate > latest ? holidayDate : latest;
-      }, new Date(now));
-
-      // Set the system time to the day after the latest holiday
-      const calculatedSystemDate = latestHoliday.setDate(
-        latestHoliday.getDate() + 1,
-      );
-
-      jest.setSystemTime(new Date(calculatedSystemDate));
+      const period = getCurrentChapterHolidayPeriod(now);
+      if (period) {
+        // Set the system time to the first instant after the chapter's holiday window
+        jest.setSystemTime(period.end);
+      }
     }
   });
 
@@ -1929,7 +1925,9 @@ describe("deliver", () => {
       createdAt: now,
     });
 
-    expect(state.inventory[getChapterTicket(now)]).toEqual(new Decimal(10));
+    expect(state.inventory[getChapterTicket(now)]).toEqual(
+      new Decimal(TICKET_REWARDS.tywin * 2),
+    );
   });
 
   it("returns 0 tickets for coin NPC (no tickets from coin deliveries)", () => {
@@ -2171,6 +2169,123 @@ describe("deliver", () => {
                 Sunflower: 50,
               },
               reward: { coins: 1000 },
+            },
+          ],
+        },
+        bumpkin: TEST_BUMPKIN,
+      },
+      action: {
+        id: "123",
+        type: "order.delivered",
+      },
+      createdAt: deliveryCreatedAt,
+    });
+
+    expect(state.farmActivity[`${chapter} Points Earned`]).toBeUndefined();
+  });
+
+  it("does not award chapter points for flower deliveries when TICKETS_FROM_FLOWER_NPC flag is inactive", () => {
+    // Use a date before TICKETS_FROM_FLOWER_NPC flag (2026-05-11)
+    const now = new Date("2026-05-09T00:00:01Z").getTime();
+    const chapter = getCurrentChapter(now);
+
+    const state = deliverOrder({
+      state: {
+        ...INITIAL_FARM,
+        balance: new Decimal(0),
+        inventory: {
+          "Mashed Potato": new Decimal(20),
+        },
+        delivery: {
+          ...INITIAL_FARM.delivery,
+          fulfilledCount: 0,
+          orders: [
+            {
+              id: "123",
+              createdAt: now,
+              readyAt: now,
+              from: "grimbly",
+              items: { "Mashed Potato": 12 },
+              reward: { sfl: 1 },
+            },
+          ],
+        },
+        bumpkin: TEST_BUMPKIN,
+      },
+      action: {
+        id: "123",
+        type: "order.delivered",
+      },
+      createdAt: now + 5000,
+    });
+
+    expect(state.farmActivity[`${chapter} Points Earned`]).toBeUndefined();
+  });
+
+  it("awards flat 10 chapter points for flower deliveries when TICKETS_FROM_FLOWER_NPC flag is active", () => {
+    // Use a date after TICKETS_FROM_FLOWER_NPC flag (2026-05-11) so points are tracked
+    const now = new Date("2026-05-12T00:00:01Z").getTime();
+    const chapter = getCurrentChapter(now);
+
+    const state = deliverOrder({
+      state: {
+        ...INITIAL_FARM,
+        balance: new Decimal(0),
+        inventory: {
+          "Mashed Potato": new Decimal(20),
+        },
+        delivery: {
+          ...INITIAL_FARM.delivery,
+          fulfilledCount: 0,
+          orders: [
+            {
+              id: "123",
+              createdAt: now,
+              readyAt: now,
+              from: "grimbly",
+              items: { "Mashed Potato": 12 },
+              reward: { sfl: 1 },
+            },
+          ],
+        },
+        bumpkin: TEST_BUMPKIN,
+      },
+      action: {
+        id: "123",
+        type: "order.delivered",
+      },
+      createdAt: now + 5000,
+    });
+
+    expect(state.farmActivity[`${chapter} Points Earned`]).toEqual(10);
+  });
+
+  it("does not award flowerDelivery chapter points when order was created on holiday", () => {
+    // Order createdAt 2026-05-04 falls in Salt Awakening's computed bumpkin
+    // holiday window (2026-05-04 → 2026-05-11 exclusive); deliver after the
+    // freeze ends so the flag is also active.
+    const orderCreatedAt = new Date("2026-05-04T12:00:00.000Z").getTime();
+    const deliveryCreatedAt = new Date("2026-05-12T12:00:00.000Z").getTime();
+    const chapter = getCurrentChapter(deliveryCreatedAt);
+
+    const state = deliverOrder({
+      state: {
+        ...INITIAL_FARM,
+        balance: new Decimal(0),
+        inventory: {
+          "Mashed Potato": new Decimal(20),
+        },
+        delivery: {
+          ...INITIAL_FARM.delivery,
+          fulfilledCount: 0,
+          orders: [
+            {
+              id: "123",
+              createdAt: orderCreatedAt,
+              readyAt: orderCreatedAt,
+              from: "grimbly",
+              items: { "Mashed Potato": 12 },
+              reward: { sfl: 1 },
             },
           ],
         },
