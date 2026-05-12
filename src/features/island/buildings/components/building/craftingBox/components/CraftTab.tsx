@@ -10,6 +10,7 @@ import Decimal from "decimal.js-light";
 import { SUNNYSIDE } from "assets/sunnyside";
 import { PIXEL_SCALE } from "features/game/lib/constants";
 import { RecipeIngredient, RECIPES } from "features/game/lib/crafting";
+import { getCurrentChapter } from "features/game/types/chapters";
 import {
   getRecipeIngredientsForName,
   padRecipeIngredients,
@@ -21,7 +22,6 @@ import {
 import { useSound } from "lib/utils/hooks/useSound";
 import { availableWardrobe } from "features/game/events/landExpansion/equip";
 import { getChestItems } from "features/island/hud/components/inventory/utils/inventory";
-import { useRealTimeInstantGems } from "features/game/lib/getInstantGems";
 import { CraftingQueue } from "./CraftingQueue";
 import { IngredientGrid } from "./IngredientGrid";
 import { CraftingHeader } from "./CraftingHeader";
@@ -84,6 +84,7 @@ export const CraftTab: React.FC<Props> = ({
     now,
   } = useCraftingQueue(craftingBox);
 
+  const currentChapter = getCurrentChapter(Date.now());
   const isVIP = useVipAccess({ game: state });
   const availableSlots = isVIP ? MAX_CRAFTING_SLOTS : 1;
   const isQueueFull = craftingQueue.length >= availableSlots;
@@ -452,11 +453,14 @@ export const CraftTab: React.FC<Props> = ({
     setSelectedIngredient(null);
   };
 
-  const handleInstantCraft = (gems: number) => {
-    gameService.send("crafting.spedUp");
+  const handleInstantCraft = (
+    cost: number,
+    paymentMethod: "gems" | "coins" = "gems",
+  ) => {
+    gameService.send("crafting.spedUp", { paymentMethod });
     gameAnalytics.trackSink({
-      currency: "Gem",
-      amount: gems,
+      currency: paymentMethod === "coins" ? "Coins" : "Gem",
+      amount: cost,
       item: "Instant Craft",
       type: "Fee",
     });
@@ -515,10 +519,7 @@ export const CraftTab: React.FC<Props> = ({
     isViewingInProgressRecipe ||
     isViewingQueuedRecipe;
 
-  const gems = useRealTimeInstantGems({
-    readyAt: cooking?.readyAt ?? craftingReadyAt,
-    game: state,
-  });
+  const speedUpReadyAt = cooking?.readyAt ?? craftingReadyAt;
 
   return (
     <>
@@ -586,7 +587,8 @@ export const CraftTab: React.FC<Props> = ({
             selectedItems={selectedItems}
             inventory={inventory}
             wardrobe={wardrobe}
-            gems={gems}
+            state={state}
+            readyAt={speedUpReadyAt}
             onInstantCraft={handleInstantCraft}
             isQueueFull={isQueueFull}
             isPreparingQueueSlot={
@@ -615,6 +617,7 @@ export const CraftTab: React.FC<Props> = ({
         isPending={isPending}
         disabled={isViewingMode || isPending || (isCrafting && !canAddToQueue)}
         discoveredRecipes={state.craftingBox.recipes}
+        currentChapter={currentChapter}
       />
 
       <ModalOverlay

@@ -1040,7 +1040,7 @@ export type FlowerShop = {
 export type FarmHand = {
   equipped: BumpkinParts;
   coordinates?: Coordinates;
-  location?: "farm" | "home";
+  location?: "farm" | "home" | "interior" | "level_one";
 };
 
 export type Mushroom = {
@@ -1383,6 +1383,12 @@ type FishingSpot = {
   bait?: FishingBait;
   chum?: InventoryItemName;
   caught?: Partial<Record<InventoryItemName, number>>;
+  /**
+   * Per-fish breakdown of bonus units the Shrimp Onesie added during this
+   * cast. Already included in `caught`; surfaced separately so the catch
+   * UI can attribute the extra fish to the wearable.
+   */
+  shrimpOnesieBonus?: Partial<Record<InventoryItemName, number>>;
   guaranteedCatch?: FishName;
   maps?: Partial<Record<MarineMarvelName, number>>;
   /**
@@ -1438,6 +1444,7 @@ export type Christmas = {
 
 export type Currency =
   | "SFL"
+  | "Coins"
   | "Gem"
   | "Crimstone"
   | "Sunstone"
@@ -1500,6 +1507,60 @@ export const ISLAND_EXPANSIONS: IslandType[] = [
 
 export type Home = {
   collectibles: Collectibles;
+};
+
+/**
+ * Interior is an entirely separate placement surface from Home.
+ * See `src/features/interior/` and `src/features/game/expansion/placeable/lib/interiorLayouts.ts`.
+ *
+ * Unlike Home, the interior uses a per-island tile mask (rooms have non-rectangular shapes)
+ * and a bottom-left-anchored coordinate system starting at (0,0).
+ *
+ * Each interior is split into one or more LEVELS — for now there's just `ground`,
+ * but future expansions (upstairs, basement, etc.) plug in alongside it without
+ * changing the existing data.
+ */
+export type InteriorLevel = {
+  collectibles: Collectibles;
+};
+
+/**
+ * Post-volcano home expansion tiers. Players unlock these sequentially via
+ * the `interior.upgrade` event. The list is intentionally one continuous
+ * progression and is *not* level-specific in the type — when level_two
+ * artwork ships we simply add its tier values here and the same `expansion`
+ * field on `Interior` continues to track progress.
+ *
+ * Names mirror the asset filenames in `src/assets/buildings/level-one-*.webp`.
+ */
+export type HomeExpansionTier =
+  | "level-one-start"
+  | "level-one-2"
+  | "level-one-3"
+  | "level-one-4"
+  | "level-one-5"
+  | "level-one-6"
+  | "level-one-full";
+
+export type LevelOne = {
+  collectibles: Collectibles;
+};
+
+export type InteriorLevelName = "ground" | "level_one";
+
+export type Interior = {
+  ground: InteriorLevel;
+  /**
+   * Present once the player has bought their first post-volcano upgrade.
+   * Lives at the /level_one route. Independent placements from `ground`.
+   */
+  level_one?: LevelOne;
+  /**
+   * Tracks which home-expansion tier the player has unlocked. Lives on the
+   * top-level Interior (not on a specific floor) so it can be shared across
+   * future levels. Undefined = no expansion bought yet.
+   */
+  expansion?: HomeExpansionTier;
 };
 
 export type PlantedFlower = {
@@ -1805,6 +1866,7 @@ export type FarmHands = {
 
 export interface GameState {
   home: Home;
+  interior: Interior;
   bank: Bank;
 
   buffs?: Partial<Record<BuffName, Buff>>;
@@ -1824,7 +1886,7 @@ export interface GameState {
   verified?: boolean;
 
   gems: {
-    history?: Record<string, { spent: number }>;
+    history?: Record<string, { spent: number; coinsSpent?: number }>;
   };
 
   flower: {
@@ -2098,6 +2160,11 @@ export interface GameState {
   };
   megastore?: {
     boughtAt: Partial<Record<ChapterTierItemName, number>>;
+    // Per-item, per-chapter purchase count. Used by the `limit` enforcement
+    // so a recurring item from a previous chapter doesn't stay blocked.
+    purchases?: Partial<
+      Record<ChapterTierItemName, { chapter: ChapterName; count: number }>
+    >;
   };
   withdrawals?: {
     amount: number;
