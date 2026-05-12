@@ -1,8 +1,9 @@
 import Decimal from "decimal.js-light";
-import { GameState } from "features/game/types/game";
+import { BoostName, GameState } from "features/game/types/game";
 import {
   SEA_BLESSED_CHANCE,
   SEA_BLESSED_NODE_COUNT,
+  SALT_CHARGE_GENERATION_TIME,
   getSaltChargeGenerationTime,
   getSaltYieldPerRake,
   getStoredSaltCharges,
@@ -12,7 +13,6 @@ import {
   SaltSyncOptions,
 } from "features/game/types/salt";
 import { produce } from "immer";
-import { hasFeatureAccess } from "lib/flags";
 import { prngChance } from "lib/prng";
 import { KNOWN_IDS } from "features/game/types";
 import { trackFarmActivity } from "features/game/types/farmActivity";
@@ -23,13 +23,32 @@ export enum HARVEST_SALT_ERRORS {
   SALT_NODE_NOT_FOUND = "Salt node not found",
   NOT_ENOUGH_CHARGES = "Not enough salt charges",
   NOT_ENOUGH_SALT_RAKES = "Not enough Salt Rakes",
-  SALT_FARM_NOT_ENABLED = "Salt farm not enabled",
 }
 
 export type HarvestSaltAction = {
   type: "salt.harvested";
   id: string;
 };
+
+export function getSaltChargeGenerationTimeForDisplay({
+  game,
+}: {
+  game: GameState;
+}): {
+  baseTimeMs: number;
+  recoveryTimeMs: number;
+  boostsUsed: { name: BoostName; value: string }[];
+} {
+  const { chargeGenerationTimeMs, boostsUsed } = getSaltChargeGenerationTime({
+    gameState: game,
+  });
+
+  return {
+    baseTimeMs: SALT_CHARGE_GENERATION_TIME,
+    recoveryTimeMs: chargeGenerationTimeMs,
+    boostsUsed,
+  };
+}
 
 type Options = {
   state: Readonly<GameState>;
@@ -44,10 +63,6 @@ export function harvestSalt({
   createdAt = Date.now(),
   farmId,
 }: Options): GameState {
-  if (!hasFeatureAccess(state, "SALT_FARM")) {
-    throw new Error(HARVEST_SALT_ERRORS.SALT_FARM_NOT_ENABLED);
-  }
-
   return produce(state, (copy) => {
     const saltNode = copy.saltFarm.nodes[action.id];
     if (!saltNode) {
@@ -73,7 +88,7 @@ export function harvestSalt({
       throw new Error(HARVEST_SALT_ERRORS.NOT_ENOUGH_SALT_RAKES);
     }
     const { saltYield: saltPerRake, boostsUsed: saltYieldBoostsUsed } =
-      getSaltYieldPerRake(copy);
+      getSaltYieldPerRake(copy, createdAt);
     const legacySalt = legacyReadySlots * saltPerRake;
 
     const saltInInventory = copy.inventory["Salt"] ?? new Decimal(0);
