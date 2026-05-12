@@ -964,6 +964,14 @@ export const COLLECTIBLE_BUFF_LABELS: Partial<
       boostedItemIcon: ITEM_DETAILS["Pumpkin Soup"].image,
     },
   ],
+  "Dino Egg Trophy": () => [
+    {
+      shortDescription: translate("dinoEggTrophy.boost.description"),
+      labelType: "vibrant",
+      boostTypeIcon: lightning,
+      boostedItemIcon: SUNNYSIDE.ui.coins,
+    },
+  ],
   "Treasure Map": () => [
     {
       shortDescription: translate("description.treasure.map.boost"),
@@ -2080,6 +2088,20 @@ export const COLLECTIBLE_BUFF_LABELS: Partial<
     {
       shortDescription: translate("megastore.monument.helpsNeeded", {
         count: 2000,
+      }),
+      labelType: "info",
+      boostTypeIcon: helpIcon,
+    },
+  ],
+  "Crystal Altar": () => [
+    {
+      shortDescription: translate("description.crystalAltar.boost"),
+      labelType: "info",
+      boostTypeIcon: SUNNYSIDE.icons.stopwatch,
+    },
+    {
+      shortDescription: translate("megastore.monument.helpsNeeded", {
+        count: 1000,
       }),
       labelType: "info",
       boostTypeIcon: helpIcon,
