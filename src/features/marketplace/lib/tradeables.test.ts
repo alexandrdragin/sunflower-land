@@ -32,6 +32,7 @@ describe("getTradeableDisplay", () => {
       },
     });
 
+    expect(display.experience).toBe(experience);
     expect(getPetLevel(display.experience ?? 0).level).toBe(
       getPetLevel(experience).level,
     );
