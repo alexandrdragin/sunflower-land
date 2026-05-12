@@ -35,6 +35,8 @@ export const getSortedCollectiblePositions = (object: Collectibles) => {
       id: item.id,
       x: item.coordinates!.x,
       y: item.coordinates!.y,
+      oX: item.coordinates!.oX,
+      oY: item.coordinates!.oY,
       flipped: item.flipped,
       name,
     }));

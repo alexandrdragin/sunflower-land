@@ -1,4 +1,9 @@
-import { PET_CATEGORY_NAMES, PET_NFT_TYPES } from "features/game/types/pets";
+import {
+  FETCHES_BY_CATEGORY,
+  PET_CATEGORY_NAMES,
+  PET_NFT_TYPES,
+} from "features/game/types/pets";
+import { ITEM_DETAILS } from "features/game/types/images";
 import {
   ACCESSORY_TRAITS,
   AURA_TRAITS,
@@ -17,10 +22,12 @@ import {
   PET_LEVEL_FILTERS,
   toTraitValueId,
 } from "./marketplaceFilters";
+import { BUD_BOOST_FILTER_OPTIONS } from "./budBoostFilters";
 
 export interface TraitOptionDefinition {
   label: string;
   value: string;
+  icon?: string;
 }
 
 export interface TraitGroupDefinition<T extends string> {
@@ -69,6 +76,14 @@ export const BUD_TRAIT_GROUPS: TraitGroupDefinition<BudTrait>[] = [
       value: toTraitValueId(colour.name),
     })),
   },
+  {
+    trait: "boost",
+    label: "Boost",
+    options: BUD_BOOST_FILTER_OPTIONS.map((boost) => ({
+      label: boost,
+      value: toTraitValueId(boost),
+    })),
+  },
 ];
 
 export const PET_TRAIT_GROUPS: TraitGroupDefinition<PetTrait>[] = [
@@ -81,6 +96,15 @@ export const PET_TRAIT_GROUPS: TraitGroupDefinition<PetTrait>[] = [
     trait: "category",
     label: "Category",
     options: mapOptions(PET_CATEGORY_NAMES),
+  },
+  {
+    trait: "resource",
+    label: "Resource",
+    options: Object.values(FETCHES_BY_CATEGORY).map((resource) => ({
+      label: resource,
+      value: toTraitValueId(resource),
+      icon: ITEM_DETAILS[resource].image,
+    })),
   },
   {
     trait: "aura",

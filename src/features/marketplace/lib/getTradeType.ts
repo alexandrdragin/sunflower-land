@@ -8,7 +8,9 @@ export type TradeType = "instant" | "onchain";
 /**
  * Note from Elias:
  * This object is used to determine whether an item can be airdropped offchain or not.
- * Even though all trades are "instant" now, please add supply limited items as "onchain" in this object
+ * Even though all trades are "instant" now, please add items with a set supply
+ * (e.g. auction items) as "onchain" in this object. Time-limited items
+ * (e.g. chapter track rewards) can remain "instant".
  */
 export const ITEM_TRADE_TYPES: {
   collectibles: Record<InventoryItemName, TradeType>;
@@ -129,6 +131,8 @@ export const ITEM_TRADE_TYPES: {
     "Cosmo Doll": "instant",
     "Bigfin Doll": "instant",
     "Solar Doll": "instant",
+    "Salt Doll": "instant",
+    "Jacuzzi Bear": "instant",
     "Gold Cooking Trophy": "instant",
     "Silver Cooking Trophy": "instant",
     "Bronze Cooking Trophy": "instant",
@@ -997,6 +1001,7 @@ export const ITEM_TRADE_TYPES: {
     "Pickled Cabbage": "instant",
     "Pickled Onion": "instant",
     "Pickled Pepper": "instant",
+    "Pickled Broccoli": "instant",
     "Greenhouse Glow": "instant",
     "Greenhouse Goodie": "instant",
     "Sproutroot Surprise": "instant",
@@ -1417,6 +1422,23 @@ export const ITEM_TRADE_TYPES: {
     "Salt Awakening Raffle Ticket": "instant",
     "Salt Awakening Banner": "instant",
     "Salt Dino Egg": "instant",
+    "Big Table": "instant",
+    Crate: "instant",
+    "Empty Pot": "instant",
+    "High Table": "instant",
+    "Large Podium": "instant",
+    "Long Table": "instant",
+    "Royal Podium": "instant",
+    "Square Table": "instant",
+    Stool: "instant",
+
+    // Salt Awakening Megastore
+    "Crystal Altar": "instant",
+    "Dino Egg Trophy": "instant",
+    "Salt Lamp": "instant",
+    "Salt Crystal Bed": "instant",
+    "World Map Rug": "instant",
+    "Ripped Salt Bag": "instant",
   },
   wearables: {
     "Walrus Onesie": "instant",
@@ -1428,6 +1450,13 @@ export const ITEM_TRADE_TYPES: {
     "Fish Hook Vest": "instant",
     "Fish Hook Waders": "instant",
     "Corn Silk Hair": "instant",
+
+    // Salt Awakening Megastore
+    "Spa Hat": "instant",
+    "Spa Robe": "instant",
+    "Spa Slippers": "instant",
+    "Bubble Aura": "instant",
+    "Deep Sea Salt Cave Background": "instant",
     "New Years Crown": "instant",
     "Beige Farmer Potion": "instant",
     "Dark Brown Farmer Potion": "instant",
@@ -1969,6 +1998,8 @@ export const ITEM_TRADE_TYPES: {
     "Infernal Smile": "instant",
     "Neutral Mouth": "instant",
     "Pistol Shrimp": "onchain",
+    "Clam Shell Hat": "instant",
+    "Shrimp Onesie": "instant",
   },
 };
 

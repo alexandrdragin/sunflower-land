@@ -42,10 +42,18 @@ export type LandscapingDecorationName =
   | "Potted Potato"
   | "Potted Pumpkin"
   | "Cactus"
-  | "Basic Bear"
   | "Bonnie's Tombstone"
   | "Grubnash's Tombstone"
-  | "Town Sign";
+  | "Town Sign"
+  | "Big Table"
+  | "Crate"
+  | "Empty Pot"
+  | "High Table"
+  | "Large Podium"
+  | "Long Table"
+  | "Royal Podium"
+  | "Square Table"
+  | "Stool";
 
 export type ShopDecorationName = LandscapingDecorationName;
 
@@ -602,6 +610,28 @@ export const DECORATION_TEMPLATES = {
     },
     isWithdrawable: () => false,
   },
+  "Basic Bear": {
+    dimensions: {
+      width: 1,
+      height: 1,
+    },
+    isWithdrawable: () => false,
+  },
+  // Salt Awakening
+  "Salt Doll": {
+    dimensions: {
+      width: 1,
+      height: 1,
+    },
+    isWithdrawable: () => false,
+  },
+  "Jacuzzi Bear": {
+    dimensions: {
+      width: 1,
+      height: 1,
+    },
+    isWithdrawable: () => false,
+  },
 } satisfies Record<string, Template>;
 
 export type TemplateDecorationName = keyof typeof DECORATION_TEMPLATES;
@@ -768,10 +798,6 @@ export const DECORATION_DIMENSIONS: Record<DecorationName, Dimensions> = {
     width: 1,
   },
   Cactus: {
-    height: 1,
-    width: 1,
-  },
-  "Basic Bear": {
     height: 1,
     width: 1,
   },
@@ -1458,7 +1484,55 @@ export const DECORATION_DIMENSIONS: Record<DecorationName, Dimensions> = {
     width: 2,
     height: 2,
   },
+  "Big Table": {
+    width: 3,
+    height: 3,
+  },
+  Crate: {
+    width: 1,
+    height: 1,
+  },
+  "Empty Pot": {
+    width: 2,
+    height: 1,
+  },
+  "High Table": {
+    width: 1,
+    height: 2,
+  },
+  "Large Podium": {
+    width: 3,
+    height: 3,
+  },
+  "Long Table": {
+    width: 2,
+    height: 1,
+  },
+  "Royal Podium": {
+    width: 2,
+    height: 2,
+  },
+  "Square Table": {
+    width: 2,
+    height: 2,
+  },
+  Stool: {
+    width: 1,
+    height: 1,
+  },
 };
+
+export const HOME_LANDSCAPING_DECORATIONS: LandscapingDecorationName[] = [
+  "Big Table",
+  "Crate",
+  "Empty Pot",
+  "High Table",
+  "Large Podium",
+  "Long Table",
+  "Royal Podium",
+  "Square Table",
+  "Stool",
+];
 
 export type Decoration = {
   name: DecorationName;
@@ -1667,13 +1741,6 @@ export const LANDSCAPING_DECORATIONS: Record<
     coins: 80,
     ingredients: {},
   },
-  "Basic Bear": {
-    name: "Basic Bear",
-    description: translate("description.basic.bear"),
-    coins: 200,
-    ingredients: {},
-  },
-
   "Bonnie's Tombstone": {
     name: "Bonnie's Tombstone",
     description: translate("description.bonnies.tombstone"),
@@ -1699,6 +1766,60 @@ export const LANDSCAPING_DECORATIONS: Record<
     ingredients: {
       Wood: new Decimal(100),
     },
+  },
+  "Big Table": {
+    name: "Big Table",
+    description: translate("description.big.table"),
+    coins: 2000,
+    ingredients: {},
+  },
+  Crate: {
+    name: "Crate",
+    description: translate("description.crate"),
+    coins: 500,
+    ingredients: {},
+  },
+  "Empty Pot": {
+    name: "Empty Pot",
+    description: translate("description.empty.pot"),
+    coins: 500,
+    ingredients: {},
+  },
+  "High Table": {
+    name: "High Table",
+    description: translate("description.high.table"),
+    coins: 1000,
+    ingredients: {},
+  },
+  "Large Podium": {
+    name: "Large Podium",
+    description: translate("description.large.podium"),
+    coins: 2000,
+    ingredients: {},
+  },
+  "Long Table": {
+    name: "Long Table",
+    description: translate("description.long.table"),
+    coins: 1000,
+    ingredients: {},
+  },
+  "Royal Podium": {
+    name: "Royal Podium",
+    description: translate("description.royal.podium"),
+    coins: 2500,
+    ingredients: {},
+  },
+  "Square Table": {
+    name: "Square Table",
+    description: translate("description.square.table"),
+    coins: 1000,
+    ingredients: {},
+  },
+  Stool: {
+    name: "Stool",
+    description: translate("description.stool"),
+    coins: 500,
+    ingredients: {},
   },
 };
 

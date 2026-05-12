@@ -29,6 +29,7 @@ import { Bumpkin, IslandType } from "features/game/types/game";
 import {
   HOME_BOUNDS,
   NON_COLLIDING_OBJECTS,
+  FURNITURE_OBJECTS,
 } from "features/game/expansion/placeable/lib/collisionDetection";
 import { Bud } from "features/island/buds/Bud";
 import { InteriorBumpkins } from "./components/InteriorBumpkins";
@@ -161,7 +162,7 @@ export const Home: React.FC = () => {
           .filter((collectible) => collectible.coordinates)
           .map((collectible, itemIndex) => {
             const { readyAt, createdAt, coordinates, id } = collectible;
-            const { x, y } = coordinates!;
+            const { x, y, oX, oY } = coordinates!;
             const { width, height } = COLLECTIBLES_DIMENSIONS[name];
 
             return (
@@ -169,9 +170,17 @@ export const Home: React.FC = () => {
                 key={`collectible-${nameIndex}-${itemIndex}`}
                 x={x}
                 y={y}
+                oX={oX}
+                oY={oY}
                 height={height}
                 width={width}
-                z={NON_COLLIDING_OBJECTS.includes(name) ? 0 : 1}
+                z={
+                  FURNITURE_OBJECTS.includes(name)
+                    ? 1
+                    : NON_COLLIDING_OBJECTS.includes(name)
+                      ? 0
+                      : 2
+                }
                 enableOnVisitClick
               >
                 <Collectible
@@ -196,13 +205,15 @@ export const Home: React.FC = () => {
     ...Object.entries(buds)
       .filter(([, bud]) => !!bud.coordinates && bud.location === "home")
       .flatMap(([id, bud]) => {
-        const { x, y } = bud.coordinates!;
+        const { x, y, oX, oY } = bud.coordinates!;
 
         return (
           <MapPlacement
             key={`bud-${id}`}
             x={x}
             y={y}
+            oX={oX}
+            oY={oY}
             height={1}
             width={1}
             enableOnVisitClick
@@ -219,13 +230,15 @@ export const Home: React.FC = () => {
         ([, petNFT]) => !!petNFT.coordinates && petNFT.location === "home",
       )
       .flatMap(([id, petNFT]) => {
-        const { x, y } = petNFT.coordinates!;
+        const { x, y, oX, oY } = petNFT.coordinates!;
 
         return (
           <MapPlacement
             key={`petNFT-${id}`}
             x={x}
             y={y}
+            oX={oX}
+            oY={oY}
             height={2}
             width={2}
             enableOnVisitClick
@@ -238,9 +251,17 @@ export const Home: React.FC = () => {
 
   mapPlacements.push(
     ...Object.entries(homeFarmHands).map(([id, farmHand]) => {
-      const { x, y } = farmHand.coordinates!;
+      const { x, y, oX, oY } = farmHand.coordinates!;
       return (
-        <MapPlacement key={`farmHand-${id}`} x={x} y={y} height={1} width={1}>
+        <MapPlacement
+          key={`farmHand-${id}`}
+          x={x}
+          y={y}
+          oX={oX}
+          oY={oY}
+          height={1}
+          width={1}
+        >
           <FarmHand id={id} location="home" />
         </MapPlacement>
       );
@@ -248,9 +269,17 @@ export const Home: React.FC = () => {
   );
 
   if (bumpkin?.coordinates && bumpkin.location === "home") {
-    const { x, y } = bumpkin.coordinates;
+    const { x, y, oX, oY } = bumpkin.coordinates;
     mapPlacements.push(
-      <MapPlacement key="bumpkin" x={x} y={y} height={1} width={1}>
+      <MapPlacement
+        key="bumpkin"
+        x={x}
+        y={y}
+        oX={oX}
+        oY={oY}
+        height={1}
+        width={1}
+      >
         <PlacedBumpkin location="home" />
       </MapPlacement>,
     );

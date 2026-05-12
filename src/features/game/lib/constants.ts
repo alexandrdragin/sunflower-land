@@ -387,6 +387,9 @@ export const INITIAL_FARM: GameState = {
     Rug: new Decimal(1),
     Wardrobe: new Decimal(1),
     Shovel: new Decimal(1),
+    Celestine: new Decimal(1),
+    "Red Balloon Flower": new Decimal(1),
+    "Yellow Cosmos": new Decimal(1),
   },
   previousInventory: {},
   wardrobe: {},
@@ -495,6 +498,7 @@ export const INITIAL_FARM: GameState = {
           readyAt: Date.now(),
         },
       ],
+
       Rug: [
         {
           id: "2",
@@ -507,6 +511,11 @@ export const INITIAL_FARM: GameState = {
         },
       ],
     },
+  },
+  interior: {
+    ground: { collectibles: {} },
+    expansion: "level-one-6",
+    level_one: { collectibles: {} },
   },
   farmHands: { bumpkins: {} },
   greenhouse: {
@@ -763,6 +772,7 @@ export const TEST_FARM: GameState = {
 
   milestones: {},
   home: { collectibles: {} },
+  interior: { ground: { collectibles: {} } },
   island: { type: "basic" },
   farmHands: { bumpkins: {} },
   fishing: {
@@ -1118,6 +1128,7 @@ export const EMPTY: GameState = {
     },
   },
   home: { collectibles: {} },
+  interior: { ground: { collectibles: {} } },
   island: { type: "basic" },
   buildings: {},
   collectibles: {},

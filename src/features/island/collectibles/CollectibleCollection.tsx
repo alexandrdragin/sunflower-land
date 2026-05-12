@@ -236,6 +236,8 @@ import { Capybara } from "./components/Capybara";
 import { PrismPetal } from "./components/PrismPetal";
 import { CelestialFrostbloom } from "./components/CelestialFrostbloom";
 import { PrimulaEnigma } from "./components/PrimulaEnigma";
+import { PlaceableFlower } from "./components/PlaceableFlower";
+import { FLOWERS, PlaceableFlowerName } from "features/game/types/flowers";
 import { Blossombeard } from "./components/Blossombeard";
 import { CrimPeckster } from "./components/CrimPeckster";
 import { FlowerRug } from "./components/FlowerRug";
@@ -410,6 +412,16 @@ export const COLLECTIBLE_COMPONENTS: Record<
       [name]: () => <Pet name={name} />,
     }),
     {} as Record<PetName, React.FC<CollectibleProps>>,
+  ),
+
+  ...getKeys(FLOWERS).reduce<
+    Record<PlaceableFlowerName, React.FC<CollectibleProps>>
+  >(
+    (previous, name) => ({
+      ...previous,
+      [name]: () => <PlaceableFlower name={name as PlaceableFlowerName} />,
+    }),
+    {} as Record<PlaceableFlowerName, React.FC<CollectibleProps>>,
   ),
 
   "Baby Cow": BabyCow,
@@ -785,6 +797,26 @@ export const COLLECTIBLE_COMPONENTS: Record<
   Oaken: () => <TemplateCollectible name="Oaken" />,
   Meerkat: () => <TemplateCollectible name="Meerkat" />,
   "Crimstone Clam": () => <TemplateCollectible name="Crimstone Clam" />,
+  "Crystal Altar": (props: CollectibleProps) => (
+    <Monument
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 48}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 0}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 48}px`,
+      }}
+      alt="Crystal Altar"
+      project="Crystal Altar"
+    />
+  ),
+  "Dino Egg Trophy": () => <TemplateCollectible name="Dino Egg Trophy" />,
+  "Salt Lamp": () => <TemplateCollectible name="Salt Lamp" />,
+  "Salt Crystal Bed": () => <TemplateCollectible name="Salt Crystal Bed" />,
+  "World Map Rug": () => <TemplateCollectible name="World Map Rug" />,
+  "Ripped Salt Bag": () => <TemplateCollectible name="Ripped Salt Bag" />,
   "Poseidon's Throne": (props: CollectibleProps) => (
     <Monument
       {...props}
@@ -3861,6 +3893,141 @@ export const COLLECTIBLE_COMPONENTS: Record<
       }}
       image={ITEM_DETAILS["The Sunflower Man Statue"].image}
       alt="The Sunflower Man Statue"
+    />
+  ),
+  "Big Table": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 45}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 1.5}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 45}px`,
+      }}
+      image={ITEM_DETAILS["Big Table"].image}
+      alt="Big Table"
+    />
+  ),
+  Crate: (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 16}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 0}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 16}px`,
+      }}
+      image={ITEM_DETAILS["Crate"].image}
+      alt="Crate"
+    />
+  ),
+  "Empty Pot": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 28}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 2}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 28}px`,
+      }}
+      image={ITEM_DETAILS["Empty Pot"].image}
+      alt="Empty Pot"
+    />
+  ),
+  "High Table": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 12}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 2}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 12}px`,
+      }}
+      image={ITEM_DETAILS["High Table"].image}
+      alt="High Table"
+    />
+  ),
+  "Large Podium": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 40}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 4}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 40}px`,
+      }}
+      image={ITEM_DETAILS["Large Podium"].image}
+      alt="Large Podium"
+    />
+  ),
+  "Long Table": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 24}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 4}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 24}px`,
+      }}
+      image={ITEM_DETAILS["Long Table"].image}
+      alt="Long Table"
+    />
+  ),
+  "Royal Podium": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 22}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 5}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 22}px`,
+      }}
+      image={ITEM_DETAILS["Royal Podium"].image}
+      alt="Royal Podium"
+    />
+  ),
+  "Square Table": (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 22}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 5}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 22}px`,
+      }}
+      image={ITEM_DETAILS["Square Table"].image}
+      alt="Square Table"
+    />
+  ),
+  Stool: (props: CollectibleProps) => (
+    <ImageStyle
+      {...props}
+      divStyle={{
+        width: `${PIXEL_SCALE * 10}px`,
+        bottom: `${PIXEL_SCALE * 0}px`,
+        left: `${PIXEL_SCALE * 3}px`,
+      }}
+      imgStyle={{
+        width: `${PIXEL_SCALE * 10}px`,
+      }}
+      image={ITEM_DETAILS["Stool"].image}
+      alt="Stool"
     />
   ),
   "Salt Sculpture": () => <SaltSculpture />,

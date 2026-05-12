@@ -35,7 +35,10 @@ import { ANIMAL_DIMENSIONS } from "features/game/types/craftables";
 import { PlaceableLocation } from "features/game/types/collectibles";
 import { Label } from "components/ui/Label";
 import { RESOURCE_DIMENSIONS } from "features/game/types/resources";
-import { LANDSCAPING_DECORATIONS } from "features/game/types/decorations";
+import {
+  HOME_LANDSCAPING_DECORATIONS,
+  LANDSCAPING_DECORATIONS,
+} from "features/game/types/decorations";
 import { useAppTranslation } from "lib/i18n/useAppTranslations";
 import { ITEM_ICONS } from "features/island/hud/components/inventory/Chest";
 import { GameState, TemperateSeasonName } from "features/game/types/game";
@@ -49,6 +52,10 @@ import { EXPIRY_COOLDOWNS } from "features/game/lib/collectibleBuilt";
 import { Coordinates } from "features/game/expansion/components/MapPlacement";
 import { COMPETITION_POINTS } from "features/game/types/competitions";
 import { useNow } from "lib/utils/hooks/useNow";
+import {
+  needsPlacementConfirmation,
+  PlacementConfirmationModal,
+} from "features/game/expansion/placeable/PlacementConfirmationModal";
 import {
   getPetType,
   getPlacedCommonPetTypesInPetHouse,
@@ -126,6 +133,7 @@ export const PlaceableController: React.FC<Props> = ({ location }) => {
   const [previousPosition, setPreviousPosition] = useState<
     Coordinates | undefined
   >();
+  const [pendingConfirmation, setPendingConfirmation] = useState(false);
 
   const now = useNow();
 
@@ -210,7 +218,10 @@ export const PlaceableController: React.FC<Props> = ({ location }) => {
           placeable.name !== "Bud" &&
           placeable.name !== "FarmHand" &&
           placeable.name !== "Bumpkin") ||
-          placeable.name in LANDSCAPING_DECORATIONS ||
+          (placeable.name in LANDSCAPING_DECORATIONS &&
+            !HOME_LANDSCAPING_DECORATIONS.includes(
+              placeable.name as (typeof HOME_LANDSCAPING_DECORATIONS)[number],
+            )) ||
           placeable.name === "Magic Bean")) ||
       (location === "petHouse" && !isPetCollectible && !isPetNFT)
     : false;
@@ -243,12 +254,7 @@ export const PlaceableController: React.FC<Props> = ({ location }) => {
     return { width: 0, height: 0 };
   }, [placeable]);
 
-  const handleConfirmPlacement = useCallback(() => {
-    // prevents multiple toasts while spam clicking place button
-    if (!placingState) {
-      return;
-    }
-
+  const executePlacement = useCallback(() => {
     const state = gameService.getSnapshot().context.state;
 
     if (!placeable) return;
@@ -337,11 +343,23 @@ export const PlaceableController: React.FC<Props> = ({ location }) => {
     location,
     maximum,
     placeable,
-    placingState,
     previousPosition,
     requirements,
     send,
   ]);
+
+  const handleConfirmPlacement = useCallback(() => {
+    // prevents multiple toasts while spam clicking place button
+    if (!placingState) return;
+    if (!placeable) return;
+
+    if (needsPlacementConfirmation(placeable.name)) {
+      setPendingConfirmation(true);
+      return;
+    }
+
+    executePlacement();
+  }, [placingState, placeable, executePlacement]);
 
   const handleCancelPlacement = useCallback(() => {
     send("BACK");
@@ -534,6 +552,17 @@ export const PlaceableController: React.FC<Props> = ({ location }) => {
           </Button>
         </div>
       </OuterPanel>
+
+      {pendingConfirmation && placeable && (
+        <PlacementConfirmationModal
+          itemName={placeable.name}
+          onCancel={() => setPendingConfirmation(false)}
+          onConfirm={() => {
+            setPendingConfirmation(false);
+            executePlacement();
+          }}
+        />
+      )}
     </div>
   );
 };
