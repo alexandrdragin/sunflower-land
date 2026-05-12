@@ -430,6 +430,71 @@ describe("startCrafting", () => {
     expect(state.farmActivity["Timber Crafted"]).toBe(1);
   });
 
+  it("crafts base instant recipes when all queue slots are full", () => {
+    const now = Date.now();
+    gameState.inventory.Wood = new Decimal(19);
+    gameState.craftingBox = {
+      status: "crafting",
+      queue: [
+        {
+          id: "busy-slot",
+          name: "Basic Bed",
+          startedAt: now,
+          readyAt: now + 60000,
+          type: "collectible",
+        },
+      ],
+      recipes: {
+        Timber: {
+          name: "Timber",
+          type: "collectible",
+          ingredients: [
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+            { collectible: "Wood" },
+          ],
+          time: 0,
+        },
+      },
+    };
+
+    const state = startCrafting({
+      farmId,
+      state: gameState,
+      action: {
+        type: "crafting.started",
+        queueItemId: "timber-2",
+        ingredients: [
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+          { collectible: "Wood" },
+        ],
+      },
+      createdAt: now,
+    });
+
+    expect(state.craftingBox.status).toBe("crafting");
+    expect(state.craftingBox.queue).toHaveLength(1);
+    expect(state.craftingBox.queue?.[0].id).toBe("busy-slot");
+    expect(state.inventory["Basic Bed"]).toBeUndefined();
+    expect(state.inventory.Timber).toStrictEqual(new Decimal(1));
+    expect(state.inventory.Wood).toStrictEqual(new Decimal(10));
+    expect(state.farmActivity["Timber Crafting Started"]).toBe(1);
+    expect(state.farmActivity["Timber Crafted"]).toBe(1);
+  });
+
   it("throws an error if the player provides less than 9 ingredients", () => {
     const action: StartCraftingAction = {
       type: "crafting.started",
