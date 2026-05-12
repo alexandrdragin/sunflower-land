@@ -9,10 +9,10 @@ import {
   getGoblinSongCount,
 } from "assets/songs/playlist";
 import settings from "assets/icons/settings.png";
-import { useLocation } from "react-router";
 import { GameOptionsModal } from "./settings-menu/GameOptions";
 import { useSound } from "lib/utils/hooks/useSound";
 import { RoundButton } from "components/ui/RoundButton";
+import { useVisiting } from "lib/utils/visitUtils";
 
 const buttonWidth = PIXEL_SCALE * 22;
 const buttonHeight = PIXEL_SCALE * 23;
@@ -23,8 +23,7 @@ interface Props {
 
 export const Settings: React.FC<Props> = ({ isFarming }) => {
   const [openSettingsMenu, setOpenSettingsMenu] = useState(false);
-  const { pathname } = useLocation();
-  const isVisiting = pathname.includes("visit");
+  const { isVisiting } = useVisiting();
 
   const button = useSound("button");
 
@@ -57,6 +56,10 @@ export const Settings: React.FC<Props> = ({ isFarming }) => {
 
   const song = isFarming ? getFarmingSong(songIndex) : getGoblinSong(songIndex);
 
+  if (isVisiting) {
+    return null;
+  }
+
   return (
     <AudioControlsProvider
       musicPlayer={musicPlayer}
@@ -73,35 +76,33 @@ export const Settings: React.FC<Props> = ({ isFarming }) => {
         muted={true}
         controls
       />
-      {!isVisiting && (
-        <>
-          <GameOptionsModal
-            show={openSettingsMenu}
-            onClose={() => setOpenSettingsMenu(false)}
-          />
-          <div
-            className="relative"
-            style={{ height: `${buttonHeight}px`, width: `${buttonWidth}px` }}
+      <>
+        <GameOptionsModal
+          show={openSettingsMenu}
+          onClose={() => setOpenSettingsMenu(false)}
+        />
+        <div
+          className="relative"
+          style={{ height: `${buttonHeight}px`, width: `${buttonWidth}px` }}
+        >
+          <RoundButton
+            onClick={() => {
+              button.play();
+              setOpenSettingsMenu(true);
+            }}
           >
-            <RoundButton
-              onClick={() => {
-                button.play();
-                setOpenSettingsMenu(true);
+            <img
+              src={settings}
+              className="absolute group-active:translate-y-[2px]"
+              style={{
+                top: `${PIXEL_SCALE * 4}px`,
+                left: `${PIXEL_SCALE * 4}px`,
+                width: `${PIXEL_SCALE * 14}px`,
               }}
-            >
-              <img
-                src={settings}
-                className="absolute group-active:translate-y-[2px]"
-                style={{
-                  top: `${PIXEL_SCALE * 4}px`,
-                  left: `${PIXEL_SCALE * 4}px`,
-                  width: `${PIXEL_SCALE * 14}px`,
-                }}
-              />
-            </RoundButton>
-          </div>
-        </>
-      )}
+            />
+          </RoundButton>
+        </div>
+      </>
     </AudioControlsProvider>
   );
 };
