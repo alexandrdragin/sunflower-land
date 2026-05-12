@@ -2,6 +2,7 @@ import { BuffName } from "./buffs";
 import { BoostName, GameState, InventoryItemName } from "./game";
 import { getBumpkinLevel, getExperienceToNextLevel } from "../lib/level";
 import {
+  CHAPTER_ORDER,
   getChapterBanner,
   getChapterTicket,
   getCurrentChapter,
@@ -42,10 +43,14 @@ export type DailyRewardName =
   | "weekly-mega-box"
   | "streak-one-year"
   | "streak-two-year"
+  | "streak-three-year"
+  | "streak-four-year"
   | "weekly-day-6-coin-stash"
   | "weekly-mega-box"
   | "streak-one-year"
-  | "streak-two-year";
+  | "streak-two-year"
+  | "streak-three-year"
+  | "streak-four-year";
 
 // The first 7 rewards, players can claim without losing a streak
 const ONBOARDING_REWARDS: DailyRewardDefinition[] = [
@@ -235,6 +240,34 @@ const STREAK_MILESTONES: StreakMilestone[] = [
       },
     },
   },
+  {
+    days: 1094,
+    reward: {
+      id: "streak-three-year",
+      label: "Three Year Streak Reward",
+      coins: 10000,
+      items: {
+        "Pirate Cake": 15,
+        "Treasure Key": 2,
+        "Rare Key": 2,
+        "Luxury Key": 2,
+      },
+    },
+  },
+  {
+    days: 1459,
+    reward: {
+      id: "streak-four-year",
+      label: "Four Year Streak Reward",
+      coins: 20000,
+      items: {
+        "Pizza Margherita": 10,
+        "Super Totem": 1,
+        Gem: 500,
+        "Luxury Key": 2,
+      },
+    },
+  },
 ];
 
 export function getWeeklyReward({
@@ -309,7 +342,10 @@ export function getRewardsForStreak({
 
   const currentChapter = getCurrentChapter(now);
 
-  if (hasVipAccess({ game, now }) && currentChapter === "Crabs and Traps") {
+  if (
+    hasVipAccess({ game, now }) &&
+    CHAPTER_ORDER[currentChapter] >= CHAPTER_ORDER["Crabs and Traps"]
+  ) {
     const currentBanner = getChapterBanner(now);
     const bannerCount = game.inventory[currentBanner];
     if (!bannerCount || bannerCount.lt(1)) {

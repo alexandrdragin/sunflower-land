@@ -1149,6 +1149,8 @@ import frostyDoll from "assets/sfts/dolls/frosty_doll.webp";
 import cosmoDoll from "assets/sfts/dolls/cosmo_doll.webp";
 import bigfinDoll from "assets/sfts/dolls/bigfin_doll.webp";
 import solarDoll from "assets/sfts/dolls/solar_doll.webp";
+import saltDoll from "assets/sfts/dolls/salt_doll.webp";
+import spaBear from "assets/sfts/bears/spa_bear.webp";
 import anglerDoll from "assets/sfts/dolls/angler_doll.webp";
 import harvestDoll from "assets/sfts/dolls/harvest_doll.webp";
 import sizzleDoll from "assets/sfts/dolls/sizzler_doll.webp";
@@ -1266,12 +1268,17 @@ import obsidianShrine from "assets/sfts/shrines/obsidian_shrine.webp";
 import tradingShrine from "assets/sfts/shrines/trading_shrine.webp";
 import divingHelmet from "assets/sfts/diving_helmet.webp";
 
+import crystalAltar from "assets/monuments/crystal_altar_3.webp";
+import dinoEggTrophy from "assets/sfts/dino_egg_trophy.webp";
+import saltLamp from "assets/sfts/salt_lamp.webp";
+import saltCrystalBed from "assets/sfts/salt_crystal_bed.webp";
+import worldMapRug from "assets/sfts/world_map_rug.webp";
+import rippedSaltBag from "assets/sfts/ripped_salt_bag.webp";
+
 import { COUPONS, EASTER_EGG, FERTILISERS, InventoryItemName } from "./game";
 
 import { CROPS, CROP_SEEDS, GREENHOUSE_CROPS, GREENHOUSE_SEEDS } from "./crops";
 import { AchievementName, ACHIEVEMENTS } from "./achievements";
-
-//Golden Crop Event
 
 import { SUNNYSIDE } from "assets/sunnyside";
 import { CROP_LIFECYCLE } from "features/island/plots/lib/plant";
@@ -2986,7 +2993,7 @@ export const ITEM_DETAILS: Items = {
   },
   "Basic Bear": {
     image: basicBear,
-    description: LANDSCAPING_DECORATIONS["Basic Bear"].description,
+    description: translate("description.basic.bear"),
   },
   "Chef Bear": {
     image: chefBear,
@@ -4294,6 +4301,30 @@ export const ITEM_DETAILS: Items = {
   "Fish Kite": {
     image: fishKite,
     description: "",
+  },
+  "Crystal Altar": {
+    image: crystalAltar,
+    description: "",
+  },
+  "Dino Egg Trophy": {
+    image: dinoEggTrophy,
+    description: "",
+  },
+  "Salt Lamp": {
+    image: saltLamp,
+    description: translate("description.saltLamp"),
+  },
+  "Salt Crystal Bed": {
+    image: saltCrystalBed,
+    description: translate("description.saltCrystalBed"),
+  },
+  "World Map Rug": {
+    image: worldMapRug,
+    description: translate("description.worldMapRug"),
+  },
+  "Ripped Salt Bag": {
+    image: rippedSaltBag,
+    description: translate("description.rippedSaltBag"),
   },
   "Time Warp Totem": {
     image: timeWarpTotem,
@@ -7013,6 +7044,14 @@ export const ITEM_DETAILS: Items = {
   "Solar Doll": {
     image: solarDoll,
     description: translate("description.solarDoll"),
+  },
+  "Salt Doll": {
+    image: saltDoll,
+    description: translate("description.saltDoll"),
+  },
+  "Jacuzzi Bear": {
+    image: spaBear,
+    description: translate("description.jacuzziBear"),
   },
   Trash: {
     image: trash,

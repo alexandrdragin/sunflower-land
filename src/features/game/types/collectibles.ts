@@ -4,7 +4,13 @@ import { translate } from "lib/i18n/translate";
 import { CHAPTERS } from "./chapters";
 import { ExoticCropName } from "./beans";
 
-export const PLACEABLE_LOCATIONS = ["farm", "home", "petHouse"] as const;
+export const PLACEABLE_LOCATIONS = [
+  "farm",
+  "home",
+  "petHouse",
+  "interior",
+  "level_one",
+] as const;
 export type PlaceableLocation = (typeof PLACEABLE_LOCATIONS)[number];
 
 export type SeasonPassName =
@@ -140,7 +146,14 @@ export type SoldOutCollectibleName =
   | "Navigation Table"
   | "Royal Crab Pot"
   | "Crab House"
-  | "Speed Trap";
+  | "Speed Trap"
+  // Salt Awakening
+  | "Crystal Altar"
+  | "Dino Egg Trophy"
+  | "Salt Lamp"
+  | "Salt Crystal Bed"
+  | "World Map Rug"
+  | "Ripped Salt Bag";
 
 export type MegaStoreCollectibleName =
   | "Flower Cart"
