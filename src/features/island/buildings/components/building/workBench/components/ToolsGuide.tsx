@@ -162,9 +162,7 @@ export const ToolsGuide: React.FC = () => {
           />
         ))}
         <div className="w-full pt-2 pb-0">
-          <Label type="default">
-            {t("waterTools")}
-          </Label>
+          <Label type="default">{t("waterTools")}</Label>
         </div>
         {WATER_NODES_WITH_RECOVERY.map((node, index) => (
           <NodeRow
