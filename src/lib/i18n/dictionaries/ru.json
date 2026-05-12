@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "Multi-accounting is a violation of our Terms of Service. Operating multiple accounts undermines the fairness of the game and negatively impacts all players. This restriction has been applied to maintain a fair environment for the community.",
   "statements.blacklist.tos.funnelling": "Funnelling is a violation of our Terms of Service. Transferring resources between accounts to gain an unfair advantage undermines the integrity of the game and negatively impacts all players. This restriction has been applied to maintain a fair environment for the community.",
   "statements.blacklist.contactUs": "Contact us",
-  "world.digging": "Digging"
+  "world.digging": "Digging",
+  "resource.salt": "Salt",
+  "resource.saltChargeGenerationTime": "Salt Charge Generation Time"
 }

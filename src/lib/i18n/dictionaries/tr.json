@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "Çoklu muhasebe, Hizmet Koşullarımızın ihlalidir. Birden fazla hesap çalıştırmak oyunun adaletini baltalıyor ve tüm oyuncuları olumsuz yönde etkiler. Bu kısıtlama, topluluk için adil bir ortam sağlamak için uygulanmıştır..",
   "statements.blacklist.tos.funnelling": "Havalandırma, Hizmet Koşullarımızın ihlalidir. Haksız bir avantaj elde etmek için hesaplar arasında kaynak aktarmak, oyunun bütünlüğünü zayıflatır ve tüm oyuncuları olumsuz etkiler. Bu kısıtlama, topluluk için adil bir ortam sağlamak için uygulanmıştır..",
   "statements.blacklist.contactUs": "Bize Ulaşın",
-  "world.digging": "Kazma"
+  "world.digging": "Kazma",
+  "resource.salt": "Tuz",
+  "resource.saltChargeGenerationTime": "Tuz Şarj Oluşturma Süresi"
 }

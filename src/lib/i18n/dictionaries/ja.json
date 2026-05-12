@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "マルチアカウンティングは利用規約の違反です。複数のアカウントを使用するとゲームの公平性が損なわれ、すべてのプレイヤーに悪影響が及びます。この制限は、コミュニティにとって公平な環境を維持するために適用されたものです。",
   "statements.blacklist.tos.funnelling": "ファネリングは利用規約違反です。不当なアドバンテージを得るためにアカウント間でリソースを移転すると、ゲームの完全性が損なわれ、すべてのプレイヤーに悪影響が及びます。この制限は、コミュニティにとって公平な環境を維持するために適用されました。",
   "statements.blacklist.contactUs": "お問い合わせ",
-  "world.digging": "掘る"
+  "world.digging": "掘る",
+  "resource.salt": "ソルト",
+  "resource.saltChargeGenerationTime": "ソルトチャージ生成時間"
 }

@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "La multicomptabilité constitue une violation de nos conditions d'utilisation. L'exploitation de plusieurs comptes nuit à l'équité du jeu et a un impact négatif sur tous les joueurs. Cette restriction a été appliquée afin de maintenir un environnement équitable pour la communauté.",
   "statements.blacklist.tos.funnelling": "Le funnelling constitue une violation de nos conditions d'utilisation. Le transfert de ressources entre comptes pour obtenir un avantage injuste porte atteinte à l'intégrité du jeu et a un impact négatif sur tous les joueurs. Cette restriction a été appliquée afin de maintenir un environnement équitable pour la communauté.",
   "statements.blacklist.contactUs": "Nous contacter",
-  "world.digging": "Creuser"
+  "world.digging": "Creuser",
+  "resource.salt": "Sel",
+  "resource.saltChargeGenerationTime": "Durée de génération de la charge de sel"
 }

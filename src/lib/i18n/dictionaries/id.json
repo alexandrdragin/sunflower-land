@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "Multi-akuntansi merupakan pelanggaran terhadap Ketentuan Layanan kami. Mengoperasikan beberapa akun merusak keadilan permainan dan berdampak negatif pada semua pemain. Pembatasan ini telah diterapkan untuk menjaga lingkungan yang adil bagi masyarakat.",
   "statements.blacklist.tos.funnelling": "Funnelling merupakan pelanggaran terhadap Ketentuan Layanan kami. Mentransfer sumber daya antar akun untuk mendapatkan keuntungan yang tidak adil merusak integritas permainan dan berdampak negatif pada semua pemain. Pembatasan ini telah diterapkan untuk menjaga lingkungan yang adil bagi masyarakat.",
   "statements.blacklist.contactUs": "Hubungi kami",
-  "world.digging": "Menggali"
+  "world.digging": "Menggali",
+  "resource.salt": "Garam",
+  "resource.saltChargeGenerationTime": "Waktu Pembuatan Muatan Garam"
 }

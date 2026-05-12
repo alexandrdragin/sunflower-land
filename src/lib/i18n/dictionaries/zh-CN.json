@@ -8910,5 +8910,7 @@
   "statements.blacklist.tos.multiAccounting": "多开账号违反了我们的服务条款。操作多个账号会破坏游戏的公平性，并对所有玩家造成负面影响。为了维护社区的公平环境，我们已采取此限制措施。",
   "statements.blacklist.tos.funnelling": "违规输送违反了我们的服务条款。在账号间转移以获取不公平的优势，会破坏游戏的生态健康，并对所有玩家造成负面影响。为了维护社区的公平环境，我们已采取此限制措施。",
   "statements.blacklist.contactUs": "与我们联系",
-  "world.digging": "挖掘"
+  "world.digging": "挖掘",
+  "resource.salt": "盐",
+  "resource.saltChargeGenerationTime": "盐电荷生成时间"
 }
