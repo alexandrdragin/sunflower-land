@@ -501,14 +501,14 @@ export const Chest: React.FC<Props> = ({
       icon: ITEM_DETAILS["Doll"].image,
     },
     {
-      items: decorations,
-      label: "decorations",
-      icon: ITEM_DETAILS["Basic Bear"].image,
-    },
-    {
       items: flowers,
       label: "flowers",
       icon: ITEM_DETAILS["Prism Petal"].image,
+    },
+    {
+      items: decorations,
+      label: "decorations",
+      icon: ITEM_DETAILS["Basic Bear"].image,
     },
   ];
 
