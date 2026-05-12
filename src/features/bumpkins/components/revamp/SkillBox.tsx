@@ -96,7 +96,6 @@ export const SkillBox: React.FC<BoxProps> = ({
   const precisionCount = setPrecision(count ?? 0, 2);
 
   const canClick = !locked && !disabled && !!onClick;
-  const showReadyIndicator = isReady && !locked && !disabled;
 
   const longPressEvents = useLongPress(
     () => (canClick ? onClick?.() : undefined),
@@ -120,9 +119,8 @@ export const SkillBox: React.FC<BoxProps> = ({
       onMouseLeave={() => setIsHover(false)}
     >
       <div
-        className={classNames("relative", {
-          "bg-brown-600": true,
-          "cursor-not-allowed opacity-75": disabled,
+        className={classNames("bg-brown-600 relative", {
+          "bg-brown-600 cursor-not-allowed opacity-75": disabled,
           "cursor-pointer": canClick,
         })}
         {...clickEvents}
@@ -162,15 +160,15 @@ export const SkillBox: React.FC<BoxProps> = ({
           )}
         </div>
 
-        {showReadyIndicator && (
+        {isReady && (
           <img
             src={SUNNYSIDE.icons.expression_alerted}
             alt="Skill ready"
-            className="absolute z-20 pointer-events-none"
+            className="absolute z-20 pointer-events-none animate-pulsate"
             style={{
-              right: `${PIXEL_SCALE * 4}px`,
+              left: `${PIXEL_SCALE * 4}px`,
               bottom: `${PIXEL_SCALE * 3}px`,
-              width: `${PIXEL_SCALE * 4}px`,
+              width: `${PIXEL_SCALE * 3}px`,
             }}
           />
         )}
