@@ -25,7 +25,6 @@ import { useSelector } from "@xstate/react";
 import classNames from "classnames";
 import { CommodityName, ResourceName } from "features/game/types/resources";
 import saltNodeStage3 from "assets/buildings/salt/salt_node_stage_3.webp";
-import { hasFeatureAccess } from "lib/flags";
 
 const ICON_SIZE = 13.7;
 const NODE_TOOL_ICON_CONTAINER_SIZE = PIXEL_SCALE * (ICON_SIZE + 2);
@@ -37,7 +36,8 @@ type ResourceLabelKey =
   | "resource.goldRecoveryTime"
   | "resource.crimstoneRecoveryTime"
   | "resource.sunstoneRecoveryTime"
-  | "resource.oilRecoveryTime";
+  | "resource.oilRecoveryTime"
+  | "resource.saltChargeGenerationTime";
 
 type CooldownDisplay = {
   nodeLabel: string;
@@ -58,8 +58,7 @@ type LandNodeWithRecovery = {
     recoveryTimeMs: number;
     boostsUsed: { name: BoostName; value: string }[];
   };
-  resourceLabelKey?: ResourceLabelKey;
-  isVisible?: (game: GameState) => boolean;
+  resourceLabelKey: ResourceLabelKey;
 };
 const LAND_NODES_WITH_RECOVERY: LandNodeWithRecovery[] = [
   {
@@ -117,7 +116,7 @@ const LAND_NODES_WITH_RECOVERY: LandNodeWithRecovery[] = [
     toolName: "Salt Rake",
     resourceName: "Salt",
     getRecovery: ({ game }) => getSaltChargeGenerationTimeForDisplay({ game }),
-    isVisible: (game) => hasFeatureAccess(game, "SALT_FARM"),
+    resourceLabelKey: "resource.saltChargeGenerationTime",
   },
 ];
 
@@ -149,9 +148,7 @@ export const ToolsGuide: React.FC = () => {
             {t("landTools")}
           </Label>
         </div>
-        {LAND_NODES_WITH_RECOVERY.filter(
-          (node) => !node.isVisible || node.isVisible(state),
-        ).map((node, index) => (
+        {LAND_NODES_WITH_RECOVERY.map((node, index) => (
           <NodeRow
             key={`${node.toolName}-${node.resourceName}`}
             node={node}
@@ -295,8 +292,7 @@ const NodeRow: React.FC<NodeRowProps> = ({
   });
 
   const resourceName =
-  ITEM_DETAILS[node.resourceName]?.translatedName ?? node.resourceName;
-
+    ITEM_DETAILS[node.resourceName]?.translatedName ?? node.resourceName;
 
   const cooldown: CooldownDisplay = {
     nodeLabel: node.resourceLabelKey

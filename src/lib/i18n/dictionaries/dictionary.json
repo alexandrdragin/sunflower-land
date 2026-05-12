@@ -37,6 +37,8 @@
   "resource.obsidian": "Obsidian",
   "resource.sunstone": "Sunstone",
   "resource.oil": "Oil",
+  "resource.salt": "Salt",
+  "resource.saltChargeGenerationTime": "Salt Charge Generation Time",
   "node.cropPlot": "Crop Plot",
   "node.sunstone": "Sunstone Rock",
   "node.gold": "Gold Rock",
