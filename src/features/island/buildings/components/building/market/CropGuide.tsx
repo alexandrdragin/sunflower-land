@@ -1,6 +1,6 @@
 import { InnerPanel } from "components/ui/Panel";
 import { ITEM_DETAILS } from "features/game/types/images";
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { SEASON_ICONS } from "./SeasonalSeeds";
 import { SUNNYSIDE } from "assets/sunnyside";
 import { NoticeboardItems } from "features/world/ui/kingdom/KingdomNoticeboard";
@@ -225,7 +225,10 @@ export const CropRow: React.FC<{
     SEASONAL_SEEDS[season].includes(seed as SeedName),
   );
   const { t } = useAppTranslation();
-  const boostedTime = getSeedGrowthTime({ crop, seed, state, now });
+  const boostedTime = useMemo(
+    () => getSeedGrowthTime({ crop, seed, state, now }),
+    [crop, seed, state, now],
+  );
 
   return (
     <div
@@ -285,7 +288,7 @@ export const FlowerRow: React.FC<{
   const seasons = getKeys(SEASONAL_SEEDS).filter((season) =>
     SEASONAL_SEEDS[season].includes(seed as SeedName),
   );
-  const boostedTime = getFlowerTime(seed, state);
+  const boostedTime = useMemo(() => getFlowerTime(seed, state), [seed, state]);
 
   return (
     <div
@@ -372,7 +375,7 @@ const GrowthTimeCell: React.FC<{
   showBoostsKey,
   setShowBoostsKey,
 }) => {
-  const anchorRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLButtonElement>(null);
   const isTimeBoosted =
     boostedTime.boostsUsed.length > 0 && boostedTime.seconds !== baseSeconds;
   const showMediumTime =
@@ -392,9 +395,12 @@ const GrowthTimeCell: React.FC<{
   }
 
   return (
-    <div
+    <button
       ref={anchorRef}
+      type="button"
       className="flex items-center mr-2 cursor-pointer relative"
+      aria-expanded={showBoostsKey === boostKey}
+      aria-controls={`${boostKey}-panel`}
       onClick={(e) => {
         e.stopPropagation();
         setShowBoostsKey(showBoostsKey === boostKey ? null : boostKey);
@@ -429,7 +435,7 @@ const GrowthTimeCell: React.FC<{
         portalAlign="center"
         anchorRef={anchorRef}
       />
-    </div>
+    </button>
   );
 };
 
