@@ -8934,5 +8934,7 @@
   "linkedAccounts.confirmExistingWallet": "首先，请确认您现有的钱包。",
   "linkedAccounts.unlinkGoogleTestnet": "解绑 Google（仅限测试网）",
   "linkedAccounts.unlinking": "解绑中...",
-  "linkedAccounts.googleLinkingComingSoon": "Google 账号绑定功能即将推出。"
+  "linkedAccounts.googleLinkingComingSoon": "Google 账号绑定功能即将推出。",
+  "agingShed.upgradeForMoreSlots": "升级老化棚以获得更多老虎机",
+  "agingShed.upgradeForMoreSlotsTooltip": "升级老化棚以获得更多老虎机"
 }

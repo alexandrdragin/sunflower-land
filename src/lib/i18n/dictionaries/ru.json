@@ -8934,5 +8934,7 @@
   "linkedAccounts.confirmExistingWallet": "Сначала подтверди свой текущий кошелёк.",
   "linkedAccounts.unlinkGoogleTestnet": "Отвязать Google (только testnet)",
   "linkedAccounts.unlinking": "Отвязка...",
-  "linkedAccounts.googleLinkingComingSoon": "Привязка Google скоро появится."
+  "linkedAccounts.googleLinkingComingSoon": "Привязка Google скоро появится.",
+  "agingShed.upgradeForMoreSlots": "Upgrade your Aging Shed for more slots",
+  "agingShed.upgradeForMoreSlotsTooltip": "Upgrade your Aging Shed for more slots"
 }
