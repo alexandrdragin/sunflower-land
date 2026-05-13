@@ -467,7 +467,7 @@ export const LandscapingQuickPanel: React.FC<Props> = ({
     {
       id: "flowers",
       label: t("flowers"),
-      emptyLabel: "No flowers available.",
+      emptyLabel: t("landscaping.quickPanel.empty.flowers"),
       icon: ITEM_DETAILS["Prism Petal"].image,
       hasItems: flowers.length > 0,
     },
