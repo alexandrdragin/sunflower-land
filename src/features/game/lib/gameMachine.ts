@@ -32,8 +32,7 @@ import {
   PlacedLamp,
   Purchase,
 } from "../types/game";
-import { loadSession, SocialDetails } from "../actions/loadSession";
-import { resolveSocialDetails } from "./socialDetails";
+import { loadSession } from "../actions/loadSession";
 import { EMPTY } from "./constants";
 import { autosave } from "../actions/autosave";
 import { ErrorCode, ERRORS } from "lib/errors";
@@ -186,7 +185,6 @@ export interface Context {
   purchases: Purchase[];
   discordId?: string;
   fslId?: string;
-  socialDetails?: SocialDetails;
   oauthNonce: string;
   data: Partial<Record<StateMachineStateName, any>>;
   rawToken?: string;
@@ -632,15 +630,6 @@ const EFFECT_STATES = Object.values(STATE_MACHINE_EFFECTS).reduce(
                   nftId: event.data.data?.nftId ?? context.nftId,
                   farmAddress:
                     event.data.data?.farmAddress ?? context.farmAddress,
-                  // Effects run while visiting another farm return the
-                  // visited farm's response payload. Never let that
-                  // overwrite the visitor's own socialDetails.
-                  socialDetails: context.visitorId
-                    ? context.socialDetails
-                    : resolveSocialDetails(
-                        event.data.data,
-                        context.socialDetails,
-                      ),
                   data: { ...context.data, [stateName]: event.data.data },
                 };
               }),
@@ -660,15 +649,6 @@ const EFFECT_STATES = Object.values(STATE_MACHINE_EFFECTS).reduce(
                   nftId: event.data.data?.nftId ?? context.nftId,
                   farmAddress:
                     event.data.data?.farmAddress ?? context.farmAddress,
-                  // Effects run while visiting another farm return the
-                  // visited farm's response payload. Never let that
-                  // overwrite the visitor's own socialDetails.
-                  socialDetails: context.visitorId
-                    ? context.socialDetails
-                    : resolveSocialDetails(
-                        event.data.data,
-                        context.socialDetails,
-                      ),
                   data: { ...context.data, [stateName]: event.data.data },
                 };
               }),
@@ -786,10 +766,6 @@ const VISIT_EFFECT_STATES = Object.values(STATE_MACHINE_VISIT_EFFECTS).reduce(
                   nftId: event.data.data?.nftId ?? context.nftId,
                   farmAddress:
                     event.data.data?.farmAddress ?? context.farmAddress,
-                  // Intentionally do NOT touch socialDetails here: the
-                  // payload is the visited farm's response, and merging
-                  // any `socialDetails` field would leak/clobber the
-                  // visitor's own identity in context.
                   data: { ...context.data, [stateName]: rest },
                   visitorState: event.data.visitorState,
                   hasHelpedPlayerToday,
@@ -1103,7 +1079,6 @@ export function startGame(authContext: AuthContext) {
                 accountTradedAt: response.accountTradedAt,
                 totalHelpedToday: response.totalHelpedToday,
                 banReason: response.banReason,
-                socialDetails: response.socialDetails,
               };
             },
             onDone: [
@@ -2761,7 +2736,6 @@ export function startGame(authContext: AuthContext) {
           purchases: (_, event) => event.data.purchases,
           discordId: (_, event) => event.data.discordId,
           fslId: (_, event) => event.data.fslId,
-          socialDetails: (_, event) => event.data.socialDetails,
           oauthNonce: (_, event) => event.data.oauthNonce,
           prices: (_, event) => event.data.prices,
           apiKey: (_, event) => event.data.apiKey,

@@ -32,7 +32,6 @@ type EffectName =
   | "withdraw.wearables"
   | "withdraw.buds"
   | "wallet.linked"
-  | "social.linked"
   | "account.migrated"
   | "moderation.kicked"
   | "moderation.muted"
@@ -110,7 +109,6 @@ export type StateMachineStateName =
   | "marketplaceBulkListingsCancelling"
   | "marketplaceBulkOffersCancelling"
   | "linkingWallet"
-  | "linkingSocial"
   | "assigningNFT"
   | "cheeringFarm"
   | "followingFarm"
@@ -172,7 +170,6 @@ export const STATE_MACHINE_EFFECTS: Record<
   "marketplace.bulkListingsCancelled": "marketplaceBulkListingsCancelling",
   "marketplace.bulkOffersCancelled": "marketplaceBulkOffersCancelling",
   "wallet.linked": "linkingWallet",
-  "social.linked": "linkingSocial",
   "nft.assigned": "assigningNFT",
   "admin.NFTAssigned": "assigningNFT",
   "farm.cheered": "cheeringFarm",
