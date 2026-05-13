@@ -176,6 +176,12 @@ const SHOW_MODAL: Record<StateValues, boolean> = {
   unlockingFarmhandSuccess: false,
   resettingPetRequests: false,
   resettingPetRequestsSuccess: false,
+  linkingSocial: false,
+  linkingSocialSuccess: false,
+  linkingSocialFailed: false,
+  linkingWallet: false,
+  linkingWalletSuccess: false,
+  linkingWalletFailed: false,
 
   // Every new state should be added below here
   gems: true,
@@ -631,13 +637,13 @@ export const GameWrapper: React.FC<React.PropsWithChildren> = ({
 
   if (blacklisted) {
     return (
-      <div className="h-screen w-full fixed top-0" style={{ zIndex: 49 }}>
+      <Ocean>
         <Modal show backdrop={false}>
           <Panel>
             <Blacklisted banReason={banReason} />
           </Panel>
         </Modal>
-      </div>
+      </Ocean>
     );
   }
 
