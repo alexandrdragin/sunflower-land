@@ -1,4 +1,7 @@
-import { BuildingName, CookingBuildingName } from "features/game/types/buildings";
+import {
+  BuildingName,
+  CookingBuildingName,
+} from "features/game/types/buildings";
 import { BUILDING_DAILY_OIL_CAPACITY } from "./supplyCookingOil";
 
 // Lives in its own file so `collectRecipe.ts` can import it without
