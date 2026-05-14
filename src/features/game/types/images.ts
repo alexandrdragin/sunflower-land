@@ -4823,6 +4823,12 @@ export const ITEM_DETAILS: Items = {
     translatedName: translate("fertiliser.sproutrootSurprise"),
   },
   "Turbofruit Mix": {
+    boostedDescriptions: [
+      {
+        name: "Fruitful Bounty",
+        description: translate("compost.turbofruitMixBoosted"),
+      },
+    ],
     image: turbofruitMix,
     description: translate("compost.turbofruitMix"),
     translatedName: translate("fertiliser.turbofruitMix"),
