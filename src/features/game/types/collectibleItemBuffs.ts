@@ -16,6 +16,76 @@ import { TranslationKeys } from "lib/i18n/dictionaries/types";
 import { isCollectible } from "../events/landExpansion/garbageSold";
 import { getObjectEntries } from "lib/object";
 
+type CompoundFertiliserName = "Sproutroot Surprise" | "Turbofruit Mix";
+
+export function getCompoundFertiliserBuffLabels({
+  fertiliser,
+  skills,
+  collectibles,
+}: {
+  fertiliser: CompoundFertiliserName;
+  skills: GameState["bumpkin"]["skills"];
+  collectibles: GameState["collectibles"];
+}): BuffLabel[] {
+  if (fertiliser === "Sproutroot Surprise") {
+    return [
+      {
+        shortDescription: translate("description.sprout.mix.boost"),
+        labelType: "success",
+        boostTypeIcon: powerup,
+        boostedItemIcon: ITEM_DETAILS["Crop Plot"].image,
+      },
+      ...(collectibles["Knowledge Crab"]?.some(
+        (placed) => (placed.readyAt ?? 0) <= Date.now() && placed.coordinates,
+      )
+        ? [
+            {
+              shortDescription: translate(
+                "description.knowledge.crab.yield.boost",
+              ),
+              labelType: "success" as const,
+              boostTypeIcon: powerup,
+              boostedItemIcon: ITEM_DETAILS["Sprout Mix"].image,
+            },
+          ]
+        : []),
+      {
+        shortDescription: translate("description.rapid.root.boost"),
+        labelType: "info",
+        boostTypeIcon: SUNNYSIDE.icons.stopwatch,
+        boostedItemIcon: ITEM_DETAILS["Crop Plot"].image,
+      },
+    ];
+  }
+
+  return [
+    {
+      shortDescription: translate("description.fruitful.blend.boost"),
+      labelType: "success",
+      boostTypeIcon: powerup,
+      boostedItemIcon: ITEM_DETAILS["Fruit Patch"].image,
+    },
+    ...(skills["Fruitful Bounty"]
+      ? [
+          {
+            shortDescription: translate(
+              "description.fruitful.bounty.skill.boost",
+            ),
+            labelType: "success" as const,
+            boostTypeIcon: powerup,
+            boostedItemIcon: ITEM_DETAILS["Fruitful Blend"].image,
+          },
+        ]
+      : []),
+    {
+      shortDescription: translate("description.turbofruit.mix.boost"),
+      labelType: "info",
+      boostTypeIcon: SUNNYSIDE.icons.stopwatch,
+      boostedItemIcon: ITEM_DETAILS["Fruit Patch"].image,
+    },
+  ];
+}
+
 export const COLLECTIBLE_BUFF_LABELS: Partial<
   Record<
     InventoryItemName,
@@ -347,60 +417,18 @@ export const COLLECTIBLE_BUFF_LABELS: Partial<
       boostedItemIcon: ITEM_DETAILS["Crop Plot"].image,
     },
   ],
-  "Sproutroot Surprise": ({ collectibles }) => [
-    {
-      shortDescription: translate("description.sprout.mix.boost"),
-      labelType: "success",
-      boostTypeIcon: powerup,
-      boostedItemIcon: ITEM_DETAILS["Crop Plot"].image,
-    },
-    ...(collectibles["Knowledge Crab"]?.some(
-      (placed) => (placed.readyAt ?? 0) <= Date.now() && placed.coordinates,
-    )
-      ? [
-          {
-            shortDescription: translate(
-              "description.knowledge.crab.yield.boost",
-            ),
-            labelType: "success" as const,
-            boostTypeIcon: powerup,
-            boostedItemIcon: ITEM_DETAILS["Sprout Mix"].image,
-          },
-        ]
-      : []),
-    {
-      shortDescription: translate("description.rapid.root.boost"),
-      labelType: "info",
-      boostTypeIcon: SUNNYSIDE.icons.stopwatch,
-      boostedItemIcon: ITEM_DETAILS["Crop Plot"].image,
-    },
-  ],
-  "Turbofruit Mix": ({ skills }) => [
-    {
-      shortDescription: translate("description.fruitful.blend.boost"),
-      labelType: "success",
-      boostTypeIcon: powerup,
-      boostedItemIcon: ITEM_DETAILS["Fruit Patch"].image,
-    },
-    ...(skills["Fruitful Bounty"]
-      ? [
-          {
-            shortDescription: translate(
-              "description.fruitful.bounty.skill.boost",
-            ),
-            labelType: "success" as const,
-            boostTypeIcon: powerup,
-            boostedItemIcon: ITEM_DETAILS["Fruitful Blend"].image,
-          },
-        ]
-      : []),
-    {
-      shortDescription: translate("description.turbofruit.mix.boost"),
-      labelType: "info",
-      boostTypeIcon: SUNNYSIDE.icons.stopwatch,
-      boostedItemIcon: ITEM_DETAILS["Fruit Patch"].image,
-    },
-  ],
+  "Sproutroot Surprise": ({ collectibles, skills }) =>
+    getCompoundFertiliserBuffLabels({
+      fertiliser: "Sproutroot Surprise",
+      collectibles,
+      skills,
+    }),
+  "Turbofruit Mix": ({ collectibles, skills }) =>
+    getCompoundFertiliserBuffLabels({
+      fertiliser: "Turbofruit Mix",
+      collectibles,
+      skills,
+    }),
   "Greenhouse Glow": () => [
     {
       shortDescription: translate("description.greenhouse.glow.boost"),
